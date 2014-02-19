@@ -19,7 +19,7 @@
 \newcommand\myfrac[2]{
  \begin{array}{c}
  #1 \\
- \hline \hline 
+ \hline \hline
  #2
 \end{array}}
 
@@ -142,7 +142,7 @@
 \newcommand{\comp}{{\sf comp}}
 % Marc's macros
 \newcommand{\op}[1]{#1^\mathit{op}}
-\newcommand{\set}[1]{\{#1\}} 
+\newcommand{\set}[1]{\{#1\}}
 \newcommand{\es}{\emptyset}
 \newcommand{\lto}{\longmapsto}
 \newcommand{\rup}[1]{#1{\uparrow}}
@@ -159,17 +159,20 @@
 \newcommand{\bind}[2]{{\langle}#1{\rangle}#2}
 \newcommand{\OO}{O}
 \newcommand{\takeout}[1]{}
-
 % end Marc's macros
+
+\newcommand{\yoneda}{\mathbf{y}}
+
+
 \begin{document}
 
 \title{A model of type theory in cubical sets}
 
 \author{
-Marc Bezem\thanks{Department of Informatics, University of Bergen, {\tt bezem@ii.uib.no}} 
-\and 
+Marc Bezem\thanks{Department of Informatics, University of Bergen, {\tt bezem@ii.uib.no}}
+\and
 Thierry Coquand\thanks{Department of Computer Science and Engineering, Chalmers/University of Gothenburg, {\tt coquand@chalmers.se}}
-\and 
+\and
 Simon Huber\thanks{Department of Computer Science and Engineering, Chalmers/University of Gothenburg, {\tt simonhu@chalmers.se}}
 }
 \date{\today}
@@ -177,7 +180,7 @@ Simon Huber\thanks{Department of Computer Science and Engineering, Chalmers/Univ
 
 %\rightfooter{}
 
-{\em La th\'eorie singuli\`ere classique utilise des {\em simplexes}; dans la suite de ce chapitre, 
+{\em La th\'eorie singuli\`ere classique utilise des {\em simplexes}; dans la suite de ce chapitre,
 nous aurons besoin d'une d\'efinition
 \'equivalente, mais utilisant des {\em cubes}; il est en effet \'evident que ces derniers se pr\^etent mieux que les
 simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'es qui en sont la g\'en\'eralisation.}
@@ -191,16 +194,16 @@ simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'
 of Takeuti/Gandy's interpretation of extensional in intensional type theory \cite{Gandy}, but also
 a generalization of Bishop's notion of {\em set} \cite{Bishop}.
 While not expressed internally in type theory, this model is expressed in a constructive metalogic.
-It can be seen as a simplification and a constructive version of the 
-Kan simplicial set model of type theory \cite{Voevodsky}. 
+It can be seen as a simplification and a constructive version of the
+Kan simplicial set model of type theory \cite{Voevodsky}.
 Our notion of cubical set is a variation of the presentation in \cite{Crans}.
 We introduce the base category $\CC$ of names and substitutions.
-A \emph{cubical set} is then a covariant presheaf on $\CC$. 
+A \emph{cubical set} is then a covariant presheaf on $\CC$.
 We can then consider the presheaf model of type theory,
 where a context $\Gamma$ is interpreted by a cubical set and a type over $\Gamma$ is interpreted by a fibration
-over the interpretation of $\Gamma$. Like for the classical model based on simplicial sets, 
+over the interpretation of $\Gamma$. Like for the classical model based on simplicial sets,
 we restrict our model by considering only Kan fibrations. A problem with a constructive approach to
-Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.  
+Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
 Here we shall use a strengthening of the usual Kan filling condition. (One other possible attempt to solve this
 problem is by marking the degenerated elements, but it is not clear yet in this approach how to treat exponentials
 in a satisfactory way.) The strengthening of the Kan condition is natural given the reformulation of the notion of cubical sets
@@ -219,21 +222,21 @@ of the axiom of description \cite{Russell}.
 \section{The category of names and substitutions}
 
  We start by fixing a countable discrete set of names or symbols, hereafter called the \emph{name space},
-such that $0$ and $1$ are not names. 
-The objects of $\CC$ are finite decidable subsets of the namespace, 
+such that $0$ and $1$ are not names.
+The objects of $\CC$ are finite decidable subsets of the namespace,
 and we denote them by $I,J,K,\dots$.
 A morphism $f:I\to J$ is a map $I \to J\cup \set{0,1}$ such that $f(i) = f(j)$ iff $i=j$ whenever
-$f(i)$ and $f(j)$ are in $J$. Notice that $\set{0,1}$ is disjoint from $J$ since $J$ is a set of 
-names. We say that $i$ is in the \emph{domain} of $f$, or that $f(i)$ is \emph{defined}, 
+$f(i)$ and $f(j)$ are in $J$. Notice that $\set{0,1}$ is disjoint from $J$ since $J$ is a set of
+names. We say that $i$ is in the \emph{domain} of $f$, or that $f(i)$ is \emph{defined},
 if $f(i)$ is an element of $J$\footnote%
 {In a previous attempt, we have been considering the category of finite sets
-with maps $I \to J+2$ (i.e. the Kleisli category for the monad $I+2$). 
-This category appears on pages 47--48 in Pursuing Stacks 
+with maps $I \to J+2$ (i.e. the Kleisli category for the monad $I+2$).
+This category appears on pages 47--48 in Pursuing Stacks
 \cite{Grothendieck} as ``in a sense, the smallest test category''.}.
 So the condition for $f$ being a morphism can be reformulated by saying that $f$ is injective on its domain.
 
 Clearly, $1_I : I\to I$ defined by $1_I(i) = i$ for all $i\in I$ is a morphism.
-If $f:I\to J$ and $g:J\to K$ are morphisms, we define the composition $g\circ f$ by 
+If $f:I\to J$ and $g:J\to K$ are morphisms, we define the composition $g\circ f$ by
 $(g\circ f)(i) = g(f(i))$ if $i$ is in the domain of $f$, and $(g\circ f)(i) = f(i)$ if $f(i)= 0,1$.
 Clearly, $g\circ f: I\to K$ is a morphism.
 We shall write $fg$ for the composition $g\circ f$, so first $f$ and then $g$.
@@ -245,7 +248,7 @@ Together with $I\mapsto I \cup \set{0,1}$ we get a functor.% $\CC\to{\sf Set}$.
 It is not difficult to see that composition is associative and that $1_I f = f = f 1_J$.
 Hence $\CC$ is a category. From now on, we may simply write $1$ instead of $1_I$.
 
- We think of $f:I\to J$ as a substitution with renaming, 
+ We think of $f:I\to J$ as a substitution with renaming,
  where the only values we can substitute are $0$ and $1$.
 In particular we have for any $x$ in $I$ two substitutions $(x=b):I\to I-x$, for $b=0,1$,
 defined by $y(x=b) = y$ if $y\neq x$ and $x(x=b) = b$. These are the \emph{face maps}.
@@ -255,7 +258,7 @@ Thus cubical sets have $2n$ face maps when $I$ has $n$ elements, that is, in dim
  We say that a map $f:I\to J$ is a {\em degeneracy map} iff all elements in $I$ are in
 the domain of $f$. For instance, if $I\subseteq J$ the canonical inclusion $I \to J$ defines
 a degeneracy map. If $x$ is not in $I$ the inclusion map $I \to I,x$ will be written as $(x)$.
-We have two face maps $(x=0), (x=1):I,x\to I$ and we 
+We have two face maps $(x=0), (x=1):I,x\to I$ and we
 have $(x)(x=0) = (x)(x=1) = 1_I$, which is one example of a \emph{cubical identity}.
 There are many more cubical identities, often implicit in the notations. We also have
 the following result (cf.\ simplicial sets): every morphism is, in a unique way, the composition of
@@ -270,25 +273,28 @@ $(f,x=y):I,x\to J,y$ by sending $x$ to $y$.
 \section{Cubical sets}
 
 A \emph{cubical set} is a functor $\CC\to{\sf Set}$.
-Let $X$ be a cubical set. Then we have sets $X(I)$ and set maps 
+Let $X$ be a cubical set. Then we have sets $X(I)$ and set maps
 $X(I)\to X(J),~u\longmapsto uf$ for any morphism $f:I\to J$,
-such that $u1 = u$ and $u(fg) = (uf)g$. 
+such that $u1 = u$ and $u(fg) = (uf)g$.
 
 \medskip
 
- A cubical set $X$ is a presheaf on the category ${\cal C}^{opp}$. Any finite set of direction $I$
-represents by Yoneda a cubical set, which can be thought of as a formal representation of $[0,1]^I$.
-An element of $X(I)$ can then be seen as a formal representation of a ``continuous'' map
-$[0,1]^I\to X$, and it is natural to call an element of $X(I)$ an $I$-cube.
+A cubical set $X$ is a presheaf on the category ${\cal C}^{opp}$. Any
+finite set of directions $I$ represents by the Yoneda embedding
+$\yoneda \colon {\cal C}^{opp} \to {\sf Set}^{\cal C}$ a cubical set
+$\yoneda I$, which can be thought of as a formal representation of
+$[0,1]^I$.  An element of $X(I)$ can then be seen as a formal
+representation of a ``continuous'' map $[0,1]^I\to X$, and it is
+natural to call an element of $X(I)$ an $I$-cube.
 
 We think of $u$ in $X(I)$ as meaning that $u$ may depend on the names in $I$, and only on those names;
 we think of $uf$ in $X(J)$ as the element we obtain by performing the substitution $f$ on $u$,
 possibly combined with renaming and/or adding variables.
 An element of $X()$ represents a point, an element $\omega$ of $X(i)$ a line connecting the points
-$\omega(i=0)$ and $\omega(i=1)$ in $X()$. An element in $X(i,j)$ represents a square. 
+$\omega(i=0)$ and $\omega(i=1)$ in $X()$. An element in $X(i,j)$ represents a square.
 We then follow some notations similar to the ones in first-order logic by writing $u = u(x_1,\dots,x_n)$ when
 $u$ is in $X(x_1,\dots,x_n)$. This is similar to saying that $u$ may depend at most on the names $x_1,\dots,x_n$.
-In doing so we always implicitly assume that the names $x_1,\dots,x_n$ are pairwise distinct; 
+In doing so we always implicitly assume that the names $x_1,\dots,x_n$ are pairwise distinct;
 the order of the names in $X(x_1,\dots,x_n)$ does not matter. Applying a face map will now be expressed
 by actually performing the substitution. For example, we have that $u(x=0)$ is in $X(y)$ whenever $u$ is in $X(x,y)$:
 %\begin{figure}
@@ -305,9 +311,12 @@ u(0,0)\ar[rr]_{u(x,0)}                &      & u(1,0)                       \\
 %\caption{A square $u(x,y)$ and a degenerated square $u(x,0)$\label{squares}}
 %\end{figure}
 
- If $v$ is an $I-x$ cube of $X$ then we can consider $v(x)$ which is an $I$-cube of $X$
- (we recall that $(x):I-x\to I$ is the canonical inclusion). The map $v\longmapsto v(x)$
-is injective (we have $v(x)(x=0) = v$) and it is sometimes natural to identify $v$ and $v(x)$, thus considering $X(I-x)$ to be a subset of $X(I)$. An example is the degenerated right square above.
+If $v$ is an $I-x$ cube of $X$ then we can consider $v(x)$ which is an
+$I$-cube of $X$ (we recall that $(x):I-x\to I$ is the canonical
+inclusion). The map $v\longmapsto v(x)$ is injective (we have
+$v(x)(x=0) = v$) and it is sometimes natural to identify $v$ and
+$v(x)$, thus considering $X(I-x)$ to be a subset of $X(I)$. An example
+is the degenerated right square above.
 
  If $u$ is in $X(I)$ and $x$ is in $I$, there may exist a $v$ in $X(I-x)$ such that
 $u = v(x) = v$.  Intuitively, this means that $x$ ``does not occur'' in $u$, or that $u$ is
@@ -318,11 +327,11 @@ not need to be decidable.
 by taking an element in $(\Id_X~a~u)(I)$ to be an $I,x$-cube $\omega$ of $X$ where $x$ is
 a fresh variable, such that $\omega(x=0) = a$ and $\omega(x=1) = u$. The name $x$ is ``bound''
 in this operation so that another $I,x'$-cube $\omega'$ is equal to $\omega$
-iff $\omega'(x'=x) = \omega$. 
+iff $\omega'(x'=x) = \omega$.
 %More precisely, if $I=\set{x_1,\dots,x_n}$, then the morphisms
 %$(x=x'): I,x \to I,x'$ and $(x'=x): I,x' \to I,x$ renaming only $x$ to $x'$ and vice versa are each other's inverse,
 %and we can identify $\omega\in X(x_1,\dots,x_n,x)$ with $\omega'\in X(x_1,\dots,x_n,x')$
-%whenever $\omega' = \omega (x=x')$, or, equivalently, $\omega = \omega' (x'=x)$. 
+%whenever $\omega' = \omega (x=x')$, or, equivalently, $\omega = \omega' (x'=x)$.
 %Due to the isomorphisms $x=x'$ and $x'=x$, the name of the bound variable does not matter (as long as it is not in $I$).
 We introduce a new binding operation $\bind{x}{\omega}$ which defines this $I$-cube of $\Id_X~a~u$.
 One way to make this notion precise is to assume a choice function
@@ -331,19 +340,19 @@ $x_I$ is the fresh name given by the choice function. (This is the solution sugg
 
  Since cubical sets form a presheaf category, it is known how to give a semantics of type theory in term of cubical sets.
 A context $\Gamma$ is interpreted by a cubical set, and a dependent type $\Gamma\vdash A$ is given by a fibration.
-More explicitely,
+More explicitly,
 we need to give for each $I$-cube $\alpha$ of $\Gamma$ a set $A\alpha$
-with maps $A\alpha\to A\alpha f,~u\longmapsto uf$ satisfying $u1 = u$ and $u(fg) = (uf)g$. 
+with maps $A\alpha\to A\alpha f,~u\longmapsto uf$ satisfying $u1 = u$ and $u(fg) = (uf)g$.
 A section $\Gamma\vdash a:A$ is defined by giving an element $a\alpha$ in $A\alpha$ for each
 $I$-cube $\alpha$ of $\Gamma$ in such a way that $(a\alpha) f = a (\alpha f)$ for any substitution $f$.
-If $\Gamma\vdash A$, we define the presheaf $\Gamma.A$ by taking as $I$-cubes of $\Gamma.A$ 
+If $\Gamma\vdash A$, we define the presheaf $\Gamma.A$ by taking as $I$-cubes of $\Gamma.A$
 pairs $(\alpha,u)$ with $\alpha$ an $I$-cube of $\Gamma$ and $u$ in $A\alpha$. If $f:I\to J$ we define
 $(\alpha,u)f = (\alpha f,u f)$. If $\Gamma\vdash A$ and $\Gamma.A\vdash B$ we define
-the fibration $\Gamma\vdash \Pi\,A\,B$ as follows. 
+the fibration $\Gamma\vdash \Pi\,A\,B$ as follows.
 For each $I$-cube $\alpha$ of $\Gamma$, an element $w$ of $(\Pi\,A\,B)\alpha$ is a family
 indexed by $f:I\to J$ such that $\app(wf,u)$ in $B(\alpha f,u)$ for all $u$ in $A\alpha f$.
 Moreover, we should have $\app(wf,u)g = \app(wfg,ug)$ for all $g:J\to K$. The latter
-allows us to define the family $wf$ by putting $(wf)g = w(fg)$, $w=w1$, 
+allows us to define the family $wf$ by putting $(wf)g = w(fg)$, $w=w1$,
 which completes the definition of the fibration $\Gamma\vdash \Pi\,A\,B$.
 Substitutions $\sigma:\Delta\to\Gamma$ are interpreted as cubical set maps
 (natural transformations), so that we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a $I$-cube of
@@ -362,21 +371,21 @@ to any cubical set. A category equivalent to to the category of cubical sets is 
  Using these notations we can formulate the Kan condition (cf.\ \cite{Kan})
 and our strengthening as follows. Let $X$ be a cubical set.
 First we define the notion of an \emph{open box} in $X$, the equivalent of a \emph{horn} in a simplicial set.
-Let $I$ be a finite set of names and let $J,x \subseteq I$. 
-The variable $x$ must not be in $J$ and will be the direction in which the box is open. 
+Let $I$ be a finite set of names and let $J,x \subseteq I$.
+The variable $x$ must not be in $J$ and will be the direction in which the box is open.
 For every $y\in J$, the open box will have two faces, one with $y=0$ and one with $y=1$.
-Let $O^+(J,x)$ consist of pairs $(x,0)$ and $(y,b)$ for $y\in J,~b=0,1$. 
-In the same way we define $O^-(J,x)$, but with $(x,1)$ instead of $(x,0)$. 
+Let $O^+(J,x)$ consist of pairs $(x,0)$ and $(y,b)$ for $y\in J,~b=0,1$.
+In the same way we define $O^-(J,x)$, but with $(x,1)$ instead of $(x,0)$.
 The idea for both is that one face in the direction $x$ is missing.
 We use $O(J,x)$ to denote either $O^+(J,x)$ or $O^-(J,x)$.
 Given $O(J,x)$, we define an \emph{open box} as a vector $\vec u$ indexed by $O(J,x)$
-such that the faces $u_{yb}$ in $X(I-y)$ are \emph{adjacent-compatible}, 
+such that the faces $u_{yb}$ in $X(I-y)$ are \emph{adjacent-compatible},
 that is, for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$:
 $$u_{yb}(z = c) = u_{zc}(y = b)$$
 If $f:I\to K$ is defined on $J,x$ we write
 $\vec u f$ for the vector $(\vec u f)_{yb} = u_{yb} (f-y)$.
 
- For $X$ to be a (constructive) Kan cubical set, we require to be given operations 
+ For $X$ to be a (constructive) Kan cubical set, we require to be given operations
 $\rup{X} \vec u$ and $\rdo{X} \vec u$, both in $X(I)$, for every $J,x\subseteq I$.
 Here $\vec u$ is an open box with $u_{x0}$ and $u_{x1}$ in $X(I-x)$ in the
 respective cases $\rup{X} \vec u$ and $\rdo{X} \vec u$. (From now on we will always
@@ -392,11 +401,12 @@ $$
 $$
 We refer to the combined condition as the \emph{uniform Kan condition for cubical sets},
 or the \emph{Kan condition} for short. %See Figure~\ref{fillings} for an example.
- 
- If we only consider the case where $I = J,x$, that is, no other variables in $I$, 
- and without the uniformity conditions, we get back
-the usual notion of Kan cubical sets.
- For a suggestive description of how to define combinatorially $\pi_n(X,u)$ for each point $u$ of $X$ if $X$
+
+If we only consider the case where $I = J,x$, that is, no other
+variables in $I$, and without the uniformity conditions, we get back
+the usual notion of Kan cubical sets \cite[Section 4]{Kan} (adapted to
+our notion of cubical ).  For a suggestive description of how to
+define combinatorially $\pi_n(X,u)$ for each point $u$ of $X$ if $X$
 satisfies the Kan property, see \cite{Williamson}.
 
  These new uniformity conditions solve the constructivity problem described in the note \cite{BC}.
@@ -405,7 +415,7 @@ as the one considered in \cite{BCH}.)
 
 If $X$ is a Kan cubical set with operations $\rup{X},\rdo{X}$, we define new operations (see figure below)
 $$
-X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$ 
+X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$
 %\begin{figure}
 %\def\emp{{()}}
 \def\noe{\cdot}
@@ -423,8 +433,8 @@ X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$
 %\end{figure}
 
  We now define what is a Kan fibration over a cubical set.
-Let $\Gamma$ be a cubical set (which does not need to satisfy the Kan condition) 
-and $\Gamma\vdash A$ a fibration over $\Gamma$. 
+Let $\Gamma$ be a cubical set (which does not need to satisfy the Kan condition)
+and $\Gamma\vdash A$ a fibration over $\Gamma$.
 For this fibration to be a \emph{Kan fibration}, we require to be given operations,
 for any $J,x\subseteq I$,
 $\rup{A\alpha} \vec u$  and $\rdo{A\alpha} \vec u$, both in $A\alpha$,
@@ -432,7 +442,7 @@ defined for every open box $\vec u$.
 Here \emph{open box} means that $u_{yb}\in A\alpha(y=b)$ for all $(y,b)\in O(J,x)$,
 and that these faces are adjacent-compatible.
 $\rup{A\alpha}, \rdo{A\alpha}$ must satisfy the same Kan conditions as $ \rup{X},\rdo{X}$ above.
-The usual Kan conditions are obtained by simply substituting $A\alpha$ for $X$. 
+The usual Kan conditions are obtained by simply substituting $A\alpha$ for $X$.
 Since $f:I\to K$ interacts with $\alpha$, we reformulate the uniformity conditions:
 $$
 (\rup{A\alpha} \vec u)f = \rup{A\alpha f} (\vec{u}f)~~~~~~~
@@ -451,19 +461,19 @@ the cubical nerve $N$ of the group $Z_2$ with two elements;
 the exponential $N^I$.
 A noticeable difference between simpicial sets and our cubical sets is that,
 while $N$ is Kan, $N^I$ is not.
-This is important motivation for the main result of the next section, 
+This is important motivation for the main result of the next section,
 implying that $B^A$ is a Kan cubical set if both $A$ and $B$ are.
 
-Recall the canonical extension of a map $f:J\to K$ in $\CC$ 
+Recall the canonical extension of a map $f:J\to K$ in $\CC$
 to a set map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on $\set{0,1}$.
-Together with  mapping objects $J$ of $\CC$ to $J \cup \set{0,1}$, 
-canonical extension actually forms a functor $\CC\to{\sf Set}$. 
+Together with  mapping objects $J$ of $\CC$ to $J \cup \set{0,1}$,
+canonical extension actually forms a functor $\CC\to{\sf Set}$.
 This covariant functor is called the \emph{unit interval}, denoted by $I$.
 We explore: $I(\set{})=\set{0,1}$ ($I$ has two points);
 $I(\set{x})=\set{0,1,x}$ ($I$ has three lines, only $x$ is non-degenerated);
-$I(\set{x,y})=\set{0,1,x,y}$ ($I$ has four degenerated squares, 
+$I(\set{x,y})=\set{0,1,x,y}$ ($I$ has four degenerated squares,
 the first four squares in the display below); and so on.
-The square $x$ varies in direction $x$, 
+The square $x$ varies in direction $x$,
 but is constant in direction $y$, and hence degenerated.
 Similarly for objects of higher dimension in $I$.
 This completes the description of the unit interval as a cubical set.
@@ -478,16 +488,16 @@ This completes the description of the unit interval as a cubical set.
 \def\Txy{{1 \atop 1} ~ {1 \atop 1}}
 \def\Iy{{1 \atop 0} ~ {1 \atop 0}}
 \def\Ix{{0 \atop 0} ~ {1 \atop 1}}
-I(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad 
+I(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
 N(0\leq1)(\set{x,y}):\oooo\quad\ooll\quad\olol\quad\llll\quad\olll\quad\olll\]
 
 Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to K\cup\set{0,1}$ such that
 for every $y\in K$ there exists at most one $x\in J$ with $f(x)=y$.
 Hence every morphism $f:J\to K$ defines a function
 $\set{0,1}^K  \to \set{0,1}^J$ through precomposition with $f$.
-We can view $\set{0,1}^J$ as a product of posets $0\leq1$, 
+We can view $\set{0,1}^J$ as a product of posets $0\leq1$,
 and hence as a category with unique morphisms.
-Then every morphism $f:J\to K$ defines a functor 
+Then every morphism $f:J\to K$ defines a functor
 $\set{0,1}^K  \to \set{0,1}^J$, as the precomposition preserves the order.
 We denote this functor also by $f$.
 
@@ -498,7 +508,7 @@ $\ND$ as follows. The sets $\ND(J)$ are functors $\set{0,1}^J \to\DD$.
 For every morphism $f:J\to K$, its function $\ND(J)\to\ND(K)$
 is defined by precomposition with the functor $f$.
 Note that the unit interval is not the cubical nerve of the poset $0\leq1$:
-they have similar sets of points and lines, but $N(0\leq1)$ has two 
+they have similar sets of points and lines, but $N(0\leq1)$ has two
 more squares, both non-degenerated in two directions,
 see the last six squares in the display above.
 An element of $\ND(J)$ can be viewed as a (hyper)cube with
@@ -509,7 +519,7 @@ Point (ii) is equivalent to saying that all squares commute.
 This completes the description of the cubical nerve of a category.
 
 Consider the group of two elements as a category (groupoid)
-with one object $\star$ and two morphisms $0,1:\star\to\star$. 
+with one object $\star$ and two morphisms $0,1:\star\to\star$.
 Let $N$ be the nerve of this groupoid:
 $N$ has one point and two lines, again denoted by $\star$ and $0,1$.
 Note that $\star(x) = 0$ and $1\circ 1 = 1+1=0$.
@@ -523,24 +533,21 @@ N(\set{x,y}){:}~
 0\oo0 \quad 1\oo1 \quad 0\ll0 \quad 1\lo0 \quad 1\ol0 \quad 0\ol1 \quad 0\lo1 \quad 1\ll1
 \quad\mbox{For later:}~0{\ell_x \atop \ell_x}0 \quad 0{\ell_1 \atop \ell_0}0
 \quad \ell_0{0 \atop 0}\ell_1 \quad \ell_y{0 \atop 0}\ell_y\]
-Being the nerve of a groupoid, $N$ is Kan (see the next section). 
+Being the nerve of a groupoid, $N$ is Kan (see the next section).
 
-We now show that $N^I$ is not Kan. By Yoneda we
-have $N^I(J)\cong (Hom^{\CC}(J,\_)\to (I\to N))$, 
-the latter denoting a set of natural translations.
-Defining $p\in N^I(J)$ means defining maps 
-$pf:I(K)\to N(K)$ for every $f:J\to K$, such that $(pf)g=p(fg)$
-for every $g:K\to L$. We explore the points of $N^I$ 
-and define $p\in N^I(\emptyset)$ by, first,
-$p():I(\emptyset)\to N(\emptyset):\_\mapsto\star$.
-Then, $p(x):I(\set{x})\to N(\set{x}): 0,1 \mapsto\star(x)=0$
-is forced by naturality,
-but for $p(x)(x)$ there is a choice. If we choose $0$, we must make
-the same choice for all names $x$ in the name space. 
-The choice $1$ for all names $x$ in the name space
-would give the only other point. In higher dimensions
-all arguments are degenerated, determining the function values,
-and naturality is compatible with each of the two choices above.
+We now show that $N^I$ is not Kan. By the Yoneda Lemma we have
+$N^I(J)\cong (Hom^{\CC}(J,\_)\to (I\to N))$, the latter denoting a set
+of natural translations.  Defining $p\in N^I(J)$ means defining maps
+$pf:I(K)\to N(K)$ for every $f:J\to K$, such that $(pf)g=p(fg)$ for
+every $g:K\to L$. We explore the points of $N^I$ and define $p\in
+N^I(\emptyset)$ by, first, $p():I(\emptyset)\to
+N(\emptyset):\_\mapsto\star$.  Then, $p(x):I(\set{x})\to N(\set{x}):
+0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p(x)(x)$
+there is a choice. If we choose $0$, we must make the same choice for
+all names $x$ in the name space.  The choice $1$ for all names $x$ in
+the name space would give the only other point. In higher dimensions
+all arguments are degenerated, determining the function values, and
+naturality is compatible with each of the two choices above.
 
 Next we explore lines from $p$ to $p$ in $N^I$,
 say in direction $i$,
@@ -551,14 +558,14 @@ we put $\ell(i=x)(c) = \ell_c$ for all $c\in I(\set{x})$. Note that we must make
 the same choices $\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.
 On the next level, $\ell(i=b)(x)(y) = p(x)(y)$ is forced, as
 are $\ell(i=x)(y),\ell(i=y)(x): I(\set{x,y})\to N(\set{x,y})$.
-Applying these to both $x$ and $y$ in $I(\set{x,y})$ results 
+Applying these to both $x$ and $y$ in $I(\set{x,y})$ results
 in the four squares displayed above (NB: $\ell_x=\ell_y$).
 Naturality now limits the choice on the lower level,
 since the squares have to commute: $\ell_0 = \ell_1$.
 In higher dimensions all values are determined by naturally,
 and naturality is compatible
 with each of the four possible choices (recall that
-objects in $I$ can be non-degenerated in at most one direction). 
+objects in $I$ can be non-degenerated in at most one direction).
 This yields in total four lines from $p$ to $p$ in $N^I$.
 
 In order to show that $N^I$ is not Kan, consider lines $p,\ell: p\to p$,
@@ -570,14 +577,14 @@ Consider an open box as in the picture below, left:
 p\ar@{.>}[rr]&      & p   &  0\ar[rr]^{0}&      & 0  &  \star\ar[rr]^{\ell'_0}&      & \star
 &  1\ar[rr]^{1}&      & 1 &  \star\ar[rr]^{\ell'_1}&      & \star \\
                     &&    &        &&    &    &&       &        &&    &    &&       \\
-p\ar[rr]_{p}\ar[uu]^{p}& & p\ar[uu]_{\ell} &    
-0\ar[rr]_{0}\ar[uu]^{0}& & 0\ar[uu]_{0}    &    
-\star\ar[rr]_{0}\ar[uu]^{0}& & \star\ar[uu]_{0}  &    
-0\ar[rr]_{0}\ar[uu]^{y}& & 0\ar[uu]_{y}    &    
+p\ar[rr]_{p}\ar[uu]^{p}& & p\ar[uu]_{\ell} &
+0\ar[rr]_{0}\ar[uu]^{0}& & 0\ar[uu]_{0}    &
+\star\ar[rr]_{0}\ar[uu]^{0}& & \star\ar[uu]_{0}  &
+0\ar[rr]_{0}\ar[uu]^{y}& & 0\ar[uu]_{y}    &
 \star\ar[rr]_{0}\ar[uu]^{0}& & \star\ar[uu]_{1}     \\
 }
 \]
-By contradiction, assume we can fill the box. 
+By contradiction, assume we can fill the box.
 Call the closing (dotted) line above $\ell'$.
 Applying the first square to the second results in the third square,
 yielding $\ell'_0 = 0$.
@@ -596,20 +603,20 @@ adjacent-compatible faces $u_{x0}\in N(I-x)$ and $u_{yb}$ in $N(I-y)$.
 We have to define $u\in N(I)$ with faces as given by the open box.
 For this we define closing faces $u_{x1}$,$u_{z0}$,$u_{z1}$, such that they
 are adjacent-compatible with the open box, and show that all squares
-commute. This will define $u$ in a unique way. 
+commute. This will define $u$ in a unique way.
 Thereafter we shall verify the uniformity condition.
 
-If $J=\emptyset~(k=0)$,  the open `box' is a degenerated line $u_{x0}$. 
+If $J=\emptyset~(k=0)$,  the open `box' is a degenerated line $u_{x0}$.
 We close by taking $u_{x1}=u_{z0}=u_{z1}=u_{x0}$, and $u$ is the
 doubly degenerated square. If $J\neq\emptyset~(k>0)$,
 we observe that all the points of $u$ are already given by the open
-box, so that we can limit attention to the edges. 
+box, so that we can limit attention to the edges.
 Moreover, if $J$ consists of more than one variable, all edges are also
 already present in the open box, which makes the definition of the closing faces
-particularly simple. This can be seen as follows. 
-For $b=0,1$, the faces $u_{y_1b}$ contain all edges in which $y_1 = b$, 
-and the faces $u_{y_2b}$ contain all edges in which $y_2 = b$. 
-In particular, the two faces $u_{y_2b}$ contain all edges in direction $y_1$. 
+particularly simple. This can be seen as follows.
+For $b=0,1$, the faces $u_{y_1b}$ contain all edges in which $y_1 = b$,
+and the faces $u_{y_2b}$ contain all edges in which $y_2 = b$.
+In particular, the two faces $u_{y_2b}$ contain all edges in direction $y_1$.
 Hence, the four faces $u_{y_1b}$, $u_{y_2b}$ together contain all edges.
 For this reason we can take $I=x,y,z,~J=y$ and define edges in $u_{x1}$ in direction $y$.
 This situation is depicted below, left, with the new edges as defined right.
@@ -642,23 +649,23 @@ A similar argument can be used if $J$ contains more variables.
 This completes the construction of $u\in N(I)$.
 
 Uniformity will be shown to be a consequence of the uniqueness of
-$u$ constructed above, and the following easy lemma. 
+$u$ constructed above, and the following easy lemma.
 This lemma can be useful other places as well.
 \begin{lemma}  For all morphisms $f:I\to K$ in $\CC$ defined on $x$ we have
 (i) $(x=b)(f-x) = f (f(x)=b)$ and (ii) $(x)f = (f-x)(f(x))$.
-\end{lemma} 
-Now let $u=\rup{N}(u_{x0},u_{y0},u_{y1})$ and 
+\end{lemma}
+Now let $u=\rup{N}(u_{x0},u_{y0},u_{y1})$ and
 $u'=\rup{N}(u_{x0}(f-x),u_{y0}(f-y),u_{y1}(f-y))$.
 We have to show $u'=uf$.
 By the lemma we have $u_{x0}(f-x) = uf(f(x)=0)$ and $u_{yb}(f-y) = uf(f(y)=b)$.
 This means that $u'$ and $uf$ agree on the open box defining $u'$,
-so they are equal by uniqueness. 
+so they are equal by uniqueness.
 Again, a similar argument can be used if $J$ contains more variables.
 This completes the proof that the cubical nerve of a groupoid is Kan.
 
 \section{The cubical set model}\label{cubsetmodel}
 
-We call MLTT the version of Type Theory with rules as presented in Figure~\ref{MLTT}. 
+We call MLTT the version of Type Theory with rules as presented in Figure~\ref{MLTT}.
 This is inspired by the presentation in \cite{Curien} (see also \cite{Dybjer}).
 We check that all the rules of MLTT are valid.
 
@@ -670,21 +677,21 @@ If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan condition then s
 
 \begin{proof}
 Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in I$.
-We present the argument in the case $J=\es$, the general case is not essentially more difficult. 
+We present the argument in the case $J=\es$, the general case is not essentially more difficult.
 Also, as the cases $\rup{},\rdo{}$ are perfectly symmetric, we restrict attention to $\rup{}$.
 We have to define $w=\rup{(\Pi~A~B)\alpha} w_0$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
 Informally, $w_0$ forms an open box (as $J=\es$), which has to be closed and filled.
-In the presheaf semantics, we should define $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$, 
+In the presheaf semantics, we should define $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$,
 such that $w=w1$, $w(fg) = (wf)g$ for any $g:J\to K$.
-We proceed by first defining $\ul{w}(\alpha,w_0)$, which is 
-the applicative behaviour of $w$, for all $\alpha$ and $w_0$. 
-We then define $wf=\ul{w}(\alpha f,w_0(f-x))$ for all $f:I\to J$. 
+We proceed by first defining $\ul{w}(\alpha,w_0)$, which is
+the applicative behaviour of $w$, for all $\alpha$ and $w_0$.
+We then define $wf=\ul{w}(\alpha f,w_0(f-x))$ for all $f:I\to J$.
 The definition of $\ul{w}$ will be such that we can calculate:
 \[
 (wf)g = (\ul{w}(\alpha f,w_0(f-x)))g = \ul{w}(\alpha fg,w_0(f-x)(g-f(x))) =  \ul{w}(\alpha fg,w_0(fg-x)) = w(fg)
 \]
 
-Instead of  $\ul{w}(\alpha,w_0)$ we write $\rup{(\Pi~A~B)\alpha} w_0$, 
+Instead of  $\ul{w}(\alpha,w_0)$ we write $\rup{(\Pi~A~B)\alpha} w_0$,
 trading readability for a slight abuse of notation.
 The applicative behavior should satisfy the following diagram for all $u\in A\alpha$:
 \[
@@ -697,7 +704,7 @@ w_0\ar@{.>}[uu]                   &:&    u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto 
 It is convenient to first define $w_1$ in $(\Pi~A~B)\alpha(x=1)$, closing the box.
 For this we define $\app(w_1,u_1)$ for any $u_1\in A\alpha(x=1)$.
 Intuitively, using that $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
-condition for $J=\es$, we map $u_1$ down to $A\alpha^- u_1$, 
+condition for $J=\es$, we map $u_1$ down to $A\alpha^- u_1$,
 apply $w_0$ and map the result up:
 $$
 \app(w_1,u_1) = B(\alpha,\rdo{A\alpha}u_1)^+\app(w_0,A\alpha^- u_1)
@@ -711,16 +718,16 @@ u_0\ar[uu]      &A\alpha^- u_1\ar[uul]_{\rdo{A\alpha}u_1}&\lto &    \app(w_0,A\a
 }
 \]
 Note that $A\alpha^- u_1 \in A\alpha(x=0)$ is not necessarily equal to $u_0$
-which means that filling the box requires an additional argument. 
-It is here we need the extra uniformity condition, 
-using that $\Gamma\vdash A$ and 
+which means that filling the box requires an additional argument.
+It is here we need the extra uniformity condition,
+using that $\Gamma\vdash A$ and
 $\Gamma.A\vdash B$ satisfy the Kan condition for $J=\es$ and $|J|=1$.
 
 We explain how to define for every $u\in A\alpha$
 $$
 \app(\rup{(\Pi~A~B)\alpha} w_0,u)
 $$
-We write $u_0 = u(x=0)$ and $u_1 = u(x=1)$. 
+We write $u_0 = u(x=0)$ and $u_1 = u(x=1)$.
 Let $w_1$ be as defined above.
 The line $\app((\Pi~A~B)\alpha\uparrow w_0,u)$ must
 connect $\app(w_0,u_0)$ and $\app(w_1,u_1)$.
@@ -728,7 +735,7 @@ Even though $u_0$ and $A\alpha^- u_1$ may be different, they can
 be connected in a new direction, for which we choose a fresh name $y$ not occurring in $I$.
 
 Until now we have used $\rup{},\rdo{}$ without making explicit their dependence
-on $I,J,x$. With the extended $I,y$ we use $\rupxy{}$ in the case $(I,y),\set{x},y$, 
+on $I,J,x$. With the extended $I,y$ we use $\rupxy{}$ in the case $(I,y),\set{x},y$,
 and $\rupyx{}$ in the case $(I,y),\set{y},x$. Similarly for $\rdo{},{}^+,{}^-$.
 
 Using the uniform Kan property of $\Gamma\vdash A$ for $J=\set{y}$
@@ -737,14 +744,14 @@ $$
 v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1)
 $$
 The line $v(x=0)$
-connects then $u_0$ and $A\alpha^-u_1$ in the direction $y$ since we have 
+connects then $u_0$ and $A\alpha^-u_1$ in the direction $y$ since we have
 $$
 v(x=0,y=0) = u_0~~~~~~~~~~~v(x=0,y=1) = A\alpha^- u_1
 $$
 
-Using the uniform Kan property of $\Gamma.A\vdash B$ for $J=\set{x}$ we define 
+Using the uniform Kan property of $\Gamma.A\vdash B$ for $J=\set{x}$ we define
 $$
-\app(\rup{(\Pi\,A\,B)\alpha} w_0,u) = 
+\app(\rup{(\Pi\,A\,B)\alpha} w_0,u) =
 {B(\alpha(y),v)}^-_{y,x}(\lambda,\app(w_0,v(x=0)),\app(w_1,u_1))
 $$
 with $\lambda$ as above,
@@ -763,7 +770,7 @@ u_1\ar[ur]^{u_1}&&                                               &&  \app(w_1,u_
 
 Now, if $f:I\to K$ is defined on $x$ we define
 $(\rup{(\Pi~A~B)\alpha} w_0) f = \rup{(\Pi~A~B)(\alpha f)} (w_0 (f-x))$.
-If $f$ is not defined on $x$, we can write $f=(x=b)f'$ for some $f':I-x \to K$. 
+If $f$ is not defined on $x$, we can write $f=(x=b)f'$ for some $f':I-x \to K$.
 Then we can simply define $(\rup{(\Pi~A~B)\alpha} w_0) f = w_b f'$ for $b=0,1$.
 %Uniformity to be verified, plus some other pending proof obligations.
 %How much do we include in the paper?
@@ -783,7 +790,7 @@ $$(\rup{\Sigma~A~B)\rho}~\vec{p}~=~ \alpha, \rup{B(\rho,\alpha)}~\vec{v},~~
 This operation is uniform: if $f:I\to K$ defined on $x$ we have:
 $$(\rup{(\Sigma~A~B)\rho}~\vec{p})f~=~\rup{(\Sigma~A~B)\rho f}~(\vec{p}f)$$
 
-\medskip 
+\medskip
 
 \section{Extensions}
 
@@ -799,7 +806,7 @@ $\omega(x=x')$ if $x'$ is not in $I$. This operation $\bind{x}{\omega}$ binds th
 (One could define $\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a name not in $I$ obtained
 by a choice function.) If $f$ is a substitution $I \to K$ we choose a variable
 $y$ not in $K$, extend $f$ to $(f,x=y): I,x \to K,y$ and define $(\bind{x}{\omega}) f$ to be
-$\bind{y}{\omega (f,x=y)}$, preserving equivalence. 
+$\bind{y}{\omega (f,x=y)}$, preserving equivalence.
 
 \begin{theorem}
 If $\Gamma\vdash A$  satisfies the Kan condition then so does $\Gamma\vdash\Id_A~a~b$ whenever we have
@@ -809,7 +816,7 @@ $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$.
 \begin{proof}
 Let $\alpha$ be an $I$-cube of $\Gamma$ and $J,x\subseteq I$. After a suitable renaming, we can conveniently
 denote an open box for $(\Id_A~a~b)\alpha$ by a vector $\bind{y}{\vec{\omega}}$ with components
-$\bind{y}{\omega_{zc}}\in(\Id_A~a~b)\alpha(z=c)$, for all $(z,c)\in O(J,x)$. 
+$\bind{y}{\omega_{zc}}\in(\Id_A~a~b)\alpha(z=c)$, for all $(z,c)\in O(J,x)$.
 
 We define, with $a\alpha,b\alpha$ the faces in the direction $y$, omitting subscripts $J$,
 $$
@@ -823,7 +830,7 @@ condition for $J,y,x$. The situation in case $J=\es$ is depicted below. For $f:I
 caption by assuming $y$ not in $K$ and put:
 $$
 (\rupx{(\Id_A~a~b)\alpha} \bind{y}{\vec{\omega}})f =
- \rupxy{(\Id_A~a~b)\alpha f} (\bind{y}{\vec{\omega}f}).
+\rupxy{(\Id_A~a~b)\alpha f} (\bind{y}{\vec{\omega}f}).
 $$
 \end{proof}
 \[
@@ -837,19 +844,19 @@ a\alpha\ar[rr]_{w_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}          
 }
 \]
 
- We give the interpretation of $\Gamma\vdash \Ref~a:\Id_A~a~a$ given $\Gamma\vdash a:A$. For any set of 
+ We give the interpretation of $\Gamma\vdash \Ref~a:\Id_A~a~a$ given $\Gamma\vdash a:A$. For any set of
 directions $I$, and any $I$-cube $\rho$, we have to give a line $a\rho\to a\rho$. For this, we
-choose a direction $x$ not in $I$ and we define $(\Ref~a)\rho = \bind{x}{a\rho (x)}$, 
+choose a direction $x$ not in $I$ and we define $(\Ref~a)\rho = \bind{x}{a\rho (x)}$,
 which can also simply be written $(\Ref~a)\rho = \bind{x}{a\rho}$.
 
- Next we show that we can interpret an elimination operator for the identity type. 
+ Next we show that we can interpret an elimination operator for the identity type.
  Suppose $\Gamma\vdash a:A,~\Gamma\vdash b:A,~\Gamma\vdash u:\Id_A~a~b$ and
 $\Gamma.A\vdash P$ and $\Gamma\vdash v:P[a]$. We will define an operator
 $$
 \Gamma\vdash \JJ(u,v):P[b].
 $$
-Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form $\bind{x}{\omega}$ 
-for some path $\omega:a\rho\to _x b\rho$, $x$ not in $I$, $\omega\in A\rho(x)$. 
+Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form $\bind{x}{\omega}$
+for some path $\omega:a\rho\to _x b\rho$, $x$ not in $I$, $\omega\in A\rho(x)$.
 The $I,x$-cube $\rho (x),\omega$ in $\Gamma.A$
 is then a path $[a]\rho\to _x [b]\rho$ and we define (see the picture below)
 $$
@@ -865,8 +872,8 @@ b\rho                 &&[b]\rho                    &   \JJ(u,v)\rho             
 a\rho\ar[uu]      &&[a]\rho\ar[uu]       &   v\rho\ar@{.>}[uu]                        \\
 }
 \]
-We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line 
-connecting $v\rho$ and $\JJ(u,v)\rho$. 
+We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line
+connecting $v\rho$ and $\JJ(u,v)\rho$.
 In particular for $u=\Ref~a$, this gives an interpretation of an operator
 $$
 \Gamma\vdash \HH(v):\Id_{P[a]}~v~\JJ(\Ref~a,v)
@@ -874,7 +881,7 @@ $$
 by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.
 The computation rule for identity is thus only validated  by a path to  $v$
 via $\HH(v)$\footnote{The validity of the computation rule for identity corresponds to considering only fibrations
-that are {\em regular} in the sense of Hurewicz \cite{hurewicz}.}. 
+that are {\em regular} in the sense of Hurewicz \cite{hurewicz}.}.
 N.A.~Danielsson has checked formally in Agda that these properties are
 enough to develop all basic propositions of univalent mathematics.
 
@@ -944,6 +951,10 @@ $$
 {1\sigma = \sigma 1 = \sigma}~~~~~~{(\sigma\delta)\nu = \sigma(\delta\nu)}~~~~~~~~[u] = (1,u)
 $$
 $$
+{A 1 = A \quad (A \sigma) \delta = A (\sigma \delta) \qquad  u 1 = u \quad
+(u \sigma) \delta = u (\sigma \delta)}
+$$
+$$
 {(\sigma,u)\delta = (\sigma\delta,u\delta)}~~~~~~{\pp (\sigma,u) = \sigma}~~~~~~~~~~~~{\qq(\sigma,u) = u}
 $$
 $$
@@ -969,27 +980,37 @@ $$
 % lines, squares, $\dots$ and check that this cubical set satisfies the
 % uniform Kan condition.
 
-We now describe the interpretation of $U$ as a universe
-of Kan cubical sets. An element $A$ of $U(I)$ is any family of (small)
-sets $A_f$ for $f \colon I \to J$, with maps $A_f \to A_{fg}$, $a
-\mapsto a g$ if $g \colon J \to K$ such that $(a g) h = a (g h)$; or,
-equivalently, $A$ is a functor from the coslice $\CC \backslash I$ to
-the category of small sets.  Moreover, we require operations similar
-to the uniform Kan conditions: For any $f \colon I \to K$ and $J, x
-\subseteq K$ with $x \notin J$, and $\vec a$ an open box in $A_f$,
-i.e., $a_{yb} \in A_{f (y=b)}$ for each $(y,b) \in \OO^+ (J,x)$ such
-that
-\[
-a_{yb} (z=c) = a_{zc} (y=b) \quad \text{for }(y,b),(z,c) \in \OO^+
-(J,x), y \neq z;
-\]
-we require $\rup{A_f} \vec a \in A_f$ such that for $(y,b) \in
-\OO^+(J,x)$, $(\rup{A_f} \vec a) (y=b) = a_{yb}$, and for $g \colon K
-\to L$ defined on $J,x$, $(\rup{A_f} \vec a)g = \rup{A_{fg}} (\vec a
-g)$.  Similar, we require operations $\rdo{A_f} \vec a$ for downwards
-open boxes $\vec a$ in $A_f$.  The restrictions of a family $A$ in
-$U(I)$ by $f \colon I \to J$ is given by $(Af)_g = A_{fg}$.  This
-defines $U$ as a cubical set.
+We now describe the interpretation of $U$ as a universe of Kan cubical
+sets. Recall that the Yoneda embedding is denoted by $\yoneda$.  An
+element $A$ of $U(I)$ is a Kan fibration $\yoneda I \vdash A$ such
+that for each $f \colon I \to J$ the set $A_f$ is small (we use
+subscripts to keep the notation separate from the restrictions).
+Given such a $\yoneda I \vdash A$ and $f \colon I \to J$ the
+restriction $A f$ of $A$ by $f$ is defined to be $\yoneda J \vdash A
+(\yoneda f)$, where $\yoneda f \colon \yoneda J \to \yoneda I$ is the
+substitution induced by $f$; thus $(A f)_g = A_{f g}$.  This defines
+$U$ as a cubical set.
+
+% More concretely, such an element $A$ is given by any family of
+% (small) sets $A_f$ for $f \colon I \to J$, with maps $A_f \to
+% A_{fg}$, $a \mapsto a g$ if $g \colon J \to K$ such that $(a g) h =
+% a (g h)$; or, equivalently, $A$ is a functor from the coslice $\CC
+% \backslash I$ to the category of small sets.  Moreover, we require
+% operations similar to the uniform Kan conditions: For any $f \colon
+% I \to K$ and $J, x \subseteq K$ with $x \notin J$, and $\vec a$ an
+% open box in $A_f$, i.e., $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
+% \in \OO^+ (J,x)$ such that
+% \[
+% a_{yb} (z=c) = a_{zc} (y=b) \quad \text{for }(y,b),(z,c) \in \OO^+
+% (J,x), y \neq z;
+% \]
+% we require $\rup{A_f} \vec a \in A_f$ such that for $(y,b) \in
+% \OO^+(J,x)$, $(\rup{A_f} \vec a) (y=b) = a_{yb}$, and for $g \colon
+% K \to L$ defined on $J,x$, $(\rup{A_f} \vec a)g = \rup{A_{fg}} (\vec
+% a g)$.  Similar, we require operations $\rdo{A_f} \vec a$ for
+% downwards open boxes $\vec a$ in $A_f$.  The restrictions of a
+% family $A$ in $U(I)$ by $f \colon I \to J$ is given by $(Af)_g =
+% A_{fg}$.  This defines $U$ as a cubical set.
 
 Note that the points of $U$ are simply the (small) uniform Kan cubical
 sets. More precisely, since $\es$ is initial in $\CC$,
@@ -1053,7 +1074,7 @@ and $\vec b$ in $A_1$ and $B_1$, respectively. Setting $u = (\rup{A_1}
 \]
 This concludes the definition of $C=\comp(A,B)$.
 
-\subsection{Equivalence and Equality of Types}
+\subsection{Equivalence and equality of types}
 
  We explain in this section how to transform any equivalence $\sigma:A\to B$ between two Kan cubical sets
 to an equality path $A\to B$, as defined in the previous section.
@@ -1075,15 +1096,15 @@ we have to define a set $C_f$ together with substitution maps $C_f\to C_{fg}$.
 If $f(x) = 0$ we take $C_f = A(I)$ and if $f(x) = 1$ we take $C_f = B(I)$. If $f(x) = y$ then we define $C_f$
 to be the set of pairs $(a,b)$ where $a$ is an $(I-y)$-cube of $A$ and $b$ is an $I$-cube of $B$ and
 $b(y=0) = \sigma a$.
-It can be then be checked in an elementary way that if $\sigma$ is an equivalence, 
-then this ``heterogeneous'' notion of cube has the uniform Kan property. 
+It can be then be checked in an elementary way that if $\sigma$ is an equivalence,
+then this ``heterogeneous'' notion of cube has the uniform Kan property.
 
  In pictures, the main issue is to complete an open box
 
 \begin{diagram}
 \sigma a_0 & \rTo & b_0    \\
            &      & \dTo \\
-\sigma a_1 & \rTo & b_1     
+\sigma a_1 & \rTo & b_1
 \end{diagram}
 
 to a square
@@ -1091,7 +1112,7 @@ to a square
 \begin{diagram}
 a_0  & \sigma a_0 & \rTo & b_0    \\
 \dTo & \dTo       &      & \dTo \\
-a_1  & \sigma a_1 & \rTo & b_1     
+a_1  & \sigma a_1 & \rTo & b_1
 \end{diagram}
 
  For this, using the fact that $\sigma$ is an equivalence, we transform the open box in an open box in $A$
@@ -1099,7 +1120,7 @@ a_1  & \sigma a_1 & \rTo & b_1
 \begin{diagram}
 a_0 & \rTo & \delta b_0    \\
            &      & \dTo \\
-a_1 & \rTo & \delta b_1     
+a_1 & \rTo & \delta b_1
 \end{diagram}
 
 and since $A$ is Kan, it can be filled to a box
@@ -1107,7 +1128,7 @@ and since $A$ is Kan, it can be filled to a box
 \begin{diagram}
 a_0 & \rTo & \delta b_0    \\
 \dTo       &      & \dTo \\
-a_1 & \rTo & \delta b_1     
+a_1 & \rTo & \delta b_1
 \end{diagram}
 
 and we can then fill the box in $B$
@@ -1126,7 +1147,7 @@ a_1 &  & \sigma a_1    &                 &   \rTo        &               &      
 
  Since our model is constructive, this gives a way to effectively transport properties and structures
 on a Kan cubical set to one which is equivalent. In particular we can effectively transport properties
-and structures of a groupoid to one which is categorically equivalent. 
+and structures of a groupoid to one which is categorically equivalent.
 
 \medskip
 
@@ -1136,11 +1157,11 @@ in this model in an elementary way as well.
 
 \subsection{Propositional reflection}
 
- We can describe the operation of Kan ``completion''. Given a cubical set $X$ we add 
+ We can describe the operation of Kan ``completion''. Given a cubical set $X$ we add
 operations $X^+,X\uparrow,X^-,X\downarrow$ in a {\em free} way, i.e.
 considering these operations as {\em constructors}.
  The uniformity condition defines what should be the degeneracies of these elements
-We get in this way a new cubical set $Y$, satisfying by definition the Kan extension 
+We get in this way a new cubical set $Y$, satisfying by definition the Kan extension
 property, with a map $X\to Y$. Furthermore, if $Z$ is Kan, and we have a map
 $\sigma:X\to Z$ there is a map $Y\to Z$ extending $\sigma$.
 This map is furthermore unique if we impose
@@ -1148,7 +1169,7 @@ it to commute with the Kan  operations.
 In general however, the maps of Kan cubical sets do not need to commute with the Kan operations.
 
  The same idea can be used to define the spheres. For instance $\Sph$ will be the
-Kan completion of the cubical set generated by a point ${\sf base}$ and a loop ${\sf loop}$. 
+Kan completion of the cubical set generated by a point ${\sf base}$ and a loop ${\sf loop}$.
 If we have a dependent type $\Sph\vdash P$ and $a$ in $P~{\sf base}$ and $l$ in $P~{\sf loop}$
 then we can define a section $\Sph\vdash t:P$ satisfying
 $$
@@ -1163,17 +1184,17 @@ $$\alpha_x(a_0,a_1)(x=0) ~=~ a_0~~~~~~~~\alpha_x(a_0,a_1)(x=1) ~=~ a_1$$
 and, if $f$ is defined on $x$ with $y=f(x)$
 $$\alpha_x(a_0,a_1)f ~=~ \alpha_y(a_0(f-x),a_1(f-x))$$
  This satisfies the required induction principle of $\inh~X$: if $Y$ is a proposition
-and $X\to Y$ then we have $\inh~X\to Y$. 
+and $X\to Y$ then we have $\inh~X\to Y$.
 
  We can then define $\exists~A~B$ to be $\inh(\Sigma~A~B)$. If $\Sigma~A~B$ is a proposition we have
-an inhabitant of $\exists~A~B\to \Sigma~ A~B$ and this can be seen as a generalisation of 
+an inhabitant of $\exists~A~B\to \Sigma~ A~B$ and this can be seen as a generalisation of
 the {\em axiom of description} since if $A$ set, $B$ proposition and $B$ is satisfied by at most
 one element of $A$ then $\Sigma~A~B$ is a proposition.
 
 \section*{Acknowledgement}
-The research for this paper has been started while the first two 
-authors were members of the Institute for Advanced Study in Princeton, 
-as part of the program \emph{Univalent Foundations of Mathematics}. 
+The research for this paper has been started while the first two
+authors were members of the Institute for Advanced Study in Princeton,
+as part of the program \emph{Univalent Foundations of Mathematics}.
 We are grateful for the generous support by the IAS and the Fund for Math.
 
 The last two authors acknowledge financial support from the ERC:  The research leading
@@ -1181,7 +1202,7 @@ to these results has received funding from the European Research Council under
 the European Union's Seventh Framework Programme (FP7/2007-2013) / ERC
 grant agreement nr.\ 247219.
 
- The authors wish to thank Jean-Philippe Bernardy, Cyril Cohen, Andy Pitts and Michael Schulman 
+ The authors wish to thank Jean-Philippe Bernardy, Cyril Cohen, Andy Pitts and Michael Schulman
 for stimulating discussions on the topic of this paper. The clear presentation of \cite{Williamson}
 provided an important help.
 
@@ -1276,7 +1297,7 @@ B. Russell.
 
 \bibitem{Russell1}
 B. Russell.
-\newblock{The Theory of Implications.} 
+\newblock{The Theory of Implications.}
 \newblock{American Journal of Mathematics, Vol. 28, 2, p. 159-202, 1906.}
 
 \bibitem{Serre}
@@ -1297,18 +1318,18 @@ G. Takeuti.
 \bibitem{Tarski}
 A. Tarski.
 \newblock{\"Uber die Beschr\"anktheit der Ausdrucksmittel deduktiver Theorien.}
-\newblock{In {\em Ergebnisse eines mathematischen Kolloquiums}, facsicule 7 (1934-35), 
+\newblock{In {\em Ergebnisse eines mathematischen Kolloquiums}, facsicule 7 (1934-35),
           English translation ``On the limitations of the means of expression of deductive theories''.}
 
 \bibitem{HoTTbook}
 The Univalent Foundations Program.
 \newblock{Homotopy Type Theory.}
-\newblock{Institute for Advanced Study, 2013.} 
+\newblock{Institute for Advanced Study, 2013.}
 
 \bibitem{Voevodsky}
 V. Voevodsky.
 \newblock{Univalent foundations project.}
-\newblock{NSF grant application, 2010.} 
+\newblock{NSF grant application, 2010.}
 
 \bibitem{Williamson}
 R. Williamson.
@@ -1324,23 +1345,23 @@ R. Williamson.
 %In Kan's original definition \cite{Kan} of cubical set the objects of the
 %base category are finite linear orders of directions,
 %whereas the objects of our base category $\CC$ are finite sets.
-Our cubical sets do not have \emph{connections}, like those in \cite{Williamson}. 
-In \cite[III.4.2.10]{Williamson}, Williamson raises the question of a straightforward 
-geometric argument replacing his footnote~19 to exhibit the group structure of 
-$\pi_n(X,x)$ for Kan cubical sets \emph{without} connections. 
-Adapting his geometric argument, 
-we can answer his question positively for our Kan cubical sets. 
+Our cubical sets do not have \emph{connections}, like those in \cite{Williamson}.
+In \cite[III.4.2.10]{Williamson}, Williamson raises the question of a straightforward
+geometric argument replacing his footnote~19 to exhibit the group structure of
+$\pi_n(X,x)$ for Kan cubical sets \emph{without} connections.
+Adapting his geometric argument,
+we can answer his question positively for our Kan cubical sets.
 The argument below seems to work also
 in the original setting of linearly ordered directions.
- 
- We first explore some consequences of the Kan filling property for a cubical set $A$. 
+
+ We first explore some consequences of the Kan filling property for a cubical set $A$.
  (We shall not need the uniformity condition.) Using the Kan filling property,
 we can complete any equality proof $\omega:a\rightarrow u$ to a square
 
 \begin{diagram}
 a & \rTo^{\omega} & u \\
 \dTo^{\omega'} & & \dTo         \\
-u & \rTo & u        
+u & \rTo & u
 \end{diagram}
 
  There is no reason for $\omega'$ to be the same as $\omega$.
@@ -1362,7 +1383,7 @@ Similarly we show that any equality proof $\omega:a\rightarrow u$ can be complet
 \begin{diagram}
 a & \rTo & a \\
 \dTo & & \dTo_{\omega}         \\
-a & \rTo^{\omega} & u        
+a & \rTo^{\omega} & u
 \end{diagram}
 
  As an application, we can go back and forth between the two squares
@@ -1370,7 +1391,7 @@ a & \rTo^{\omega} & u
 \begin{diagram}
 a    & \rTo^{\alpha}     & b             & & &    a    & \rTo^{\alpha}  & b \\
 \dTo^{\gamma} &          & \dTo_{\beta}  & & &    \dTo &                & \dTo_{\beta}  \\
-c & \rTo^{}              & c             & & &    a    &  \rTo^{\gamma} & c 
+c & \rTo^{}              & c             & & &    a    &  \rTo^{\gamma} & c
 \end{diagram}
 
 using the cube
@@ -1396,7 +1417,7 @@ a & \rTo^{\omega'} & b
 
  Using the Kan condition, one can show that this is an equivalence relation \cite{Williamson}.
 
- We define then the composition $\alpha\beta$ of two paths $\alpha:a\rightarrow b,\beta:b\rightarrow c$ 
+ We define then the composition $\alpha\beta$ of two paths $\alpha:a\rightarrow b,\beta:b\rightarrow c$
 as being the path obtained by the Kan filling property
 
 \begin{diagram}
@@ -1436,7 +1457,7 @@ The unit  is the homotopy equivalence class of $a\to a$.
  Since it is clear how to define combinatorial the loop space $\Omega(X,a)$ we get in this way a simple
 combinatorial definition of $\pi_2(X,a) = \pi_1(\Omega(X,a),1_a),\dots$
 
-\end{document}    
+\end{document}
 
 
 \section*{Appendix 2: unfinished experimental stuff}
@@ -1473,7 +1494,7 @@ Using classical logic we can prove that the usual Kan condition follows from our
 \def\olol{\mycol{1}{0}\!\mycol{1}{0}}
 
 
-Any set $S$ can be viewed as a cubical set (`nerve') $N(S)$ of 
+Any set $S$ can be viewed as a cubical set (`nerve') $N(S)$ of
 $S$-labelled binary cubes in the following way.
 For any object $\set{x_1,\ldots,x_n}$ of $\CC$, the set $S(\set{x_1,\ldots,x_n})$
 consists of $S$-valued functions $\alpha(x_1,\ldots,x_n)$ of boolean arguments $x_i$.
@@ -1483,7 +1504,7 @@ to take $\alpha: \set{0,1}^{\set{x_1,\ldots,x_n}} \to S$.)
 \medskip
 
 Maps for $N(S)$ are defined by composition with morphisms in $\CC$ in the following way:
-if $m:\set{x_1,\ldots,x_n} \to \set{y_1,\ldots,y_m}$, 
+if $m:\set{x_1,\ldots,x_n} \to \set{y_1,\ldots,y_m}$,
 then $N(S)(m): \alpha(x_1,\ldots,x_n) \lto \beta(y_1,\ldots,y_m)$,
 where $\beta(y_1,\ldots,y_m) = \alpha(m(x_1),\ldots,m(x_n))$.
 Here $m(x_i)$ is either the boolean that $m$ assigns to $x_i$,
@@ -1492,15 +1513,15 @@ or the boolean $y_j$ for the unique $j$ such that $m(x_i)=y_j$.
 
 \medskip
 
-Clearly, nerves $N(S)$ are Kan. Define $B=N(\set{0,1})$. 
+Clearly, nerves $N(S)$ are Kan. Define $B=N(\set{0,1})$.
 
 \medskip
 
 There are various (equivalent) ways to define the unit interval $I$ as a cubical set:
 \begin{enumerate}
-\item The `official'? definition $Hom_\CC(\set{i},\_)$ for some designated variable $i$: 
+\item The `official'? definition $Hom_\CC(\set{i},\_)$ for some designated variable $i$:
 \[
-\begin{array}{lcl} 
+\begin{array}{lcl}
 I(\emptyset)&=&\set{(i=0),(i=1)}\\
 I(\set{x})&=&\set{(i=0)(x),(i=1)(x),(i=x)}\quad\text{(the last is not a swap but a substitution)}\\
 I(\set{x,y})&=&\set{(i=0)(x)(y),(i=1)(x)(y),(i=x)(y),(i=y)(x)}\\
@@ -1511,7 +1532,7 @@ The maps between such $Hom$-sets are defined by composition with corresponding m
 
 \item The `concrete' definition:
 \[
-\begin{array}{lcl}  
+\begin{array}{lcl}
 I(\emptyset)&=&\set{0,1}\\
 I(\set{x})&=&\set{00,01,11}\\
 I(\set{x,y})&=&\set{\oooo,\ooll,\olol,\llll}\\
@@ -1521,7 +1542,7 @@ I(\set{x,y})&=&\set{\oooo,\ooll,\olol,\llll}\\
 Face maps and degeneracies can also be viewed in a `concrete' way.
 
 \item The `set theoretic' definition: let $\set{x_1,\ldots,x_n}$ be an object of $\CC$;
-then $I(\set{x_1,\ldots,x_n})$ consists of all boolean functions $\alpha(x_1,\ldots,x_n)$ 
+then $I(\set{x_1,\ldots,x_n})$ consists of all boolean functions $\alpha(x_1,\ldots,x_n)$
 that are either constant, or the projection on one argument.
 %(Better: take $\alpha$ as a function $\set{0,1}^{\set{x_1,\ldots,x_n}} \to \set{0,1}$.)
 
@@ -1532,13 +1553,13 @@ This indeed preserves being constant or a projection.
 I have some hope that $B^I$ is not Kan. Let's spell out some details of the attempt.
 
 \medskip
-Two important maps (natural transformations) $I\to B$ are: 
+Two important maps (natural transformations) $I\to B$ are:
 \def\emb{se}
 \def\crs{ce}
 \begin{enumerate}
-\item $\emb$ is the `straight' embedding $I\to B$, 
+\item $\emb$ is the `straight' embedding $I\to B$,
 in particular $\emb(0)=0$, $\emb(1)=1$;%, $\emb(01)=01$;
-\item $\crs$ is the `crossed' embedding $I\to B$, 
+\item $\crs$ is the `crossed' embedding $I\to B$,
 in particular $\crs(0)=1$, $\crs(1)=0$.%, $\crs(01)=10$.
 \end{enumerate}
 
@@ -1552,7 +1573,7 @@ such that any $Hom_\CC(\set{},\set{y_1,\ldots,y_m})$ is a singleton.
 
 The next step is that we construct a line from $\emb$ to $\crs$ in $B^I(\set{x})$.
 Note first that $B^I(\set{x}) \cong (Hom_\CC(\set{x},\_)\times I)\to B)$
-and that $Hom_\CC(\set{x},\_) \cong I$. 
+and that $Hom_\CC(\set{x},\_) \cong I$.
 Define a map that takes the form $(\alpha,\beta)\lto\gamma$,
 for any object $\set{x_1,\ldots,x_n}$ of $\CC$, by:
 \[
@@ -1567,7 +1588,7 @@ Indeed we get $(0,b)\lto b $ and $(1,b)\lto1-b$. In general, if $\alpha(x_1,\ldo
 we get $se$, and if $\alpha(x_1,\ldots,x_n)=1$, we get $ce$.
 Hence this is a line from $\emb$ to $\crs$ which we call $sc\in B^I(\set{x})$.
 \medskip
-Consider the following open box, the hope is that it cannot be filled in 
+Consider the following open box, the hope is that it cannot be filled in
 $B^I(\set{x,y}) \cong (Hom_\CC(\set{x,y},\_)\times I)\to B$.
 \[
 \xymatrix@R=.6cm@C=.6cm{
@@ -1581,7 +1602,7 @@ Here are some (equivalent) ways to define the unit square $Q=Hom_\CC(\set{x,y},\
 \begin{enumerate}
 \item The `combinatorial' definition:
 \[
-\begin{array}{lclcl}  
+\begin{array}{lclcl}
 Q(\emptyset)&=&\set{(x=0)(y=0),\ldots,(x=1)(y=1)}=\set{(0,0),(0,1),(1,0),(1,1)}\\
 Q(\set{z})&=&Q(\emptyset)(z)\cup\set{(x=0)(y=z),\ldots,(y=1)(x=z)}\quad\text{(eight lines)}\\
 Q(\set{z,u})&=&Q(\set{z})(u)\cup \set{(x=0)(y=u)(z),\ldots,(y=1)(x=u)(z)}\cup\set{(x,y=z,u),(x,y=u,z)}\\
@@ -1589,13 +1610,13 @@ Q(\set{z,u})&=&Q(\set{z})(u)\cup \set{(x=0)(y=u)(z),\ldots,(y=1)(x=u)(z)}\cup\se
 \end{array}
 \]
 Note that $Q(\set{z,u})$ has two non-degenated cubes. In general there are $4+4n+n(n-1)$ elements
-in $Q(\set{x_1,\ldots,x_n})$. 
+in $Q(\set{x_1,\ldots,x_n})$.
 
 \item The `set theoretic' definition: let $\set{x_1,\ldots,x_n}$ be an object of $\CC$;
-then $Q(\set{x_1,\ldots,x_n})$ consists of all pairs boolean functions 
+then $Q(\set{x_1,\ldots,x_n})$ consists of all pairs boolean functions
 $\alpha_b(x_1,\ldots,x_n),~b=0,1$,
 that are either both constant, or one constant and the other a projection, or both projections
-but then on different arguments. 
+but then on different arguments.
 Maps are defined by composition with morphisms in $\CC$ as above for nerves.
 This indeed preserves the definition.
 \end{enumerate}
@@ -1609,7 +1630,7 @@ for any object $\set{x_1,\ldots,x_n}$ of $\CC$, by:
 \beta(x_1,\ldots,x_n)&\text{otherwise}
 \end{array}\right.
 \]
-If $\alpha_b,~b=0,1$ are both constant 1, we get $ce$. In all other cases of constant 
+If $\alpha_b,~b=0,1$ are both constant 1, we get $ce$. In all other cases of constant
 $\alpha_b$'s we get $se$. This means the corners are as in the square above.
 Edges are obtained by taking one of the $\alpha_b$'s constant.
 This shows there is something wrong with this square.
@@ -1618,7 +1639,7 @@ does not exist a filling square as above in $B^I(\set{x,y})$.
 
 \medskip
 This is how far I came.
- 
-                                                                                  
+
+
 
 
