@@ -796,16 +796,21 @@ $$(\rup{(\Sigma~A~B)\rho}~\vec{p})f~=~\rup{(\Sigma~A~B)\rho f}~(\vec{p}f)$$
 
 \subsection{Identity type}
 
- We describe the interpretation of $\Gamma\vdash\Id_A~a~b$ given $\Gamma\vdash A$ and $\Gamma\vdash a:A$
-and $\Gamma\vdash b:A$. Given an $I$-cube $\alpha$ in $\Gamma$ we define $(\Id_A~a~b)\alpha$ to be the set of
-elements $\bind{x}{\omega}$ in $A\alpha(x)$ where $x$ is a fresh variable not in $I$, such that $\omega(x=0) = a\alpha$
-and $\omega(x=1) = b\alpha$. The latter situation is conveniently described by $\omega: a\rho\to_x b\rho$.
-We recall that $(x)$ denotes the canonical injection $I \to I,x$. The element $\bind{x}{\omega}$ is the equivalence class of
-$I,x$-cubes of $A\alpha(x)$, $x$ not in $I$, where $\omega$ is identified with
-$\omega(x=x')$ if $x'$ is not in $I$. This operation $\bind{x}{\omega}$ binds the name $x$.
-(One could define $\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a name not in $I$ obtained
-by a choice function.) If $f$ is a substitution $I \to K$ we choose a variable
-$y$ not in $K$, extend $f$ to $(f,x=y): I,x \to K,y$ and define $(\bind{x}{\omega}) f$ to be
+We describe the interpretation of $\Gamma\vdash\Id_A~a~b$ given
+$\Gamma\vdash A$ and $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$. Given
+an $I$-cube $\alpha$ in $\Gamma$ we define $(\Id_A~a~b)\alpha$ to be
+the set of elements $\bind{x}{\omega}$ in $A\alpha(x)$ where $x$ is a
+fresh variable not in $I$, such that $\omega(x=0) = a\alpha$ and
+$\omega(x=1) = b\alpha$. The latter situation is conveniently
+described by $\omega: a\rho\to_x b\rho$.  We recall that $(x)$ denotes
+the canonical injection $I \to I,x$. The element $\bind{x}{\omega}$ is
+the equivalence class of $I,x$-cubes of $A\alpha(x)$, $x$ not in $I$,
+where $\omega$ is identified with $\omega(x=x')$ if $x'$ is not in
+$I$. This operation $\bind{x}{\omega}$ binds the name $x$.  (One could
+define $\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a
+name not in $I$ obtained by a choice function.) If $f$ is a
+substitution $I \to K$ we choose a variable $y$ not in $K$, extend $f$
+to $(f,x=y): I,x \to K,y$ and define $(\bind{x}{\omega}) f$ to be
 $\bind{y}{\omega (f,x=y)}$, preserving equivalence.
 
 \begin{theorem}
@@ -814,24 +819,29 @@ $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$.
 \end{theorem}
 
 \begin{proof}
-Let $\alpha$ be an $I$-cube of $\Gamma$ and $J,x\subseteq I$. After a suitable renaming, we can conveniently
-denote an open box for $(\Id_A~a~b)\alpha$ by a vector $\bind{y}{\vec{\omega}}$ with components
-$\bind{y}{\omega_{zc}}\in(\Id_A~a~b)\alpha(z=c)$, for all $(z,c)\in O(J,x)$.
+  Let $\alpha$ be an $I$-cube of $\Gamma$ and $J,x\subseteq I$. After
+  a suitable renaming, we can conveniently denote an open box for
+  $(\Id_A~a~b)\alpha$ by a vector $\bind{y}{\vec{\omega}}$ with
+  components $\bind{y}{\omega_{zc}}\in(\Id_A~a~b)\alpha(z=c)$, for all
+  $(z,c)\in O(J,x)$.
 
-We define, with $a\alpha,b\alpha$ the faces in the direction $y$, omitting subscripts $J$,
-$$
-\rupx{(\Id_A~a~b)\alpha}\bind{y}{\vec{\omega}} =
-\bind{y}{(\rupxy{A\alpha(y)} (\vec{\omega},a\alpha,b\alpha))}
-%(\Id_A~a~b)\alpha\uparrow _{x,x_1,\dots} (\bind{y}\omega_0,\bind{y}\omega_0^1,\bind{y}\omega_1^1,\dots) =
-%\bind{y}A\alpha(y)\uparrow _{x,y,x_1,\dots} (\omega_0,a\alpha,b\alpha,\omega_0^1,\omega_1^1,\dots)
-$$
-which shows that $\Gamma\vdash \Id_A~a~b$ satisfies the Kan condition for $J,x$ if $A$ satisfies the Kan
-condition for $J,y,x$. The situation in case $J=\es$ is depicted below. For $f:I\to K$ defined on $x$ we avoid
-caption by assuming $y$ not in $K$ and put:
-$$
-(\rupx{(\Id_A~a~b)\alpha} \bind{y}{\vec{\omega}})f =
-\rupxy{(\Id_A~a~b)\alpha f} (\bind{y}{\vec{\omega}f}).
-$$
+  We define, with $a\alpha,b\alpha$ the faces in the direction $y$,
+  omitting subscripts $J$,
+  $$
+  \rupx{(\Id_A~a~b)\alpha}\bind{y}{\vec{\omega}} =
+  \bind{y}{(\rupxy{A\alpha(y)} (\vec{\omega},a\alpha,b\alpha))}
+  % (\Id_A~a~b)\alpha\uparrow _{x,x_1,\dots} (\bind{y}\omega_0,\bind{y}\omega_0^1,\bind{y}\omega_1^1,\dots) =
+  % \bind{y}A\alpha(y)\uparrow _{x,y,x_1,\dots} (\omega_0,a\alpha,b\alpha,\omega_0^1,\omega_1^1,\dots)
+  $$
+  which shows that $\Gamma\vdash \Id_A~a~b$ satisfies the Kan
+  condition for $J,x$ if $A$ satisfies the Kan condition for
+  $J,y,x$. The situation in case $J=\es$ is depicted below. For
+  $f:I\to K$ defined on $x$ we avoid caption by assuming $y$ not in
+  $K$ and put:
+  $$
+  (\rupx{(\Id_A~a~b)\alpha} \bind{y}{\vec{\omega}})f =
+  \rupxy{(\Id_A~a~b)\alpha f} (\bind{y}{\vec{\omega}f}).
+  $$
 \end{proof}
 \[
 \xymatrix@R=1.1cm@C=.6cm{
@@ -844,26 +854,30 @@ a\alpha\ar[rr]_{w_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}          
 }
 \]
 
- We give the interpretation of $\Gamma\vdash \Ref~a:\Id_A~a~a$ given $\Gamma\vdash a:A$. For any set of
-directions $I$, and any $I$-cube $\rho$, we have to give a line $a\rho\to a\rho$. For this, we
-choose a direction $x$ not in $I$ and we define $(\Ref~a)\rho = \bind{x}{a\rho (x)}$,
-which can also simply be written $(\Ref~a)\rho = \bind{x}{a\rho}$.
+We give the interpretation of $\Gamma\vdash \Ref~a:\Id_A~a~a$ given
+$\Gamma\vdash a:A$. For any set of directions $I$, and any $I$-cube
+$\rho$, we have to give a line $a\rho\to a\rho$. For this, we choose a
+direction $x$ not in $I$ and we define $(\Ref~a)\rho = \bind{x}{a\rho
+  (x)}$, which can also simply be written $(\Ref~a)\rho =
+\bind{x}{a\rho}$.
 
- Next we show that we can interpret an elimination operator for the identity type.
- Suppose $\Gamma\vdash a:A,~\Gamma\vdash b:A,~\Gamma\vdash u:\Id_A~a~b$ and
-$\Gamma.A\vdash P$ and $\Gamma\vdash v:P[a]$. We will define an operator
+Next we show that we can interpret an elimination operator for the
+identity type.  Suppose $\Gamma\vdash a:A,~\Gamma\vdash
+b:A,~\Gamma\vdash u:\Id_A~a~b$ and $\Gamma.A\vdash P$ and
+$\Gamma\vdash v:P[a]$. We will define an operator
 $$
 \Gamma\vdash \JJ(u,v):P[b].
 $$
-Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form $\bind{x}{\omega}$
-for some path $\omega:a\rho\to _x b\rho$, $x$ not in $I$, $\omega\in A\rho(x)$.
-The $I,x$-cube $\rho (x),\omega$ in $\Gamma.A$
-is then a path $[a]\rho\to _x [b]\rho$ and we define (see the picture below)
+Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form
+$\bind{x}{\omega}$ for some path $\omega:a\rho\to _x b\rho$, $x$ not
+in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $\rho (x),\omega$ in
+$\Gamma.A$ is then a path $[a]\rho\to _x [b]\rho$ and we define (see
+the picture below)
 $$
 \JJ(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm where~~~~~}\bind{x}{\omega} = u\rho
 $$
-The condition $(\JJ(u,v)\rho)f = \JJ(u,v)(\rho f)$ follows from the uniformity condition on
-the Kan filling operations.
+The condition $(\JJ(u,v)\rho)f = \JJ(u,v)(\rho f)$ follows from the
+uniformity condition on the Kan filling operations.
 
 \[
 \xymatrix@R=.6cm@C=.6cm{
@@ -872,31 +886,38 @@ b\rho                 &&[b]\rho                    &   \JJ(u,v)\rho             
 a\rho\ar[uu]      &&[a]\rho\ar[uu]       &   v\rho\ar@{.>}[uu]                        \\
 }
 \]
-We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line
-connecting $v\rho$ and $\JJ(u,v)\rho$.
-In particular for $u=\Ref~a$, this gives an interpretation of an operator
+We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line connecting
+$v\rho$ and $\JJ(u,v)\rho$.  In particular for $u=\Ref~a$, this gives
+an interpretation of an operator
 $$
 \Gamma\vdash \HH(v):\Id_{P[a]}~v~\JJ(\Ref~a,v)
 $$
-by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.
-The computation rule for identity is thus only validated  by a path to  $v$
-via $\HH(v)$\footnote{The validity of the computation rule for identity corresponds to considering only fibrations
-that are {\em regular} in the sense of Hurewicz \cite{hurewicz}.}.
+by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.  The
+computation rule for identity is thus only validated by a path to $v$
+via $\HH(v)$\footnote{The validity of the computation rule for
+  identity corresponds to considering only fibrations that are {\em
+    regular} in the sense of Hurewicz \cite{hurewicz}.}.
 N.A.~Danielsson has checked formally in Agda that these properties are
 enough to develop all basic propositions of univalent mathematics.
 
- We finally show that, given $\Gamma\vdash a:A$,  the type $\Gamma \vdash T = \Sigma~A~(\Id_{A\pp}~a\pp~\qq)$ is
-contractible. For this we have to find a center of $T$ and a path to this center for any element of $T$.
-That is, we have to find two sections $\Gamma\vdash t:T$ and $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
-We define $t = (a,\Ref~a)$. Let $\rho$ be some $I$-cube of $\Gamma$
-and let $(v,\bind{x}{\alpha})$ be some element of $T\rho$. So $v$ is
-an element of $A\rho$ and $\alpha$ is a line connecting $a\rho$ and $v$ in some direction $x$ not in $I$. We
-introduce a direction $y$ not in $I,x$ and define, stipulating degeneracies:
+
+We finally show that, given $\Gamma\vdash a:A$, the type $\Gamma
+\vdash T = \Sigma~A~(\Id_{A\pp}~a\pp~\qq)$ is contractible. For this
+we have to find a center of $T$ and a path to this center for any
+element of $T$.  That is, we have to find two sections $\Gamma\vdash
+t:T$ and $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.  We define $t =
+(a,\Ref~a)$. Let $\rho$ be some $I$-cube of $\Gamma$ and let
+$(v,\bind{x}{\alpha})$ be some element of $T\rho$. So $v$ is an
+element of $A\rho$ and $\alpha$ is a line connecting $a\rho$ and $v$
+in some direction $x$ not in $I$. We introduce a direction $y$ not in
+$I,x$ and define, stipulating degeneracies:
 $$
-u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho(y)^+ _{x,y} (a\rho(y),a\rho(x),\alpha),\bind{x}{\rupxy{A\rho(y)} (a\rho(y),a\rho(x),\alpha)})}
+u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho(y)^+ _{x,y}
+  (a\rho(y),a\rho(x),\alpha),\bind{x}{\rupxy{A\rho(y)}
+    (a\rho(y),a\rho(x),\alpha)})}
 $$
-The fact that the filling operations commute with substitution ensure that this defines
-a section  $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
+The fact that the filling operations commute with substitution ensure
+that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
 
 \medskip
 
@@ -1158,7 +1179,7 @@ in this model in an elementary way as well.
 \subsection{Propositional reflection}
 
  We can describe the operation of Kan ``completion''. Given a cubical set $X$ we add
-operations $X^+,X\uparrow,X^-,X\downarrow$ in a {\em free} way, i.e.
+operations $X^+$, $X\uparrow$, $X^-$, $X\downarrow$ in a {\em free} way, i.e.
 considering these operations as {\em constructors}.
  The uniformity condition defines what should be the degeneracies of these elements
 We get in this way a new cubical set $Y$, satisfying by definition the Kan extension
