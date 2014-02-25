@@ -24,9 +24,11 @@
 \end{array}}
 
 \newcommand{\Ref}{{\sf Ref}}
-\newcommand{\JJ}{{\sf J}}
-\newcommand{\HH}{{\sf H}}
+\DeclareMathOperator{\Transp}{\mathsf{T}}
+\DeclareMathOperator{\HH}{{\sf H}}
 \newcommand{\inh}{\mathsf{inh}}
+
+\DeclareMathOperator{\Jel}{\mathsf{J}}
 
 \newcommand{\mkbox}[1]{\ensuremath{#1}}
 \newcommand{\Id}{{\sf Id}}
@@ -866,7 +868,7 @@ identity type.  Suppose $\Gamma\vdash a:A,~\Gamma\vdash
 b:A,~\Gamma\vdash u:\Id_A~a~b$ and $\Gamma.A\vdash P$ and
 $\Gamma\vdash v:P[a]$. We will define an operator
 $$
-\Gamma\vdash \JJ(u,v):P[b].
+\Gamma\vdash \Transp(u,v):P[b].
 $$
 Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form
 $\bind{x}{\omega}$ for some path $\omega:a\rho\to _x b\rho$, $x$ not
@@ -874,23 +876,23 @@ in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $\rho (x),\omega$ in
 $\Gamma.A$ is then a path $[a]\rho\to _x [b]\rho$ and we define (see
 the picture below)
 $$
-\JJ(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm where~~~~~}\bind{x}{\omega} = u\rho
+\Transp(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm where~~~~~}\bind{x}{\omega} = u\rho
 $$
-The condition $(\JJ(u,v)\rho)f = \JJ(u,v)(\rho f)$ follows from the
+The condition $(\Transp(u,v)\rho)f = \Transp(u,v)(\rho f)$ follows from the
 uniformity condition on the Kan filling operations.
 
 \[
 \xymatrix@R=.6cm@C=.6cm{
-b\rho                 &&[b]\rho                    &   \JJ(u,v)\rho                                 \\
+b\rho                 &&[b]\rho                    &   \Transp(u,v)\rho                                 \\
 \omega ~~~     &&\rho(x),\omega~~  &\rup{P(\rho(x),\omega)} v\rho \\
 a\rho\ar[uu]      &&[a]\rho\ar[uu]       &   v\rho\ar@{.>}[uu]                        \\
 }
 \]
 We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line connecting
-$v\rho$ and $\JJ(u,v)\rho$.  In particular for $u=\Ref~a$, this gives
+$v\rho$ and $\Transp(u,v)\rho$.  In particular for $u=\Ref~a$, this gives
 an interpretation of an operator
 $$
-\Gamma\vdash \HH(v):\Id_{P[a]}~v~\JJ(\Ref~a,v)
+\Gamma\vdash \HH(v):\Id_{P[a]}~v~\Transp(\Ref~a,v)
 $$
 by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.  The
 computation rule for identity is thus only validated by a path to $v$
@@ -916,8 +918,38 @@ u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho(y)^+ _{x,y}
   (a\rho(y),a\rho(x),\alpha),\bind{x}{\rupxy{A\rho(y)}
     (a\rho(y),a\rho(x),\alpha)})}
 $$
-The fact that the filling operations commute with substitution ensure
+The fact that the filling operations commute with substitution ensures
 that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
+
+Let us define the more common elimination operator of C.\
+Paulin-Mohring from the above operations---with the difference that
+the usual definitional equality is only propositional.  To not make the
+notation too heavy we'll use informal reasoning in type theory; note
+that the definition can be given internally in type theory and we
+don't refer to the model; this definition follows N.A.\ Danielsson's
+Agda development.  First note that using the transport operation
+$\Transp$ one can define composition $p \circ q : \Id_A a~c$ of two
+identity proofs $p : \Id_A a~b$, $q : \Id_A b~c$, as well as inverses
+$p^{-1} : \Id_A b~a$.  With $\HH$ one can derive $\Id_{\Id_A a~a}
+(p^{-1} \circ p)~(\Ref a)$.
+
+Let $A$ be a type, $a : A$, and $C (b,p)$ a type given $b : A$, $p :
+\Id_A a~b$, such that $v : C (a, \Ref a)$; for $b : A$ and $p :
+\Id_{A} a~b$ we define $\Jel (a,v,b,p) : C (b,u)$.  We can consider
+$C$ as a dependent type over $T = (\Sigma x : A) \Id_A a~x$ via $C
+(\pp w, \qq w)$ for $w : T$.  As we showed in the last paragraph, $T$
+is contractible with center $(a, \Ref a)$, and thus we get a witness
+$\app (h, (b,p)) : \Id_T (a,\Ref a)~(b,p)$ for $h = \lambda u$, $u$ as
+in the above paragraph; now with $\Transp$ (w.r.t.\ the type $C (\pp
+w, \qq w)$ for $w : T$) we can define
+\[
+\Jel (a,v,b,p) = \Transp (\app (h, (a,\Ref a))^{-1} \circ \app (h,(b,p)), v).
+\]
+Now if $p = \Ref a$, we get that $\app (h, (a,\Ref a))^{-1} \circ \app
+(h,(b,p))$ is propositionally equal to $\Ref (\Ref a)$, and thus using
+$\Transp$ and $\HH$ again one gets a witness of
+$\Id_{C (a, \Ref a)}~ v~\Jel (a,v,a,\Ref a)$.
+
 
 \medskip
 
@@ -976,15 +1008,25 @@ $$
 (u \sigma) \delta = u (\sigma \delta)}
 $$
 $$
-{(\sigma,u)\delta = (\sigma\delta,u\delta)}~~~~~~{\pp (\sigma,u) = \sigma}~~~~~~~~~~~~{\qq(\sigma,u) = u}
+{(\sigma,u)\delta = (\sigma\delta,u\delta)} \quad {\pp (\sigma,u) =
+  \sigma} \quad {\qq(\sigma,u) = u} \quad (\pp, \qq) = 1
 $$
 $$
-     {\app(w,u)\delta= \app(w\delta,u\delta)}~~~~~~~~~~~~~
-     {\app(\lambda b,u)= b[u]}
+{(\Pi~A~B)\sigma = \Pi~(A\sigma)~(B(\sigma\pp,\qq))} \qquad
+{(\lambda b) \sigma = \lambda (b (\sigma \pp, \qq))}
 $$
 $$
-(\Pi~A~B)\sigma = \Pi~(A\sigma)~(B(\sigma\pp,\qq))~~~~~~~~~~
-(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq))
+     {\app(w,u)\delta= \app(w\delta,u\delta)}\qquad
+     {\app(\lambda b,u)= b[u]}\qquad
+     {w = \lambda (\app(w \pp, \qq))} \qquad
+$$
+$$
+(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq)) \quad (\pp w)
+\sigma = \pp (w \sigma) \quad (\qq w) \sigma = \qq (w \sigma)
+$$
+$$
+(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = w \qquad \qq
+(u,v) = v
 $$
 \end{figure}
 
@@ -1223,7 +1265,7 @@ to these results has received funding from the European Research Council under
 the European Union's Seventh Framework Programme (FP7/2007-2013) / ERC
 grant agreement nr.\ 247219.
 
- The authors wish to thank Jean-Philippe Bernardy, Cyril Cohen, Andy Pitts and Michael Schulman
+ The authors wish to thank Jean-Philippe Bernardy, Cyril Cohen, Andy Pitts and Michael Shulman
 for stimulating discussions on the topic of this paper. The clear presentation of \cite{Williamson}
 provided an important help.
 
