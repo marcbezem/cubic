@@ -23,7 +23,7 @@
  #2
 \end{array}}
 
-\newcommand{\Ref}{{\sf Ref}}
+\DeclareMathOperator{\Ref}{\mathsf{Ref}}
 \DeclareMathOperator{\Transp}{\mathsf{T}}
 \DeclareMathOperator{\HH}{{\sf H}}
 \newcommand{\inh}{\mathsf{inh}}
@@ -856,11 +856,11 @@ a\alpha\ar[rr]_{w_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}          
 }
 \]
 
-We give the interpretation of $\Gamma\vdash \Ref~a:\Id_A~a~a$ given
+We give the interpretation of $\Gamma\vdash \Ref a:\Id_A~a~a$ given
 $\Gamma\vdash a:A$. For any set of directions $I$, and any $I$-cube
 $\rho$, we have to give a line $a\rho\to a\rho$. For this, we choose a
-direction $x$ not in $I$ and we define $(\Ref~a)\rho = \bind{x}{a\rho
-  (x)}$, which can also simply be written $(\Ref~a)\rho =
+direction $x$ not in $I$ and we define $(\Ref a)\rho = \bind{x}{a\rho
+  (x)}$, which can also simply be written $(\Ref a)\rho =
 \bind{x}{a\rho}$.
 
 Next we show that we can interpret an elimination operator for the
@@ -889,10 +889,10 @@ a\rho\ar[uu]      &&[a]\rho\ar[uu]       &   v\rho\ar@{.>}[uu]                  
 }
 \]
 We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line connecting
-$v\rho$ and $\Transp(u,v)\rho$.  In particular for $u=\Ref~a$, this gives
+$v\rho$ and $\Transp(u,v)\rho$.  In particular for $u=\Ref a$, this gives
 an interpretation of an operator
 $$
-\Gamma\vdash \HH(v):\Id_{P[a]}~v~\Transp(\Ref~a,v)
+\Gamma\vdash \HH(v):\Id_{P[a]}~v~\Transp(\Ref a,v)
 $$
 by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.  The
 computation rule for identity is thus only validated by a path to $v$
@@ -908,7 +908,7 @@ We finally show that, given $\Gamma\vdash a:A$, the type $\Gamma
 we have to find a center of $T$ and a path to this center for any
 element of $T$.  That is, we have to find two sections $\Gamma\vdash
 t:T$ and $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.  We define $t =
-(a,\Ref~a)$. Let $\rho$ be some $I$-cube of $\Gamma$ and let
+(a,\Ref a)$. Let $\rho$ be some $I$-cube of $\Gamma$ and let
 $(v,\bind{x}{\alpha})$ be some element of $T\rho$. So $v$ is an
 element of $A\rho$ and $\alpha$ is a line connecting $a\rho$ and $v$
 in some direction $x$ not in $I$. We introduce a direction $y$ not in
