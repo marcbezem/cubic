@@ -164,7 +164,7 @@
 % end Marc's macros
 
 \newcommand{\yoneda}{\mathbf{y}}
-
+\DeclareMathOperator{\mapOnPath}{\mathsf{mapOnPath}}
 
 \begin{document}
 
@@ -876,10 +876,11 @@ in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $\rho (x),\omega$ in
 $\Gamma.A$ is then a path $[a]\rho\to _x [b]\rho$ and we define (see
 the picture below)
 $$
-\Transp(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm where~~~~~}\bind{x}{\omega} = u\rho
+\Transp(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm
+  where~~~~~}\bind{x}{\omega} = u\rho
 $$
-The condition $(\Transp(u,v)\rho)f = \Transp(u,v)(\rho f)$ follows from the
-uniformity condition on the Kan filling operations.
+The condition $(\Transp(u,v)\rho)f = \Transp(u,v)(\rho f)$ follows
+from the uniformity condition on the Kan filling operations.
 
 \[
 \xymatrix@R=.6cm@C=.6cm{
@@ -943,13 +944,34 @@ $\app (h, (b,p)) : \Id_T (a,\Ref a)~(b,p)$ for $h = \lambda u$, $u$ as
 in the above paragraph; now with $\Transp$ (w.r.t.\ the type $C (\pp
 w, \qq w)$ for $w : T$) we can define
 \[
-\Jel (a,v,b,p) = \Transp (\app (h, (a,\Ref a))^{-1} \circ \app (h,(b,p)), v).
+\Jel (a,v,b,p) = \Transp (\app (h, (a,\Ref a))^{-1} \circ \app
+(h,(b,p)), v).
 \]
 Now if $p = \Ref a$, we get that $\app (h, (a,\Ref a))^{-1} \circ \app
 (h,(b,p))$ is propositionally equal to $\Ref (\Ref a)$, and thus using
-$\Transp$ and $\HH$ again one gets a witness of
-$\Id_{C (a, \Ref a)}~ v~\Jel (a,v,a,\Ref a)$.
+$\Transp$ and $\HH$ again one gets a witness of $\Id_{C (a, \Ref a)}~
+v~\Jel (a,v,a,\Ref a)$.
 
+Even though $\Jel$ doesn't satisfy the judgmental equality, there is
+an operation $\mapOnPath$ which behaves well w.r.t.\ judgmental
+equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash B$,
+$\Gamma \vdash a : A$ and $\Gamma \vdash b : A$ is
+\[
+\frac {\quad \Gamma \vdash f : A \to B \quad \Gamma \vdash p :
+  \Id_A~a~b} {\Gamma \vdash \mapOnPath (f, p) : \Id_B~(\app
+  (f,a))~(\app (f,b))}
+\]
+where $A \to B$ is the non-dependent function space $\Pi A (B \pp)$.
+Given $\rho$ in $\Gamma (I)$ we define $\mapOnPath (f, p) \rho =
+\bind{x} \app ((f \rho) 1, \omega)$ for $p \rho = \bind x \omega$.
+This satisfies the equations
+\begin{align*}
+  \mapOnPath (\mathrm{id}, p) & = p \\
+  \mapOnPath (f \circ g, p) &= \mapOnPath \bigl( f, (\mapOnPath
+  (g, p) \bigr)\\
+  \mapOnPath (f, \Ref a) &= \Ref (\app (f, a))
+\end{align*}
+where now $f \circ g$ denotes ordinary function composition.
 
 \medskip
 
