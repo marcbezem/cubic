@@ -955,11 +955,11 @@ v~\Jel (a,v,a,\Ref a)$.
 Even though $\Jel$ doesn't satisfy the judgmental equality, there is
 an operation $\mapOnPath$ which behaves well w.r.t.\ judgmental
 equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash B$,
-$\Gamma \vdash a : A$ and $\Gamma \vdash b : A$ is
+$\Gamma \vdash a_0 : A$ and $\Gamma \vdash a_1 : A$ is
 \[
 \frac {\quad \Gamma \vdash f : A \to B \quad \Gamma \vdash p :
-  \Id_A~a~b} {\Gamma \vdash \mapOnPath (f, p) : \Id_B~(\app
-  (f,a))~(\app (f,b))}
+  \Id_A~a_0~a_1} {\Gamma \vdash \mapOnPath (f, p) : \Id_B~(\app
+  (f,a_0))~(\app (f,a_1))}
 \]
 where $A \to B$ is the non-dependent function space $\Pi A (B \pp)$.
 Given $\rho$ in $\Gamma (I)$ we define $\mapOnPath (f, p) \rho =
@@ -969,9 +969,11 @@ This satisfies the equations
   \mapOnPath (\mathrm{id}, p) & = p \\
   \mapOnPath (f \circ g, p) &= \mapOnPath \bigl( f, (\mapOnPath
   (g, p) \bigr)\\
-  \mapOnPath (f, \Ref a) &= \Ref (\app (f, a))
+  \mapOnPath (f, \Ref a) &= \Ref (\app (f, a))\\
+  \mapOnPath (\lambda (b \pp), p) &= \Ref c
 \end{align*}
-where now $f \circ g$ denotes ordinary function composition.
+where now $f \circ g$ denotes ordinary function composition and
+$\lambda (b \pp)$ is constant.
 
 \medskip
 
