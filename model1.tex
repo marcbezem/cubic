@@ -263,8 +263,8 @@ a degeneracy map. If $x$ is not in $I$ the inclusion map $I \to I,x$ will be wri
 We have two face maps $(x=0), (x=1):I,x\to I$ and we
 have $(x)(x=0) = (x)(x=1) = 1_I$, which is one example of a \emph{cubical identity}.
 There are many more cubical identities, often implicit in the notations. We also have
-the following result (cf.\ simplicial sets): every morphism is, in a unique way, the composition of
-face maps followed by degeneracy maps.
+the following result (cf.\ simplicial sets): every morphism $f$ has a unique decomposition
+$f=gh$ where $g$ is a composite of face maps and $h$ is a degeneracy map.
 
  If $f:I\to J$ is defined on $x$ then we write $f-x:I-x \to J-{f(x)}$ for the map defined by
 $(f-x)(y) = f(y)$ if $y$ is in $I-x.$
@@ -281,7 +281,7 @@ such that $u1 = u$ and $u(fg) = (uf)g$.
 
 \medskip
 
-A cubical set $X$ is a presheaf on the category ${\cal C}^{opp}$. Any
+A cubical set $X$ is a presheaf on the category ${\cal C}^{op}$. Any
 finite set of directions $I$ represents by the Yoneda embedding
 $\yoneda \colon {\cal C}^{opp} \to {\sf Set}^{\cal C}$ a cubical set
 $\yoneda I$, which can be thought of as a formal representation of
@@ -325,7 +325,7 @@ $u = v(x) = v$.  Intuitively, this means that $x$ ``does not occur'' in $u$, or 
 ``independent'' of $x$. One sometimes uses the notation $x\#u$ to express this relation. In general, this relation does
 not need to be decidable.
 
- If $X$ is a cubical set and $a$ and $u$ are two points ($\es$-cube) of $X$ we can define a new cubical sets $\Id_X~a~u$
+ If $X$ is a cubical set and $a$ and $u$ are two points ($\es$-cube) of $X$ we can define a new cubical set $\Id_X~a~u$
 by taking an element in $(\Id_X~a~u)(I)$ to be an $I,x$-cube $\omega$ of $X$ where $x$ is
 a fresh variable, such that $\omega(x=0) = a$ and $\omega(x=1) = u$. The name $x$ is ``bound''
 in this operation so that another $I,x'$-cube $\omega'$ is equal to $\omega$
@@ -340,7 +340,16 @@ One way to make this notion precise is to assume a choice function
 on the set of names which selects a fresh name for any finite subset and define $\bind{x}{\omega}$ to be $\omega (x=x_I)$ where
 $x_I$ is the fresh name given by the choice function. (This is the solution suggested in \cite{Stoughton}.)
 
- Since cubical sets form a presheaf category, it is known how to give a semantics of type theory in term of cubical sets.
+\medskip
+
+ The corresponding category with the same objects and morphisms $I \to J\cup\{0\}$ has been already
+considered as the category of {\em partial injections}. It has been shown by Staton that the category of covariant
+presheaves over this category is equivalent to the category of nominal sets with one restriction operation
+(see \cite{pitts}, exercise 9.7). Using the same method, we can associate in a canonical way a nominal set
+to any cubical set. A category equivalent to to the category of cubical sets is presented in \cite{Pitts}.
+
+\section{Type theory and presheaf semantics}\label{sec:TTandPresheafSemantics}
+Since cubical sets form a presheaf category, it is known how to give a semantics of type theory in term of cubical sets.
 A context $\Gamma$ is interpreted by a cubical set, and a dependent type $\Gamma\vdash A$ is given by a fibration.
 More explicitly,
 we need to give for each $I$-cube $\alpha$ of $\Gamma$ a set $A\alpha$
@@ -380,10 +389,12 @@ Let $O^+(J,x)$ consist of pairs $(x,0)$ and $(y,b)$ for $y\in J,~b=0,1$.
 In the same way we define $O^-(J,x)$, but with $(x,1)$ instead of $(x,0)$.
 The idea for both is that one face in the direction $x$ is missing.
 We use $O(J,x)$ to denote either $O^+(J,x)$ or $O^-(J,x)$.
-Given $O(J,x)$, we define an \emph{open box} as a vector $\vec u$ indexed by $O(J,x)$
-such that the faces $u_{yb}$ in $X(I-y)$ are \emph{adjacent-compatible},
-that is, for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$:
+An \emph{open box}, denoted by $\vec u$, is a family of elements (faces)
+$u_{yb}$ in $X(I-y)$ for each $(y,b)\in O(J,x)$ such that 
 $$u_{yb}(z = c) = u_{zc}(y = b)$$
+for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$. 
+The latter condition may be phrased as 
+\emph{the faces of an open box are adjacent-compatible}.
 If $f:I\to K$ is defined on $J,x$ we write
 $\vec u f$ for the vector $(\vec u f)_{yb} = u_{yb} (f-y)$.
 
@@ -437,8 +448,8 @@ X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$
  We now define what is a Kan fibration over a cubical set.
 Let $\Gamma$ be a cubical set (which does not need to satisfy the Kan condition)
 and $\Gamma\vdash A$ a fibration over $\Gamma$.
-For this fibration to be a \emph{Kan fibration}, we require to be given operations,
-for any $J,x\subseteq I$,
+For this fibration to be a \emph{Kan fibration}, we require to be given elements,
+for any $\alpha\in\Gamma(I)$ and $J,x\subseteq I$,
 $\rup{A\alpha} \vec u$  and $\rdo{A\alpha} \vec u$, both in $A\alpha$,
 defined for every open box $\vec u$.
 Here \emph{open box} means that $u_{yb}\in A\alpha(y=b)$ for all $(y,b)\in O(J,x)$,
@@ -681,7 +692,7 @@ If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan condition then s
 Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in I$.
 We present the argument in the case $J=\es$, the general case is not essentially more difficult.
 Also, as the cases $\rup{},\rdo{}$ are perfectly symmetric, we restrict attention to $\rup{}$.
-We have to define $w=\rup{(\Pi~A~B)\alpha} w_0$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
+We have to define $w=\rup{(\Pi~A~B)\alpha} w_0 \in (\Pi~A~B)\alpha$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
 Informally, $w_0$ forms an open box (as $J=\es$), which has to be closed and filled.
 In the presheaf semantics, we should define $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$,
 such that $w=w1$, $w(fg) = (wf)g$ for any $g:J\to K$.
@@ -743,7 +754,7 @@ and $\rupyx{}$ in the case $(I,y),\set{y},x$. Similarly for $\rdo{},{}^+,{}^-$.
 Using the uniform Kan property of $\Gamma\vdash A$ for $J=\set{y}$
 we define $v$ in $A\alpha(y)$ by
 $$
-v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1)
+v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1),~~~\text{where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$}
 $$
 The line $v(x=0)$
 connects then $u_0$ and $A\alpha^-u_1$ in the direction $y$ since we have
@@ -783,11 +794,11 @@ Then we can simply define $(\rup{(\Pi~A~B)\alpha} w_0) f = w_b f'$ for $b=0,1$.
  The interpretation of $\Gamma\vdash\Sigma~A~B$ given $\Gamma\vdash A$ and $\Gamma.A\vdash B$
 is simpler than the interpretation of the dependent product. If $\rho$ is an $I$-cube
 of $\Gamma$ we define $(\Sigma~A~B)\rho$ to be the set of pairs $u,v$ where $u$ is
-an element of $A\rho$ and $v$ an element of $B(\rho,u)$. We define $(u,v)f = uf,vf$
+an element of $A\rho$ and $v$ an element of $B(\rho,u)$. We define $(u,v)f = (uf,vf)$
 if $f:I\to K$ is a substitution. Finally we define for $\vec p$
 with $p_{yb}=(u_{yb},v_{yb})$ for any $(y,b)\in O(J,x)$:
 
-$$(\rup{\Sigma~A~B)\rho}~\vec{p}~=~ \alpha, \rup{B(\rho,\alpha)}~\vec{v},~~
+$$(\rup{\Sigma~A~B)\rho}~\vec{p}~=~ (\alpha, \rup{B(\rho,\alpha)}~\vec{v}),~~
 \text{where}~\alpha = \rup{A\rho}~ \vec u.$$
 This operation is uniform: if $f:I\to K$ defined on $x$ we have:
 $$(\rup{(\Sigma~A~B)\rho}~\vec{p})f~=~\rup{(\Sigma~A~B)\rho f}~(\vec{p}f)$$
@@ -804,7 +815,7 @@ an $I$-cube $\alpha$ in $\Gamma$ we define $(\Id_A~a~b)\alpha$ to be
 the set of elements $\bind{x}{\omega}$ in $A\alpha(x)$ where $x$ is a
 fresh variable not in $I$, such that $\omega(x=0) = a\alpha$ and
 $\omega(x=1) = b\alpha$. The latter situation is conveniently
-described by $\omega: a\rho\to_x b\rho$.  We recall that $(x)$ denotes
+described by $\omega: a\alpha\to_x b\alpha$.  We recall that $(x)$ denotes
 the canonical injection $I \to I,x$. The element $\bind{x}{\omega}$ is
 the equivalence class of $I,x$-cubes of $A\alpha(x)$, $x$ not in $I$,
 where $\omega$ is identified with $\omega(x=x')$ if $x'$ is not in
@@ -849,11 +860,11 @@ $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$.
 \end{proof}
 \[
 \xymatrix@R=1.1cm@C=.6cm{
-a\alpha\ar@{.>}[rr]^{A\alpha(y)_{x,y}^+(w_0,a\alpha,b\alpha)}&      & b\alpha                                     &&&
+a\alpha\ar@{.>}[rr]^{A\alpha(y)_{x,y}^+(\omega_0,a\alpha,b\alpha)}&      & b\alpha                                     &&&
 \bind{y}{\omega_1}                                &          \\
-                                      &\rupxy{A\alpha(y)}(w_0,a\alpha,b\alpha)&                          &&&
+                                      &\rupxy{A\alpha(y)}(\omega_0,a\alpha,b\alpha)&                          &&&
                                       \rupx{(\Id_A~a~b)\alpha} \bind{y}{\omega_0}&                           \\
-a\alpha\ar[rr]_{w_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}                                     &&&
+a\alpha\ar[rr]_{\omega_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}                                     &&&
 \bind{y}{\omega_0}\ar@{.>}[uu]     &                             \\
 }
 \]
@@ -861,9 +872,9 @@ a\alpha\ar[rr]_{w_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}          
 We give the interpretation of $\Gamma\vdash \Ref a:\Id_A~a~a$ given
 $\Gamma\vdash a:A$. For any set of directions $I$, and any $I$-cube
 $\rho$, we have to give a line $a\rho\to a\rho$. For this, we choose a
-direction $x$ not in $I$ and we define $(\Ref a)\rho = \bind{x}{a\rho
-  (x)}$, which can also simply be written $(\Ref a)\rho =
-\bind{x}{a\rho}$.
+direction $x$ not in $I$ and we define 
+$(\Ref a)\rho = \bind{x}{a\rho(x)}$, 
+which can also simply be written $(\Ref a)\rho = \bind{x}{a\rho}$.
 
 Next we show that we can interpret an elimination operator for the
 identity type.  Suppose $\Gamma\vdash a:A,~\Gamma\vdash
@@ -874,7 +885,7 @@ $$
 $$
 Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form
 $\bind{x}{\omega}$ for some path $\omega:a\rho\to _x b\rho$, $x$ not
-in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $\rho (x),\omega$ in
+in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $(\rho (x),\omega)$ in
 $\Gamma.A$ is then a path $[a]\rho\to _x [b]\rho$ and we define (see
 the picture below)
 $$
@@ -1127,7 +1138,7 @@ We still have to define the restrictions $C_f \to C_{fg}$ for $g
 \colon J \to K$; in the first two cases from above, the restrictions
 are induced by $A_f$ and $B_f$ respectively.  In case $f$ is defined
 on $x$, we look at $g(f x)$: if $g (f x)= 0$, we set $(a,b) g = ag$; if
-$g (f x) = 1$, we set $(a,b)g = bg$; and if $g$ is defined $f x$, we
+$g (f x) = 1$, we set $(a,b)g = bg$; and if $g$ is defined at $f x$, we
 define $(a,b)g = (ag,bg)$.
 
 It remains to define the Kan fillings for $C$; it suffices to give
