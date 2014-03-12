@@ -405,7 +405,7 @@ context morphism, and the second projection $\qq (\alpha, u) = u$ a
 section $\Gamma.A \vdash \qq : A \pp$ corresponding to the first de
 Bruijn index.  For $\Gamma \vdash A$, $\sigma \colon \Delta \to
 \Gamma$ and $\Delta \vdash u : A$ we give $(\sigma, u) \colon \Delta
-\to \Gamma.A$ by $(\sigma, u) \beta = (\sigma \beta, \sigma u)$.  This
+\to \Gamma.A$ by $(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This
 concludes the description of the CwF without type formers.
 
 We now describe how to interpret $\Pi$ and $\Sigma$. If $\Gamma\vdash
@@ -426,8 +426,8 @@ get $\app ((\lambda\,b), u) \alpha = \app ((\lambda\,b) \alpha 1, u
 \alpha) = b (\alpha, u\alpha) = (b [u]) \alpha$.
 
 The definition of dependent sums is easier: $\Gamma\vdash\Sigma\,A\,B$
-for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined to be by sums
-in each stage, i.e., for an $I$-cube $\alpha$ in $\Gamma$,
+for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined by sums in
+each stage, i.e., for an $I$-cube $\alpha$ in $\Gamma$,
 $(\Sigma\,A\,B)\alpha$ consists of pairs $(u,v)$ with $u$ in $A
 \alpha$ and $v$ in $B (\alpha, u)$.  Restrictions are defined
 component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  The
