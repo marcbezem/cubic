@@ -738,115 +738,127 @@ This completes the proof that the cubical nerve of a groupoid is Kan.
 
 \section{The cubical set model}\label{cubsetmodel}
 
-We call MLTT the version of Type Theory with rules as presented in Figure~\ref{MLTT}.
-This is inspired by the presentation in \cite{Curien} (see also \cite{Dybjer}).
-We check that all the rules of MLTT are valid.
+We call MLTT the version of Type Theory with rules as presented in
+Figure~\ref{MLTT}.  This is inspired by the presentation in
+\cite{Curien} (see also \cite{Dybjer}).  We check that all the rules
+of MLTT are valid.
 
 \subsection{Dependent product}
 
 \begin{theorem}
-If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan condition then so does $\Gamma\vdash\Pi~A~B$.
+  If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
+  condition then so does $\Gamma\vdash\Pi~A~B$.
 \end{theorem}
 
 \begin{proof}
-Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in I$.
-We present the argument in the case $J=\es$, the general case is not essentially more difficult.
-Also, as the cases $\rup{},\rdo{}$ are perfectly symmetric, we restrict attention to $\rup{}$.
-We have to define $w=\rup{(\Pi~A~B)\alpha} w_0 \in (\Pi~A~B)\alpha$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
-Informally, $w_0$ forms an open box (as $J=\es$), which has to be closed and filled.
-In the presheaf semantics, we should define $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$,
-such that $w=w1$, $w(fg) = (wf)g$ for any $g:J\to K$.
-We proceed by first defining $\ul{w}(\alpha,w_0)$, which is
-the applicative behaviour of $w$, for all $\alpha$ and $w_0$.
-We then define $wf=\ul{w}(\alpha f,w_0(f-x))$ for all $f:I\to J$.
-The definition of $\ul{w}$ will be such that we can calculate:
-\[
-(wf)g = (\ul{w}(\alpha f,w_0(f-x)))g = \ul{w}(\alpha fg,w_0(f-x)(g-f(x))) =  \ul{w}(\alpha fg,w_0(fg-x)) = w(fg)
-\]
+  Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in
+  I$.  We present the argument in the case $J=\es$, the general case
+  is not essentially more difficult.  Also, as the cases
+  $\rup{},\rdo{}$ are perfectly symmetric, we restrict attention to
+  $\rup{}$.  We have to define $w=\rup{(\Pi~A~B)\alpha} w_0 \in
+  (\Pi~A~B)\alpha$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
+  Informally, $w_0$ forms an open box (as $J=\es$), which has to be
+  closed and filled.  In the presheaf semantics, we should define
+  $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$, such that $w=w1$,
+  $w(fg) = (wf)g$ for any $g:J\to K$.  We proceed by first defining
+  $\ul{w}(\alpha,w_0)$, which is the applicative behaviour of $w$, for
+  all $\alpha$ and $w_0$.  We then define $wf=\ul{w}(\alpha
+  f,w_0(f-x))$ for all $f:I\to J$.  The definition of $\ul{w}$ will be
+  such that we can calculate:
+  \[
+  (wf)g = (\ul{w}(\alpha f,w_0(f-x)))g = \ul{w}(\alpha
+  fg,w_0(f-x)(g-f(x))) = \ul{w}(\alpha fg,w_0(fg-x)) = w(fg)
+  \]
 
-Instead of  $\ul{w}(\alpha,w_0)$ we write $\rup{(\Pi~A~B)\alpha} w_0$,
-trading readability for a slight abuse of notation.
-The applicative behavior should satisfy the following diagram for all $u\in A\alpha$:
-\[
-\xymatrix@R=.6cm@C=.6cm{
-w_1                                         &:&   u_1\del{\in A\alpha(x=1)}             &\lto &   \app(w_1,u_1)\del{\in B(\alpha(x=1),u_1)}  \\
-\rup{(\Pi~A~B)\alpha}~w_0 &:&    ~~~u\del{\in A\alpha}                  &\lto &    \app(\rup{(\Pi~A~B)\alpha}~w_0,u)\del{\in B(\alpha,u)}   \\
-w_0\ar@{.>}[uu]                   &:&    u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto &    \app(w_0,u_0)\del{\in B(\alpha(x=0),u_0)}\ar@{.>}[uu]   \\
-}
-\]
-It is convenient to first define $w_1$ in $(\Pi~A~B)\alpha(x=1)$, closing the box.
-For this we define $\app(w_1,u_1)$ for any $u_1\in A\alpha(x=1)$.
-Intuitively, using that $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
-condition for $J=\es$, we map $u_1$ down to $A\alpha^- u_1$,
-apply $w_0$ and map the result up:
-$$
-\app(w_1,u_1) = B(\alpha,\rdo{A\alpha}u_1)^+\app(w_0,A\alpha^- u_1)
-$$
-With $\lambda=\rup{B(\alpha,\rdo{A\alpha}u_1)} \app(w_0,A\alpha^- u_1)$, the situation can be depicted as follows:
-\[
-\xymatrix@R=.6cm@C=.6cm{
- u_1            && &   \app(w_1,u_1)  \\
- ~~~u               && &    \\
-u_0\ar[uu]      &A\alpha^- u_1\ar[uul]_{\rdo{A\alpha}u_1}&\lto &    \app(w_0,A\alpha^- u_1)\ar[uu]_\lambda  \\
-}
-\]
-Note that $A\alpha^- u_1 \in A\alpha(x=0)$ is not necessarily equal to $u_0$
-which means that filling the box requires an additional argument.
-It is here we need the extra uniformity condition,
-using that $\Gamma\vdash A$ and
-$\Gamma.A\vdash B$ satisfy the Kan condition for $J=\es$ and $|J|=1$.
+  Instead of $\ul{w}(\alpha,w_0)$ we write $\rup{(\Pi~A~B)\alpha}
+  w_0$, trading readability for a slight abuse of notation.  The
+  applicative behavior should satisfy the following diagram for all
+  $u\in A\alpha$:
+  \[
+  \xymatrix@R=.6cm@C=.6cm{
+    w_1                                         &:&   u_1\del{\in A\alpha(x=1)}             &\lto &   \app(w_1,u_1)\del{\in B(\alpha(x=1),u_1)}  \\
+    \rup{(\Pi~A~B)\alpha}~w_0 &:&    ~~~u\del{\in A\alpha}                  &\lto &    \app(\rup{(\Pi~A~B)\alpha}~w_0,u)\del{\in B(\alpha,u)}   \\
+    w_0\ar@{.>}[uu]                   &:&    u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto &    \app(w_0,u_0)\del{\in B(\alpha(x=0),u_0)}\ar@{.>}[uu]   \\
+  }
+  \]
+  It is convenient to first define $w_1$ in $(\Pi~A~B)\alpha(x=1)$,
+  closing the box.  For this we define $\app(w_1,u_1)$ for any $u_1\in
+  A\alpha(x=1)$.  Intuitively, using that $\Gamma\vdash A$ and
+  $\Gamma.A\vdash B$ satisfy the Kan condition for $J=\es$, we map
+  $u_1$ down to $A\alpha^- u_1$, apply $w_0$ and map the result up:
+  $$
+  \app(w_1,u_1) = B(\alpha,\rdo{A\alpha}u_1)^+\app(w_0,A\alpha^- u_1)
+  $$
+  With $\lambda=\rup{B(\alpha,\rdo{A\alpha}u_1)} \app(w_0,A\alpha^-
+  u_1)$, the situation can be depicted as follows:
+  \[
+  \xymatrix@R=.6cm@C=.6cm{
+    u_1            && &   \app(w_1,u_1)  \\
+    ~~~u               && &    \\
+    u_0\ar[uu]      &A\alpha^- u_1\ar[uul]_{\rdo{A\alpha}u_1}&\lto &    \app(w_0,A\alpha^- u_1)\ar[uu]_\lambda  \\
+  }
+  \]
+  Note that $A\alpha^- u_1 \in A\alpha(x=0)$ is not necessarily equal
+  to $u_0$ which means that filling the box requires an additional
+  argument.  It is here we need the extra uniformity condition, using
+  that $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
+  condition for $J=\es$ and $|J|=1$.
 
-We explain how to define for every $u\in A\alpha$
-$$
-\app(\rup{(\Pi~A~B)\alpha} w_0,u)
-$$
-We write $u_0 = u(x=0)$ and $u_1 = u(x=1)$.
-Let $w_1$ be as defined above.
-The line $\app((\Pi~A~B)\alpha\uparrow w_0,u)$ must
-connect $\app(w_0,u_0)$ and $\app(w_1,u_1)$.
-Even though $u_0$ and $A\alpha^- u_1$ may be different, they can
-be connected in a new direction, for which we choose a fresh name $y$ not occurring in $I$.
+  We explain how to define for every $u\in A\alpha$
+  $$
+  \app(\rup{(\Pi~A~B)\alpha} w_0,u)
+  $$
+  We write $u_0 = u(x=0)$ and $u_1 = u(x=1)$.  Let $w_1$ be as defined
+  above.  The line $\app((\Pi~A~B)\alpha\uparrow w_0,u)$ must connect
+  $\app(w_0,u_0)$ and $\app(w_1,u_1)$.  Even though $u_0$ and
+  $A\alpha^- u_1$ may be different, they can be connected in a new
+  direction, for which we choose a fresh name $y$ not occurring in
+  $I$.
 
-Until now we have used $\rup{},\rdo{}$ without making explicit their dependence
-on $I,J,x$. With the extended $I,y$ we use $\rupxy{}$ in the case $(I,y),\set{x},y$,
-and $\rupyx{}$ in the case $(I,y),\set{y},x$. Similarly for $\rdo{},{}^+,{}^-$.
+  Until now we have used $\rup{},\rdo{}$ without making explicit their
+  dependence on $I,J,x$. With the extended $I,y$ we use $\rupxy{}$ in
+  the case $(I,y),\set{x},y$, and $\rupyx{}$ in the case
+  $(I,y),\set{y},x$. Similarly for $\rdo{},{}^+,{}^-$.
 
-Using the uniform Kan property of $\Gamma\vdash A$ for $J=\set{y}$
-we define $v$ in $A\alpha(y)$ by
-$$
-v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1),~~~\text{where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$}
-$$
-The line $v(x=0)$
-connects then $u_0$ and $A\alpha^-u_1$ in the direction $y$ since we have
-$$
-v(x=0,y=0) = u_0~~~~~~~~~~~v(x=0,y=1) = A\alpha^- u_1
-$$
+  Using the uniform Kan property of $\Gamma\vdash A$ for $J=\set{y}$
+  we define $v$ in $A\alpha(y)$ by
+  $$
+  v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1),~~~\text{where the
+    first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$}
+  $$
+  The line $v(x=0)$ connects then $u_0$ and $A\alpha^-u_1$ in the
+  direction $y$ since we have
+  $$
+  v(x=0,y=0) = u_0~~~~~~~~~~~v(x=0,y=1) = A\alpha^- u_1
+  $$
 
-Using the uniform Kan property of $\Gamma.A\vdash B$ for $J=\set{x}$ we define
-$$
-\app(\rup{(\Pi\,A\,B)\alpha} w_0,u) =
-{B(\alpha(y),v)}^-_{y,x}(\lambda,\app(w_0,v(x=0)),\app(w_1,u_1))
-$$
-with $\lambda$ as above,
-so that $\lambda(x=0) = \app(w_0,A\alpha^- u_1)$ and $\lambda(x=1) = \app(w_1,u_1)$.
+  Using the uniform Kan property of $\Gamma.A\vdash B$ for $J=\set{x}$
+  we define
+  $$
+  \app(\rup{(\Pi\,A\,B)\alpha} w_0,u) =
+  {B(\alpha(y),v)}^-_{y,x}(\lambda,\app(w_0,v(x=0)),\app(w_1,u_1))
+  $$
+  with $\lambda$ as above, so that $\lambda(x=0) = \app(w_0,A\alpha^-
+  u_1)$ and $\lambda(x=1) = \app(w_1,u_1)$.
 
-The situation can now be depicted as follows:
-\[
-\xymatrix@R=.6cm@C=.6cm{
-&u_1&                                                                          &&  &\app(w_1,u_1)&\\
-u_1\ar[ur]^{u_1}&&                                               &&  \app(w_1,u_1)\ar[ur]^{ \app(w_1,u_1)~~~}&&\\
-&v&                                                                          &\lto& &   &\\
-&&A\alpha^- u_1\ar[uuul]_{\rdo{A\alpha}u_1}     &&  &&\app(w_0,A\alpha^- u_1)\ar[uuul]_{\lambda} \\
-&u_0\ar[uuul]^u \ar@{.>}[ur]_{v(x=0)}&                 &&  &\app(w_0,u_0)\ar@{.>}[uuul]^{\app(\rup{(\Pi A B)\alpha} w_0,u)} \ar[ur]_{~~~~\app(w_0,v(x=0))}&\\
-}
-\]
+  The situation can now be depicted as follows:
+  \[
+  \xymatrix@R=.6cm@C=.6cm{
+    &u_1&                                                                          &&  &\app(w_1,u_1)&\\
+    u_1\ar[ur]^{u_1}&&                                               &&  \app(w_1,u_1)\ar[ur]^{ \app(w_1,u_1)~~~}&&\\
+    &v&                                                                          &\lto& &   &\\
+    &&A\alpha^- u_1\ar[uuul]_{\rdo{A\alpha}u_1}     &&  &&\app(w_0,A\alpha^- u_1)\ar[uuul]_{\lambda} \\
+    &u_0\ar[uuul]^u \ar@{.>}[ur]_{v(x=0)}&                 &&  &\app(w_0,u_0)\ar@{.>}[uuul]^{\app(\rup{(\Pi A B)\alpha} w_0,u)} \ar[ur]_{~~~~\app(w_0,v(x=0))}&\\
+  }
+  \]
 
-Now, if $f:I\to K$ is defined on $x$ we define
-$(\rup{(\Pi~A~B)\alpha} w_0) f = \rup{(\Pi~A~B)(\alpha f)} (w_0 (f-x))$.
-If $f$ is not defined on $x$, we can write $f=(x=b)f'$ for some $f':I-x \to K$.
-Then we can simply define $(\rup{(\Pi~A~B)\alpha} w_0) f = w_b f'$ for $b=0,1$.
-%Uniformity to be verified, plus some other pending proof obligations.
-%How much do we include in the paper?
+  Now, if $f:I\to K$ is defined on $x$ we define
+  $(\rup{(\Pi~A~B)\alpha} w_0) f = \rup{(\Pi~A~B)(\alpha f)} (w_0
+  (f-x))$.  If $f$ is not defined on $x$, we can write $f=(x=b)f'$ for
+  some $f':I-x \to K$.  Then we can simply define
+  $(\rup{(\Pi~A~B)\alpha} w_0) f = w_b f'$ for $b=0,1$.
+  % Uniformity to be verified, plus some other pending proof obligations.
+  % How much do we include in the paper?
 \end{proof}
 
 \subsection{Sum type}
