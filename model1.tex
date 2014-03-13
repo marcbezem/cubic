@@ -165,6 +165,9 @@
 
 \newcommand{\yoneda}{\mathbf{y}}
 \DeclareMathOperator{\mapOnPaths}{\mathsf{mapOnPaths}}
+\newcommand{\interval}{\mathbb{I}}
+\newcommand{\DD}{{\cal D}}
+\newcommand{\ND}{N\DD}
 
 \begin{document}
 
@@ -528,27 +531,27 @@ $$
 
 \section{Examples of cubical sets}\label{sec:examples}
 In this section we elaborate the following examples of cubical sets:
-the unit interval $I$;
-the cubical nerve $N$ of the group $Z_2$ with two elements;
-the exponential $N^I$.
-A noticeable difference between simpicial sets and our cubical sets is that,
-while $N$ is Kan, $N^I$ is not.
-This is important motivation for the main result of the next section,
-implying that $B^A$ is a Kan cubical set if both $A$ and $B$ are.
+the unit interval $\interval$; the cubical nerve $N$ of the group
+$Z_2$ with two elements; the exponential $N^\interval$.  A noticeable
+difference between simpicial sets and our cubical sets is that, while
+$N$ is Kan, $N^\interval$ is not.  This is important motivation for
+the main result of the next section, implying that $B^A$ is a Kan
+cubical set if both $A$ and $B$ are.
 
-Recall the canonical extension of a map $f:J\to K$ in $\CC$
-to a set map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on $\set{0,1}$.
-Together with  mapping objects $J$ of $\CC$ to $J \cup \set{0,1}$,
-canonical extension actually forms a functor $\CC\to{\sf Set}$.
-This covariant functor is called the \emph{unit interval}, denoted by $I$.
-We explore: $I(\set{})=\set{0,1}$ ($I$ has two points);
-$I(\set{x})=\set{0,1,x}$ ($I$ has three lines, only $x$ is non-degenerated);
-$I(\set{x,y})=\set{0,1,x,y}$ ($I$ has four degenerated squares,
-the first four squares in the display below); and so on.
-The square $x$ varies in direction $x$,
-but is constant in direction $y$, and hence degenerated.
-Similarly for objects of higher dimension in $I$.
-This completes the description of the unit interval as a cubical set.
+Recall the canonical extension of a map $f:J\to K$ in $\CC$ to a set
+map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on
+$\set{0,1}$.  Together with mapping objects $J$ of $\CC$ to $J \cup
+\set{0,1}$, canonical extension actually forms a functor $\CC\to{\sf
+  Set}$.  This covariant functor is called the \emph{unit interval},
+denoted by $\interval$.  We explore: $\interval(\set{})=\set{0,1}$
+($\interval$ has two points); $\interval(\set{x})=\set{0,1,x}$
+($\interval$ has three lines, only $x$ is non-degenerated);
+$\interval(\set{x,y})=\set{0,1,x,y}$ ($\interval$ has four degenerated
+squares, the first four squares in the display below); and so on.  The
+square $x$ varies in direction $x$, but is constant in direction $y$,
+and hence degenerated.  Similarly for objects of higher dimension in
+$\interval$.  This completes the description of the unit interval as a
+cubical set.
 \[
 \def\olll{{1 \atop 0} ~ {1 \atop 1}}
 \def\oool{{0 \atop 0} ~ {1 \atop 0}}
@@ -560,42 +563,39 @@ This completes the description of the unit interval as a cubical set.
 \def\Txy{{1 \atop 1} ~ {1 \atop 1}}
 \def\Iy{{1 \atop 0} ~ {1 \atop 0}}
 \def\Ix{{0 \atop 0} ~ {1 \atop 1}}
-I(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
+\interval(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
 N(0\leq1)(\set{x,y}):\oooo\quad\ooll\quad\olol\quad\llll\quad\olll\quad\olll\]
 
-Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to K\cup\set{0,1}$ such that
-for every $y\in K$ there exists at most one $x\in J$ with $f(x)=y$.
-Hence every morphism $f:J\to K$ defines a function
-$\set{0,1}^K  \to \set{0,1}^J$ through precomposition with $f$.
-We can view $\set{0,1}^J$ as a product of posets $0\leq1$,
-and hence as a category with unique morphisms.
-Then every morphism $f:J\to K$ defines a functor
-$\set{0,1}^K  \to \set{0,1}^J$, as the precomposition preserves the order.
-We denote this functor also by $f$.
+Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to
+K\cup\set{0,1}$ such that for every $y\in K$ there exists at most one
+$x\in J$ with $f(x)=y$.  Hence every morphism $f:J\to K$ defines a
+function $\set{0,1}^K \to \set{0,1}^J$ through precomposition with
+$f$.  We can view $\set{0,1}^J$ as a product of posets $0\leq1$, and
+hence as a category with unique morphisms.  Then every morphism
+$f:J\to K$ defines a functor $\set{0,1}^K \to \set{0,1}^J$, as the
+precomposition preserves the order.  We denote this functor also by
+$f$.
 
-\newcommand{\DD}{{\cal D}}
-\newcommand{\ND}{N\DD}
-Given a small category $\DD$, we define its \emph{cubical nerve}
-$\ND$ as follows. The sets $\ND(J)$ are functors $\set{0,1}^J \to\DD$.
-For every morphism $f:J\to K$, its function $\ND(J)\to\ND(K)$
-is defined by precomposition with the functor $f$.
-Note that the unit interval is not the cubical nerve of the poset $0\leq1$:
-they have similar sets of points and lines, but $N(0\leq1)$ has two
-more squares, both non-degenerated in two directions,
-see the last six squares in the display above.
-An element of $\ND(J)$ can be viewed as a (hyper)cube with
-the edges labelled by morphisms of $\DD$ such that:
-(i) all begin- and endpoints match, and
-(ii) all paths commute (by uniqueness of morphisms in the poset).
-Point (ii) is equivalent to saying that all squares commute.
-This completes the description of the cubical nerve of a category.
+Given a small category $\DD$, we define its \emph{cubical nerve} $\ND$
+as follows. The sets $\ND(J)$ are functors $\set{0,1}^J \to\DD$.  For
+every morphism $f:J\to K$, its function $\ND(J)\to\ND(K)$ is defined
+by precomposition with the functor $f$.  Note that the unit interval
+is not the cubical nerve of the poset $0\leq1$: they have similar sets
+of points and lines, but $N(0\leq1)$ has two more squares, both
+non-degenerated in two directions, see the last six squares in the
+display above.  An element of $\ND(J)$ can be viewed as a (hyper)cube
+with the edges labelled by morphisms of $\DD$ such that: (i) all
+begin- and endpoints match, and (ii) all paths commute (by uniqueness
+of morphisms in the poset).  Point (ii) is equivalent to saying that
+all squares commute.  This completes the description of the cubical
+nerve of a category.
 
-Consider the group of two elements as a category (groupoid)
-with one object $\star$ and two morphisms $0,1:\star\to\star$.
-Let $N$ be the nerve of this groupoid:
-$N$ has one point and two lines, again denoted by $\star$ and $0,1$.
-Note that $\star(x) = 0$ and $1\circ 1 = 1+1=0$.
-The squares of $N$ are listed as follows, where we only show the lines:
+Consider the group of two elements as a category (groupoid) with one
+object $\star$ and two morphisms $0,1:\star\to\star$.  Let $N$ be the
+nerve of this groupoid: $N$ has one point and two lines, again denoted
+by $\star$ and $0,1$.  Note that $\star(x) = 0$ and $1\circ 1 =
+1+1=0$.  The squares of $N$ are listed as follows, where we only show
+the lines:
 \[
 \def\ol{{1 \atop 0}}
 \def\oo{{0 \atop 0}}
@@ -607,43 +607,44 @@ N(\set{x,y}){:}~
 \quad \ell_0{0 \atop 0}\ell_1 \quad \ell_y{0 \atop 0}\ell_y\]
 Being the nerve of a groupoid, $N$ is Kan (see the next section).
 
-We now show that $N^I$ is not Kan. By the Yoneda Lemma we have
-$N^I(J)\cong (Hom^{\CC}(J,\_)\to (I\to N))$, the latter denoting a set
-of natural translations.  Defining $p\in N^I(J)$ means defining maps
-$pf:I(K)\to N(K)$ for every $f:J\to K$, such that $(pf)g=p(fg)$ for
-every $g:K\to L$. We explore the points of $N^I$ and define $p\in
-N^I(\emptyset)$ by, first, $p():I(\emptyset)\to
-N(\emptyset):\_\mapsto\star$.  Then, $p(x):I(\set{x})\to N(\set{x}):
-0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p(x)(x)$
-there is a choice. If we choose $0$, we must make the same choice for
-all names $x$ in the name space.  The choice $1$ for all names $x$ in
-the name space would give the only other point. In higher dimensions
-all arguments are degenerated, determining the function values, and
-naturality is compatible with each of the two choices above.
+We now show that $N^\interval$ is not Kan. By the Yoneda Lemma we have
+$N^\interval(J)\cong (Hom^{\CC}(J,\_)\to (\interval\to N))$, the
+latter denoting a set of natural translations.  Defining $p\in
+N^\interval(J)$ means defining maps $pf:\interval(K)\to N(K)$ for
+every $f:J\to K$, such that $(pf)g=p(fg)$ for every $g:K\to L$. We
+explore the points of $N^\interval$ and define $p\in
+N^\interval(\emptyset)$ by, first, $p():\interval(\emptyset)\to
+N(\emptyset):\_\mapsto\star$.  Then, $p(x):\interval(\set{x})\to
+N(\set{x}): 0,1 \mapsto\star(x)=0$ is forced by naturality, but for
+$p(x)(x)$ there is a choice. If we choose $0$, we must make the same
+choice for all names $x$ in the name space.  The choice $1$ for all
+names $x$ in the name space would give the only other point. In higher
+dimensions all arguments are degenerated, determining the function
+values, and naturality is compatible with each of the two choices
+above.
 
-Next we explore lines from $p$ to $p$ in $N^I$,
-say in direction $i$,
-and define $\ell:p\to p$ in $N^I(\set{i})$ by
-$\ell(i=b) = p()$ and $\ell(i=b)(x) = p(x)$ (forced, $b=0,1$).
-For $\ell(i=x): I(\set{x})\to N(\set{x})$ there is a choice. For the moment
-we put $\ell(i=x)(c) = \ell_c$ for all $c\in I(\set{x})$. Note that we must make
-the same choices $\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.
-On the next level, $\ell(i=b)(x)(y) = p(x)(y)$ is forced, as
-are $\ell(i=x)(y),\ell(i=y)(x): I(\set{x,y})\to N(\set{x,y})$.
-Applying these to both $x$ and $y$ in $I(\set{x,y})$ results
-in the four squares displayed above (NB: $\ell_x=\ell_y$).
-Naturality now limits the choice on the lower level,
-since the squares have to commute: $\ell_0 = \ell_1$.
-In higher dimensions all values are determined by naturally,
-and naturality is compatible
-with each of the four possible choices (recall that
-objects in $I$ can be non-degenerated in at most one direction).
-This yields in total four lines from $p$ to $p$ in $N^I$.
+Next we explore lines from $p$ to $p$ in $N^\interval$, say in
+direction $i$, and define $\ell:p\to p$ in $N^\interval(\set{i})$ by
+$\ell(i=b) = p()$ and $\ell(i=b)(x) = p(x)$ (forced, $b=0,1$).  For
+$\ell(i=x): \interval(\set{x})\to N(\set{x})$ there is a choice. For
+the moment we put $\ell(i=x)(c) = \ell_c$ for all $c\in
+\interval(\set{x})$. Note that we must make the same choices
+$\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.  On the
+next level, $\ell(i=b)(x)(y) = p(x)(y)$ is forced, as are
+$\ell(i=x)(y),\ell(i=y)(x): \interval(\set{x,y})\to N(\set{x,y})$.
+Applying these to both $x$ and $y$ in $\interval(\set{x,y})$ results
+in the four squares displayed above (NB: $\ell_x=\ell_y$).  Naturality
+now limits the choice on the lower level, since the squares have to
+commute: $\ell_0 = \ell_1$.  In higher dimensions all values are
+determined by naturally, and naturality is compatible with each of the
+four possible choices (recall that objects in $\interval$ can be
+non-degenerated in at most one direction).  This yields in total four
+lines from $p$ to $p$ in $N^\interval$.
 
-In order to show that $N^I$ is not Kan, consider lines $p,\ell: p\to p$,
-where $p$ is degenerated ($p_0=p_x=p_1=0$)
-and $\ell$ is defined by $\ell_0=\ell_1=0,~\ell_x=1$.
-Consider an open box as in the picture below, left:
+In order to show that $N^\interval$ is not Kan, consider lines
+$p,\ell: p\to p$, where $p$ is degenerated ($p_0=p_x=p_1=0$) and
+$\ell$ is defined by $\ell_0=\ell_1=0,~\ell_x=1$.  Consider an open
+box as in the picture below, left:
 \[
 \xymatrix@R=.6cm@C=.6cm{
 p\ar@{.>}[rr]&      & p   &  0\ar[rr]^{0}&      & 0  &  \star\ar[rr]^{\ell'_0}&      & \star
@@ -656,13 +657,12 @@ p\ar[rr]_{p}\ar[uu]^{p}& & p\ar[uu]_{\ell} &
 \star\ar[rr]_{0}\ar[uu]^{0}& & \star\ar[uu]_{1}     \\
 }
 \]
-By contradiction, assume we can fill the box.
-Call the closing (dotted) line above $\ell'$.
-Applying the first square to the second results in the third square,
-yielding $\ell'_0 = 0$.
-Applying the first square to the fourth results in the last square,
-yielding $\ell'_1 = 1$.
-This conflicts with $\ell'_0 = \ell'_1$ for any line $p\to p$.
+By contradiction, assume we can fill the box.  Call the closing
+(dotted) line above $\ell'$.  Applying the first square to the second
+results in the third square, yielding $\ell'_0 = 0$.  Applying the
+first square to the fourth results in the last square, yielding
+$\ell'_1 = 1$.  This conflicts with $\ell'_0 = \ell'_1$ for any line
+$p\to p$.
 
 \subsection{The nerve of a groupoid is Kan}\label{sec:groupoidnerve}
 Let $G$ be a groupoid, and $N$ its cubical nerve.
