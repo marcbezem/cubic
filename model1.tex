@@ -507,27 +507,34 @@ X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$
 %\caption{Two examples of filling open boxes\label{fillings}}
 %\end{figure}
 
- We now define what is a Kan fibration over a cubical set.
-Let $\Gamma$ be a cubical set (which does not need to satisfy the Kan condition)
-and $\Gamma\vdash A$ a fibration over $\Gamma$.
-For this fibration to be a \emph{Kan fibration}, we require to be given elements,
-for any $\alpha\in\Gamma(I)$ and $J,x\subseteq I$,
-$\rup{A\alpha} \vec u$  and $\rdo{A\alpha} \vec u$, both in $A\alpha$,
-defined for every open box $\vec u$.
-Here \emph{open box} means that $u_{yb}\in A\alpha(y=b)$ for all $(y,b)\in O(J,x)$,
-and that these faces are adjacent-compatible.
-$\rup{A\alpha}, \rdo{A\alpha}$ must satisfy the same Kan conditions as $ \rup{X},\rdo{X}$ above.
-The usual Kan conditions are obtained by simply substituting $A\alpha$ for $X$.
-Since $f:I\to K$ interacts with $\alpha$, we reformulate the uniformity conditions:
+We now define what is a Kan fibration over a cubical set.  Let
+$\Gamma$ be a cubical set (which does not need to satisfy the Kan
+condition) and $\Gamma\vdash A$ a type over $\Gamma$.  For this type
+to be a \emph{Kan fibration}, we require to be given elements, for any
+$\alpha\in\Gamma(I)$ and $J,x\subseteq I$, $\rup{A\alpha} \vec u$ and
+$\rdo{A\alpha} \vec u$, both in $A\alpha$, defined for every open box
+$\vec u$.  Here \emph{open box} means that $u_{yb}\in A\alpha(y=b)$
+for all $(y,b)\in O(J,x)$, and that these faces are
+adjacent-compatible.  $\rup{A\alpha}, \rdo{A\alpha}$ must satisfy the
+same Kan conditions as $ \rup{X},\rdo{X}$ above.  The usual Kan
+conditions are obtained by simply substituting $A\alpha$ for $X$.
+Since $f:I\to K$ interacts with $\alpha$, we reformulate the
+uniformity conditions:
 $$
 (\rup{A\alpha} \vec u)f = \rup{A\alpha f} (\vec{u}f)~~~~~~~
 (\rdo{A\alpha} \vec u)f = \rdo{A\alpha f} (\vec{u}f)
 $$
-If $\Gamma\vdash A$ is a Kan fibration with operations $\rup{A\alpha},\rdo{A\alpha}$, we define as before
+If $\Gamma\vdash A$ is a Kan fibration with operations
+$\rup{A\alpha},\rdo{A\alpha}$, we define as before
 $$
 A\alpha^+\vec u = (\rup{A\alpha} \vec u)(x=1)~~~~~~~~
 A\alpha^-\vec u = (\rdo{A\alpha} \vec u)(x=0)
 $$
+
+We could also have defined when a map $\Delta \to \Gamma$ is a Kan
+fibration; then $\Gamma \vdash A$ satisfies the Kan condition if{f}
+the first projection is $\pp \colon \Gamma.A \to \Gamma$ is such a Kan
+fibration.
 
 \section{Examples of cubical sets}\label{sec:examples}
 In this section we elaborate the following examples of cubical sets:
@@ -1006,20 +1013,21 @@ that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
 
 N.A.~Danielsson has checked formally in Agda that these properties are
 enough to develop all basic propositions of univalent mathematics;
-this Agda development is accompanying the
+this Agda development\footnote{Available at {\tt
+    www.cse.chalmers.se/\textasciitilde nad/}.} is accompanying the
 paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
 Paulin-Mohring from the above operations---with the difference that
-the usual definitional equality is only propositional.  To not make the
-notation too heavy we'll use informal reasoning in type theory; note
-that the definition can be given internally in type theory and we
+the usual definitional equality is only propositional.  To not make
+the notation too heavy we'll use informal reasoning in type theory;
+note that the definition can be given internally in type theory and we
 don't refer to the model; this definition follows N.A.\ Danielsson's
-Agda development.  First note that using the transport operation
-$\Transp$ one can define composition $p \circ q : \Id_A a~c$ of two
-identity proofs $p : \Id_A a~b$, $q : \Id_A b~c$, as well as inverses
-$p^{-1} : \Id_A b~a$.  With $\HH$ one can derive $\Id_{\Id_A a~a}
-(p^{-1} \circ p)~(\Ref a)$.
+Agda development (loc.\ cit.).  First note that using the transport
+operation $\Transp$ one can define composition $p \circ q : \Id_A a~c$
+of two identity proofs $p : \Id_A a~b$, $q : \Id_A b~c$, as well as
+inverses $p^{-1} : \Id_A b~a$.  With $\HH$ one can derive $\Id_{\Id_A
+  a~a} (p^{-1} \circ p)~(\Ref a)$.
 
 Let $A$ be a type, $a : A$, and $C (b,p)$ a type given $b : A$, $p :
 \Id_A a~b$, such that $v : C (a, \Ref a)$; for $b : A$ and $p :
@@ -1039,10 +1047,10 @@ Now if $p = \Ref a$, we get that $\app (h, (a,\Ref a))^{-1} \circ \app
 $\Transp$ and $\HH$ again one gets a witness of $\Id_{C (a, \Ref a)}~
 v~\Jel (a,v,a,\Ref a)$.
 
-Even though $\Jel$ doesn't satisfy the judgmental equality, there is
-an operation $\mapOnPaths$ which behaves well w.r.t.\ judgmental
-equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash B$,
-$\Gamma \vdash a_0 : A$ and $\Gamma \vdash a_1 : A$ is
+Even though $\Jel$ doesn't satisfy the judgmental equality, the model
+validates a new operation $\mapOnPaths$ which behaves well w.r.t.\
+judgmental equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash
+B$, $\Gamma \vdash a_0 : A$ and $\Gamma \vdash a_1 : A$ is
 \[
 \frac {\quad \Gamma \vdash f : A \to B \quad \Gamma \vdash p :
   \Id_A~a_0~a_1} {\Gamma \vdash \mapOnPaths (f, p) : \Id_B~(\app
