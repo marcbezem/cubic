@@ -217,8 +217,8 @@ sets \cite{pitts}; one connection is elaborated in \cite{Pitts}.
 
 The paper is structured as follows. First we introduce the category of
 names and substitutions.  Then we define cubical sets and the uniform
-Kan condition.  In Section~\ref{cubsetmodel} we show that cubical sets
-are a model for dependent types.  In the last section we show how
+Kan condition.  In Section~\ref{sec:kancubsetmodel} we show that cubical
+sets are a model for dependent types.  In the last section we show how
 identity types can be interpreted the cubical set model, and describe
 the universe, and how to transform an equivalence in an equality of
 types.  Finally, we explain how to represent in our model spaces up to
@@ -536,6 +536,13 @@ fibration; then $\Gamma \vdash A$ satisfies the Kan condition if{f}
 the first projection is $\pp \colon \Gamma.A \to \Gamma$ is such a Kan
 fibration.
 
+For a Kan fibration $\Gamma \vdash A$ and for $\alpha : \rho_0
+\longrightarrow \rho_1$ in $\Gamma (x)$ one can define an equivalence
+$A \rho_0 \to A \rho_1$ ($A\rho_i$ considered as a cubical set) by $a
+\mapsto A \alpha^+ a$.  This is in contrast to Kan simplicial sets
+where classical logic is essential to define such a map~\cite{BC}.
+
+
 \section{Examples of cubical sets}\label{sec:examples}
 In this section we elaborate the following examples of cubical sets:
 the unit interval $\interval$; the cubical nerve $N$ of the group
@@ -742,12 +749,41 @@ so they are equal by uniqueness.
 Again, a similar argument can be used if $J$ contains more variables.
 This completes the proof that the cubical nerve of a groupoid is Kan.
 
-\section{The Kan cubical set model}\label{cubsetmodel}
+\section{The Kan cubical set model}\label{sec:kancubsetmodel}
 
-We call MLTT the version of Type Theory with rules as presented in
-Figure~\ref{MLTT}.  This is inspired by the presentation in
-\cite{Curien} (see also \cite{Dybjer}).  We check that all the rules
-of MLTT are valid.
+% We call MLTT the version of Type Theory with rules as presented in
+% Figure~\ref{MLTT}.  This is inspired by the presentation in
+% \cite{Curien} (see also \cite{Dybjer}).  We check that all the rules
+% of MLTT are valid.
+
+In this section we will give a refinement of the model given in
+Section~\ref{sec:presheaf-models}: we restrict the model to those
+types $\Gamma \vdash$ which are Kan fibrations.  This is needed in
+order to be able to justify the elimination rules for the identity
+types (cf.\ Section~\ref{sec:identity-type}).
+
+It is crucial to note that the filling operations are part of when a
+type is a Kan fibration.  Two types $\Gamma \vdash A$ and $\Gamma
+\vdash B$ which are Kan fibrations can be equal as cubical sets, but
+\emph{not} as Kan fibrations.  Thus we have to check whether the
+equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
+  fibrations}.
+
+\begin{theorem}
+  If $\Gamma \vdash A$ is a Kan fibration and $\sigma \colon \Delta
+  \to \Gamma$, then also $\Delta \vdash A \sigma$ is a Kan fibration.
+  Moreover, $A 1 = A$ and $(A \sigma) \tau = A (\sigma \tau)$ as Kan
+  fibrations.
+\end{theorem}
+\begin{proof}
+  For an $I$-cube $\alpha$ of $\Delta$ recall that $(A \sigma) \alpha
+  = A (\sigma \alpha)$ as cubical sets; we define the filling
+  operations in $(A \sigma) \alpha$ by those in $A (\sigma \alpha)$,
+  i.e., we set $\rup{(A \sigma) \alpha} {\vec u} = \rup {A (\sigma
+    \alpha)} {\vec u}$.  With this definition it is clear that $A 1$
+  and $A$ have the same filling operations, and similarly for the
+  other equation.
+\end{proof}
 
 \subsection{Dependent product}
 
@@ -869,23 +905,34 @@ of MLTT are valid.
 
 \subsection{Sum type}
 
- The interpretation of $\Gamma\vdash\Sigma~A~B$ given $\Gamma\vdash A$ and $\Gamma.A\vdash B$
-is simpler than the interpretation of the dependent product. If $\rho$ is an $I$-cube
-of $\Gamma$ we define $(\Sigma~A~B)\rho$ to be the set of pairs $u,v$ where $u$ is
-an element of $A\rho$ and $v$ an element of $B(\rho,u)$. We define $(u,v)f = (uf,vf)$
-if $f:I\to K$ is a substitution. Finally we define for $\vec p$
-with $p_{yb}=(u_{yb},v_{yb})$ for any $(y,b)\in O(J,x)$:
+\begin{theorem}
+  If $\Gamma \vdash A$ and $\Gamma.A \vdash B$ are Kan fibrations,
+  then so is $\Gamma \vdash \Sigma\,A\,B$.  Moreover, $(\Sigma\,A\,B)
+  \sigma = \Sigma (A \sigma) (B (\sigma \pp, \qq))$ as Kan fibrations.
+\end{theorem}
+\begin{proof}
+  Given an open box $\vec p$ in $(\Sigma\,A\,B) \alpha$ with
+  $p_{yb}=(u_{yb},v_{yb})$ for any $(y,b)\in O^+(J,x)$ we first fill
+  $u = \rup {A \alpha} {\vec u}$ in $A \alpha$, and then set
+  \[
+  \rup{(\Sigma\,A\,B) \alpha} {\vec p} = (u, \rup {B (\alpha, u)}
+  {\vec v}).
+  \]
+  This clearly satisfies the uniformity condition as they are
+  satisfied for $\Gamma \vdash A$ and $\Gamma.A \vdash B$.
 
-$$(\rup{\Sigma~A~B)\rho}~\vec{p}~=~ (\alpha, \rup{B(\rho,\alpha)}~\vec{v}),~~
-\text{where}~\alpha = \rup{A\rho}~ \vec u.$$
-This operation is uniform: if $f:I\to K$ defined on $x$ we have:
-$$(\rup{(\Sigma~A~B)\rho}~\vec{p})f~=~\rup{(\Sigma~A~B)\rho f}~(\vec{p}f)$$
+  Moreover, if $\alpha = \sigma \beta$ for $\sigma \colon \Delta \to
+  \Gamma$, we get $u = \rup {(A \sigma) \beta} {\vec u}$ and $\rup {B
+    (\sigma \beta, u)} {\vec v} = \rup{(B (\sigma \pp, \qq)) (\beta,
+    u)} {\vec v}$, yielding $(\Sigma\,A\,B) \sigma = \Sigma (A \sigma)
+  (B (\sigma \pp, \qq))$ as Kan fibrations.
+\end{proof}
 
-\medskip
 
 \section{Extensions}
 
 \subsection{Identity type}
+\label{sec:identity-type}
 
 We describe the interpretation of $\Gamma\vdash\Id_A~a~b$ given
 $\Gamma\vdash A$ and $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$. Given
@@ -1398,12 +1445,12 @@ S. Awodey and M. Warren.
 \newblock{Mathematical Proceedings of the Cambridge Philosophical Society, 146, p 45--55, 2009.}
 
 \bibitem{BCH}
-B.Barras, Th. Coquand and S. Huber.
+B. Barras, Th. Coquand and S. Huber.
 \newblock{A generalization of Takeuti-Gandy interpretation.}
 \newblock{Preprint, 2013.}
 
 \bibitem{BC}
-M.Bezem and Th. Coquand.
+M. Bezem and Th. Coquand.
 \newblock{A Kripke model for simplicial sets.}
 \newblock{Preprint, 2013.}
 
