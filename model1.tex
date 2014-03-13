@@ -1204,7 +1204,8 @@ x$; in case $f x = 0$, we can write $f = (x=0) f'$ and we have to set
 $C_f = A_f$ as we have to satisfy $C_f = (C(x=0))_{f'} = (A
 (x=0))_{f'} = A_f$; similarly, if $f x = 1$, we set $C_f = B_f$.  In
 case, $f$ is defined on $x$, an element of $C_f$ is any pair $(a,b)$
-such that $a \in A_f$ and $b \in B_f$ with $a (x=1) = b (x=0)$.
+such that $a \in A_f$ and $b \in B_f$ with $a (x=1) = b (x=0)$ in
+$A_{f (x=1)} = {A(x=1)}_{(f - x)} = {B(x=0)}_{(f - x)} = B_{f (x=0)}$.
 
 We still have to define the restrictions $C_f \to C_{fg}$ for $g
 \colon J \to K$; in the first two cases from above, the restrictions
@@ -1233,7 +1234,7 @@ Second, in case $x \neq x'$ with $x \in J$, we construct an element $v
 define $v_{yc} = a_{yc} (x=1)$ (which is also equal to $b_{yc}
 (x=0)$).  It is readily checked that this defines an open box in
 $A_{(x=1)} = B_{(x=0)}$ and thus we get $v = \rup{A_{(x=1)}} \vec v$.
-Now set $a_{x1} = b_{x1} = v$; this yields open boxes $\vec a$ and
+Now set $a_{x1} = b_{x0} = v$; this yields open boxes $\vec a$ and
 $\vec b$ in $A_1$ and $B_1$, respectively.  Thus we can take $u =
 (\rup{A_1} \vec a,\rup{B_1} \vec b)$.
 
