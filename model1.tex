@@ -164,7 +164,7 @@
 % end Marc's macros
 
 \newcommand{\yoneda}{\mathbf{y}}
-\DeclareMathOperator{\mapOnPath}{\mathsf{mapOnPath}}
+\DeclareMathOperator{\mapOnPaths}{\mathsf{mapOnPaths}}
 
 \begin{document}
 
@@ -361,69 +361,69 @@ to any cubical set. A category equivalent to to the category of cubical sets is 
 We will now recall how cubical sets, as does any presheaf category,
 give rise to a model of dependent type theory.  We use Dybjer's notion
 of \emph{category with families} (CwF) to devise such a
-model~\cite{Dybjer}.  Even though the definition of CwFs is usually
-phrased using categorical language, we would like to stress the fact
-that it is generalized algebraic theory~\cite{Cartmell} and as such a
-quasi-equational.  To give a CwF is to give interpretations for the
-sorts of contexts, context morphisms (substitutions), types and terms,
-together with operations.  We are interested in CwFs supporting $\Pi$-
-and $\Sigma$-types; this amounts to validate the rules given in
-Figure~\ref{MLTT}.  Note that the equations given there are to be read
-to be in a context such that the involved expressions make sense,
+model~\cite{Dybjer,Curien,Hofmann}.  We would like to stress the fact
+that such a structure is described by a generalized algebraic
+theory~\cite{Cartmell}.  To give a CwF is to give interpretations for
+the sorts of contexts, context morphisms (substitutions), types and
+terms, together with operations satisfying some equations.  This
+amounts to validate the rules given in Figure~\ref{MLTT}.  Note that
+we use polymorphic notation to increase readability as in
+\cite{Cartmell,Dybjer}; e.g., without this convention we should have
+written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
+\Gamma.A \to \Gamma$.  Also, we leave the types parameters implicit,
 e.g., $(A \sigma) \delta = A (\sigma \delta)$ tacitly assumes the
 premises $\sigma \colon \Delta \to \Gamma$, $\delta \colon \Theta \to
-\Delta$ and $\Gamma \vdash A$.  Moreover, we use polymorphic notation
-to increase readability; e.g., without this convention we should have
-written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
-\Gamma.A \to \Gamma$.  We will now describe how cubical sets give rise
-to such a structure.  This construction works for any presheaf
-category and is described in~\cite[Sec.~4]{Hofmann}.  Instead of using
-contravariant presheaves, we use covariant presheaves and write
-composition in diagram order.
+\Delta$ and $\Gamma \vdash A$.  These points are also stressed in
+\cite[Sec.~1]{VoevodskyCMU}.
+
+We will now describe how cubical sets give rise to such a structure.
+This construction works for any presheaf category and is described
+in~\cite[Sec.~4]{Hofmann}.  Instead of using contravariant presheaves,
+we use covariant presheaves and write composition in diagram order.
 
 A context $\Gamma$, written $\Gamma \vdash$, is interpreted by a
 cubical set, and context morphisms $\sigma:\Delta\to\Gamma$ are
 interpreted as cubical set maps (i.e., natural transformations), so
 that we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a
-$I$-cube of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by a
-fibration.  More explicitly, we need to give for each $I$-cube
-$\alpha$ of $\Gamma$ a set $A\alpha$ with maps $A\alpha\to A\alpha
-f,~u\longmapsto uf$ satisfying $u1 = u$ and $u(fg) = (uf)g$.  A
-section (or term) $\Gamma\vdash a:A$ is defined by giving an element
-$a\alpha$ in $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such
-a way that $(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.
-Given $\Gamma \vdash A$ and $\sigma \colon \Delta \to \Gamma$ we
-define $\Delta \vdash A \sigma$ by $(A \sigma) \alpha = A (\sigma
-\alpha)$ and the induced maps; likewise, substitution in a term
-$\Gamma \vdash a : A$ is given by $(a \sigma) \alpha = a (\sigma
-\alpha)$.  If $\Gamma\vdash A$, we define the cubical set $\Gamma.A$
-by taking as $I$-cubes of $\Gamma.A$ pairs $(\alpha,u)$ with $\alpha$
-an $I$-cube of $\Gamma$ and $u$ in $A\alpha$. If $f:I\to J$ we define
-$(\alpha,u)f = (\alpha f,u f)$.  The first projection $\pp \colon
-\Gamma.A \to \Gamma$, $\pp (\alpha, u) = \alpha$ becomes thus a
-context morphism, and the second projection $\qq (\alpha, u) = u$ a
-section $\Gamma.A \vdash \qq : A \pp$ corresponding to the first de
-Bruijn index.  For $\Gamma \vdash A$, $\sigma \colon \Delta \to
-\Gamma$ and $\Delta \vdash u : A$ we give $(\sigma, u) \colon \Delta
-\to \Gamma.A$ by $(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This
-concludes the description of the CwF without type formers.
+$I$-cube of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by
+sets $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with
+maps $A\alpha\to A\alpha f,~u\longmapsto uf$ for each $f \colon I \to
+J$, satisfying $u1 = u$ and $u(fg) = (uf)g$.  A section (or term)
+$\Gamma\vdash a:A$ is defined by giving an element $a\alpha$ in
+$A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such a way that
+$(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.  Given
+$\Gamma \vdash A$ and $\sigma \colon \Delta \to \Gamma$ we define
+$\Delta \vdash A \sigma$ by $(A \sigma) \alpha = A (\sigma \alpha)$
+and the induced maps; likewise, substitution in a term $\Gamma \vdash
+a : A$ is given by $(a \sigma) \alpha = a (\sigma \alpha)$.  If
+$\Gamma\vdash A$, we define the cubical set $\Gamma.A$ by taking as
+$I$-cubes of $\Gamma.A$ pairs $(\alpha,u)$ with $\alpha$ an $I$-cube
+of $\Gamma$ and $u$ in $A\alpha$. If $f:I\to J$ we define $(\alpha,u)f
+= (\alpha f,u f)$.  The first projection $\pp \colon \Gamma.A \to
+\Gamma$, $\pp (\alpha, u) = \alpha$ becomes thus a context morphism,
+and the second projection $\qq (\alpha, u) = u$ a section $\Gamma.A
+\vdash \qq : A \pp$ corresponding to the first de Bruijn index.  For
+$\Gamma \vdash A$, $\sigma \colon \Delta \to \Gamma$ and $\Delta
+\vdash u : A$ we give $(\sigma, u) \colon \Delta \to \Gamma.A$ by
+$(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This concludes the
+description of the CwF without type formers.
 
 We now describe how to interpret $\Pi$ and $\Sigma$. If $\Gamma\vdash
-A$ and $\Gamma.A\vdash B$, we define the fibration $\Gamma\vdash
-\Pi\,A\,B$ as follows.  For each $I$-cube $\alpha$ of $\Gamma$, an
-element $w$ of $(\Pi\,A\,B)\alpha$ is a family indexed by $f:I\to J$
-such that $\app(wf,u)$ in $B(\alpha f,u)$ for all $u$ in $A\alpha f$.
-Moreover, we should have $\app(wf,u)g = \app(wfg,ug)$ for all $g:J\to
-K$. The latter allows us to define the family $wf$ by putting $(wf)g =
-w(fg)$, $w=w1$, which completes the definition of the fibration
-$\Gamma\vdash \Pi\,A\,B$.  Given $\Gamma.A \vdash b : B$ we interpret
-$\Gamma \vdash \lambda\,b : \Pi\,A\,B$ by $\app (((\lambda\, b)
-\alpha) f, u) = b (\alpha f, u)$ for $u$ in $A \alpha f$.  Application
-$\Gamma \vdash \app (w,u) : B [u]$ (where $[u] = (1, u) \colon \Gamma
-\to \Gamma.A$) of $\Gamma \vdash w : \Pi\,A\,B$ to $\Gamma \vdash u :
-A$ is given by $\app (w, u) \alpha = \app ((w\alpha) 1, u\alpha)$.  We
-get $\app ((\lambda\,b), u) \alpha = \app ((\lambda\,b) \alpha 1, u
-\alpha) = b (\alpha, u\alpha) = (b [u]) \alpha$.
+A$ and $\Gamma.A\vdash B$, we define the type $\Gamma\vdash \Pi\,A\,B$
+as follows.  For each $I$-cube $\alpha$ of $\Gamma$, an element $w$ of
+$(\Pi\,A\,B)\alpha$ is a family $(w_f)$ indexed by $f:I\to J$ such
+that $w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$ such that
+$(w_f (u)) g = w_{fg} (u)$ for $g \colon J \to K$ and $u \in A \alpha
+f$.  The latter allows us to define the family $wf$ by putting $(wf)_g
+= w_{fg}$, which completes the definition of $\Gamma\vdash \Pi\,A\,B$.
+Given $\Gamma.A \vdash b : B$ we interpret $\Gamma \vdash \lambda\,b :
+\Pi\,A\,B$ by $ ((\lambda\, b) \alpha)_f (u) = b (\alpha f, u)$ for
+$u$ in $A \alpha f$.  Application $\Gamma \vdash \app (w,u) : B [u]$
+(where $[u] = (1, u) \colon \Gamma \to \Gamma.A$) of $\Gamma \vdash w
+: \Pi\,A\,B$ to $\Gamma \vdash u : A$ is given by $\app (w, u) \alpha
+= (w\alpha)_1 (u\alpha)$.  We get $\app ((\lambda\,b), u) \alpha =
+((\lambda\,b) \alpha)_1 (u \alpha) = b (\alpha, u\alpha) = (b [u])
+\alpha$.
 
 The definition of dependent sums is easier: $\Gamma\vdash\Sigma\,A\,B$
 for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined by sums in
@@ -434,8 +434,7 @@ component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  The
 sections given by the first and second projection give interpretations
 for $\pp$ and $\qq$, respectively.
 
-We omit the rather tedious but straightforward task of verifying the
-necessary equations.
+We can then verify all the equations of Figure~\ref{MLTT}.
 
 \section{The uniform Kan condition}
 
@@ -985,8 +984,6 @@ computation rule for identity is thus only validated by a path to $v$
 via $\HH(v)$\footnote{The validity of the computation rule for
   identity corresponds to considering only fibrations that are {\em
     regular} in the sense of Hurewicz \cite{hurewicz}.}.
-N.A.~Danielsson has checked formally in Agda that these properties are
-enough to develop all basic propositions of univalent mathematics.
 
 
 We finally show that, given $\Gamma\vdash a:A$, the type $\Gamma
@@ -1006,6 +1003,11 @@ u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho(y)^+ _{x,y}
 $$
 The fact that the filling operations commute with substitution ensures
 that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
+
+N.A.~Danielsson has checked formally in Agda that these properties are
+enough to develop all basic propositions of univalent mathematics;
+this Agda development is accompanying the
+paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
 Paulin-Mohring from the above operations---with the difference that
@@ -1038,24 +1040,24 @@ $\Transp$ and $\HH$ again one gets a witness of $\Id_{C (a, \Ref a)}~
 v~\Jel (a,v,a,\Ref a)$.
 
 Even though $\Jel$ doesn't satisfy the judgmental equality, there is
-an operation $\mapOnPath$ which behaves well w.r.t.\ judgmental
+an operation $\mapOnPaths$ which behaves well w.r.t.\ judgmental
 equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash B$,
 $\Gamma \vdash a_0 : A$ and $\Gamma \vdash a_1 : A$ is
 \[
 \frac {\quad \Gamma \vdash f : A \to B \quad \Gamma \vdash p :
-  \Id_A~a_0~a_1} {\Gamma \vdash \mapOnPath (f, p) : \Id_B~(\app
+  \Id_A~a_0~a_1} {\Gamma \vdash \mapOnPaths (f, p) : \Id_B~(\app
   (f,a_0))~(\app (f,a_1))}
 \]
 where $A \to B$ is the non-dependent function space $\Pi A (B \pp)$.
-Given $\rho$ in $\Gamma (I)$ we define $\mapOnPath (f, p) \rho =
+Given $\rho$ in $\Gamma (I)$ we define $\mapOnPaths (f, p) \rho =
 \bind{x} \app ((f \rho) 1, \omega)$ for $p \rho = \bind x \omega$.
 This satisfies the equations
 \begin{align*}
-  \mapOnPath (\mathrm{id}, p) & = p \\
-  \mapOnPath (f \circ g, p) &= \mapOnPath \bigl( f, (\mapOnPath
+  \mapOnPaths (\mathrm{id}, p) & = p \\
+  \mapOnPaths (f \circ g, p) &= \mapOnPaths \bigl( f, (\mapOnPaths
   (g, p) \bigr)\\
-  \mapOnPath (f, \Ref a) &= \Ref (\app (f, a))\\
-  \mapOnPath (\lambda (b \pp), p) &= \Ref b
+  \mapOnPaths (f, \Ref a) &= \Ref (\app (f, a))\\
+  \mapOnPaths (\lambda (b \pp), p) &= \Ref b
 \end{align*}
 where now $f \circ g$ denotes ordinary function composition and
 $\lambda (b \pp)$ is constant.
@@ -1407,6 +1409,11 @@ J. Cartmell.
 \newblock{Generalised algebraic theories and contextual categories.}
 \newblock{Ann. Pure Appl. Logic 32 (1986), no. 3, 209--243.}
 
+\bibitem{CoquandDanielsson}
+Th. Coquand and N.A. Danielsson.
+\newblock{Isomorphism is equality.}
+\newblock{Indagationes Mathematicae 24(4), p. 1105--1120, 2013.}
+
 \bibitem{Crans}
 S. Crans.
 \newblock{On combinatorial models for higher dimensional homotopies.}
@@ -1415,7 +1422,7 @@ S. Crans.
 \bibitem{Curien}
 P.L. Curien.
 \newblock{Substitutions up to isomorphisms.}
-\newblock{Fundamenta Informaticae, Volume 19, 1993, p. 51-85.}
+\newblock{Fundamenta Informaticae, Volume 19, 1993, p. 51--85.}
 
 \bibitem{Dybjer}
 P. Dybjer.
@@ -1498,6 +1505,12 @@ A. Tarski.
 The Univalent Foundations Program.
 \newblock{Homotopy Type Theory.}
 \newblock{Institute for Advanced Study, 2013.}
+
+\bibitem{VoevodskyCMU}
+V. Voevodsky.
+\newblock{The equivalence axiom and univalent models of
+  type theory.}
+\newblock{Talk at CMU on February 4, 2010.}
 
 \bibitem{Voevodsky}
 V. Voevodsky.
