@@ -417,7 +417,7 @@ A$ and $\Gamma.A\vdash B$, we define the type $\Gamma\vdash \Pi\,A\,B$
 as follows.  For each $I$-cube $\alpha$ of $\Gamma$, an element $w$ of
 $(\Pi\,A\,B)\alpha$ is a family $(w_f)$ indexed by $f:I\to J$ such
 that $w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$ is a dependent
-function such that $(w_f (u)) g = w_{fg} (u)$ for $g \colon J \to K$
+function such that $(w_f (u)) g = w_{fg} (u g)$ for $g \colon J \to K$
 and $u \in A \alpha f$.  We define the family $wf$ in $(\Pi\,A\,B)
 \alpha f$ by putting $(wf)_g = w_{fg}$, which completes the definition
 of $\Gamma\vdash \Pi\,A\,B$.  Given $\Gamma.A \vdash b : B$ we
@@ -760,8 +760,8 @@ This completes the proof that the cubical nerve of a groupoid is Kan.
 In this section we will give a refinement of the model given in
 Section~\ref{sec:presheaf-models}: we restrict the model to those
 types $\Gamma \vdash$ which are Kan fibrations.  This is needed in
-order to be able to justify the elimination rules for the identity
-types (cf.\ Section~\ref{sec:identity-type}).
+order to justify the elimination rules for the identity types (cf.\
+Section~\ref{sec:identity-type}).
 
 It is crucial to note that the filling operations are part of when a
 type is a Kan fibration.  Two types $\Gamma \vdash A$ and $\Gamma
