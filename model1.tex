@@ -394,39 +394,40 @@ maps $A\alpha\to A\alpha f,~u\longmapsto uf$ for each $f \colon I \to
 J$, satisfying $u1 = u$ and $u(fg) = (uf)g$.  A section (or term)
 $\Gamma\vdash a:A$ is defined by giving an element $a\alpha$ in
 $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such a way that
-$(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.  Given
-$\Gamma \vdash A$ and $\sigma \colon \Delta \to \Gamma$ we define
-$\Delta \vdash A \sigma$ by $(A \sigma) \alpha = A (\sigma \alpha)$
-and the induced maps; likewise, substitution in a term $\Gamma \vdash
-a : A$ is given by $(a \sigma) \alpha = a (\sigma \alpha)$.  If
-$\Gamma\vdash A$, we define the cubical set $\Gamma.A$ by taking as
-$I$-cubes of $\Gamma.A$ pairs $(\alpha,u)$ with $\alpha$ an $I$-cube
-of $\Gamma$ and $u$ in $A\alpha$. If $f:I\to J$ we define $(\alpha,u)f
-= (\alpha f,u f)$.  The first projection $\pp \colon \Gamma.A \to
-\Gamma$, $\pp (\alpha, u) = \alpha$ becomes thus a context morphism,
-and the second projection $\qq (\alpha, u) = u$ a section $\Gamma.A
-\vdash \qq : A \pp$ corresponding to the first de Bruijn index.  For
-$\Gamma \vdash A$, $\sigma \colon \Delta \to \Gamma$ and $\Delta
-\vdash u : A$ we give $(\sigma, u) \colon \Delta \to \Gamma.A$ by
-$(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This concludes the
-description of the CwF without type formers.
+$(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.  The empty
+context $()$ is given by the cubical set with exactly one $I$-cube for
+each $I$.  Given $\Gamma \vdash A$ and $\sigma \colon \Delta \to
+\Gamma$ we define $\Delta \vdash A \sigma$ by $(A \sigma) \alpha = A
+(\sigma \alpha)$ and the induced maps; likewise, substitution in a
+term $\Gamma \vdash a : A$ is given by $(a \sigma) \alpha = a (\sigma
+\alpha)$.  If $\Gamma\vdash A$, we define the cubical set $\Gamma.A$
+by taking as $I$-cubes of $\Gamma.A$ pairs $(\alpha,u)$ with $\alpha$
+an $I$-cube of $\Gamma$ and $u$ in $A\alpha$. If $f:I\to J$ we define
+$(\alpha,u)f = (\alpha f,u f)$.  The first projection $\pp \colon
+\Gamma.A \to \Gamma$, $\pp (\alpha, u) = \alpha$ becomes thus a
+context morphism, and the second projection $\qq (\alpha, u) = u$ a
+section $\Gamma.A \vdash \qq : A \pp$ corresponding to the first de
+Bruijn index.  For $\Gamma \vdash A$, $\sigma \colon \Delta \to
+\Gamma$ and $\Delta \vdash u : A$ we give $(\sigma, u) \colon \Delta
+\to \Gamma.A$ by $(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This
+concludes the description of the CwF without type formers.
 
 We now describe how to interpret $\Pi$ and $\Sigma$. If $\Gamma\vdash
 A$ and $\Gamma.A\vdash B$, we define the type $\Gamma\vdash \Pi\,A\,B$
 as follows.  For each $I$-cube $\alpha$ of $\Gamma$, an element $w$ of
 $(\Pi\,A\,B)\alpha$ is a family $(w_f)$ indexed by $f:I\to J$ such
-that $w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$ such that
-$(w_f (u)) g = w_{fg} (u)$ for $g \colon J \to K$ and $u \in A \alpha
-f$.  The latter allows us to define the family $wf$ by putting $(wf)_g
-= w_{fg}$, which completes the definition of $\Gamma\vdash \Pi\,A\,B$.
-Given $\Gamma.A \vdash b : B$ we interpret $\Gamma \vdash \lambda\,b :
-\Pi\,A\,B$ by $ ((\lambda\, b) \alpha)_f (u) = b (\alpha f, u)$ for
-$u$ in $A \alpha f$.  Application $\Gamma \vdash \app (w,u) : B [u]$
-(where $[u] = (1, u) \colon \Gamma \to \Gamma.A$) of $\Gamma \vdash w
-: \Pi\,A\,B$ to $\Gamma \vdash u : A$ is given by $\app (w, u) \alpha
-= (w\alpha)_1 (u\alpha)$.  We get $\app ((\lambda\,b), u) \alpha =
-((\lambda\,b) \alpha)_1 (u \alpha) = b (\alpha, u\alpha) = (b [u])
-\alpha$.
+that $w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$ is a dependent
+function such that $(w_f (u)) g = w_{fg} (u)$ for $g \colon J \to K$
+and $u \in A \alpha f$.  We define the family $wf$ in $(\Pi\,A\,B)
+\alpha f$ by putting $(wf)_g = w_{fg}$, which completes the definition
+of $\Gamma\vdash \Pi\,A\,B$.  Given $\Gamma.A \vdash b : B$ we
+interpret $\Gamma \vdash \lambda\,b : \Pi\,A\,B$ by $ ((\lambda\, b)
+\alpha)_f (u) = b (\alpha f, u)$ for $u$ in $A \alpha f$.  Application
+$\Gamma \vdash \app (w,u) : B [u]$ (where $[u] = (1, u) \colon \Gamma
+\to \Gamma.A$) of $\Gamma \vdash w : \Pi\,A\,B$ to $\Gamma \vdash u :
+A$ is given by $\app (w, u) \alpha = (w\alpha)_1 (u\alpha)$.  We get
+$\app ((\lambda\,b), u) \alpha = ((\lambda\,b) \alpha)_1 (u \alpha) =
+b (\alpha, u\alpha) = (b [u]) \alpha$.
 
 The definition of dependent sums is easier: $\Gamma\vdash\Sigma\,A\,B$
 for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined by sums in
