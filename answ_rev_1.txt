@@ -1,39 +1,3 @@
-%%% Review form for TYPES 2013 post-proceedings
-%%%
-%%% Dear reviewer, since we do not use an administration tool for the editorial process,
-%%% we would be thankful if you gave the following header information before your free-style
-%%% report - if it is not in text format, then please write something like "see the attached PDF"
-%%% after the header information.
-%%%
-%%% The overall evaluation is inspired by LMCS and the reviewer's confidence taken from EasyChair.
-%%%
-%%% Please uncomment the 2 lines that fit best (one in each section). More finely nuanced
-%%% information can enter the report in the section "Overall evaluation:" below the uncommented
-%%% judgement. Confidential remarks to the editors should be confined to the cover letter.
-
-Paper number: 11
-
-Overall evaluation:
-%%% This is an excellent paper and can be accepted for the TYPES 2013 post-proceedings as it is.
-%%% The paper can be accepted for the TYPES 2013 post-proceedings after minor revisions. No further refereeing is needed.
-The paper could possibly be accepted for the TYPES 2013 post-proceedings. Another refereeing round would be needed - if this was not possible, I would recommend rejection.
-%%% The paper does not meet the standards of LIPIcs TYPES post-proceedings, and I recommend rejection.
-
-Reviewer's confidence:
-expert
-%%% high
-%%% medium
-%%% low
-%%% none
-
-Recent developments in Martin-L"of type theory have centered around Voevodsky's Univalent Foundations programme, which seeks to use this type theory to give a synthetic axiomatic foundation for modern homotopy theory. A key point is the introduction of a new axiom to type theory, the so-called univalence axiom, which controls the behaviour of equality in type-theoretic universes. While this is essential for the faithful representation of homotopy theory within type theory, its addition breaks many of the pleasant properties that Martin-L"of type theory possesses; in particular, the normalization of terms to canonical form fails, since reduction will "get stuck" on instances of the univalence axiom. Another way of saying this is that the univalence axiom has no inherent computational meaning. The current paper is a contribution towards realising a computational interpretation of univalence. It does so by describing parts of a constructive model of Martin-L"of type theory + univalence; now terms involving univalence may be computed by interpreting them in the model. This can be seen as a first step toward a "normalization by evaluation" style normalization proof for MLTT + univalence. 
-
-This is an important goal, and the current paper is a substantial step along the road toward it. There is some genuine hard work involved in setting up the model, and the idea that the setting of cubical sets might be a good place to look for a constructive model of type theory is non-obvious. I thus have no doubt that the scientific content of the paper merits publication.
-
-I am, however, a bit concerned by the way the paper is presented. While the mathematical prose is pretty lucid and easy to read, the paper does not really fulfil the claims made for it in the introduction. Firstly, the authors say that they have described a model of dependent type theory. In fact, they have merely proven the main plot points that would be necessary to describe such a model, but have not filled in all the details. Secondly, they claim that their model is equipped with identity types and a universe; in fact, they have only described a rather non-standard version of identity types, and have only sketched a potential candidate for a universe. On a third unrelated note, I feel that the introduction of the paper could do more to justify why the work presented here is important.
-
-I would therefore suggest acceptance of the paper subject to three main revisions:
-
 (1) Section 4 to be expanded to give a rigorous construction of a categorical model of type theory -- thus, first, a presentation of the type theory or a reference to such a presentation; then a description of the notion of model to be employed---for example, a category with families equipped with Sigma and Pi types---together with a reference; finally, a careful proof that the constructions given here yield such a model. The main missing parts seem to be a proof that Kan fibrations pull back, and a proof that the Sigma and Pi operations defined here are stable under pullback.
 (2) Some further explanation in Section 5 that the notion of identity type given here is rather non-standard, and a sketch of the proof that it is more-or-less equivalent to the usual one (except for the fact that the computation rule holds only propositionally rather than on the nose). Also, an indication in the introduction that the material in Section 5 only constructs a non-standard notion of identity type, and that the construction of the universe is not yet complete.
 (3) The addition of extra prose to the start of the introduction explaining better the motivation for seeking a (constructive) model in cubical sets in relation to the univalent foundations project.
@@ -100,12 +64,12 @@ all done
 
 - p.5, third display from bottom: subscript {x,y} should be {y,x}; also u_1 should be u_1(y)  (not strictly necessary by the conventions you already set up, but helpful to make this precise)
 
-NO {x,y} is OK, precisely for the reason that u_1 is u_1(y) here!
-Added: "where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$" better clarity.
+No, {x,y} is OK, precisely for the reason that u_1 is u_1(y) here!
+Added: "where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$" for clarity.
 
 - p.5, final display: subscript {y,x} should be {x,y}; also w_0 should be w_0(y) (in the app) and u_1 should be u_1(y)
 
-NO, for similar reasons as above. We feel that the arrows in the y-direction in the picture are sufficiently clear. 
+No, for similar reasons as above. We feel that the arrows in the y-direction in the picture are sufficiently clear. 
 
 - p.6, Sec 4.2: add parentheses around "uf, vf" on third line and around "alpha, B(rho, alpha) | v" in display
 - p.6, Sec 5.1, line 4: rho should be alpha
