@@ -1,0 +1,142 @@
+%%% Review form for TYPES 2013 post-proceedings
+%%%
+%%% Dear reviewer, since we do not use an administration tool for the editorial process,
+%%% we would be thankful if you gave the following header information before your free-style
+%%% report - if it is not in text format, then please write something like "see the attached PDF"
+%%% after the header information.
+%%%
+%%% The overall evaluation is inspired by LMCS and the reviewer's confidence taken from EasyChair.
+%%%
+%%% Please uncomment the 2 lines that fit best (one in each section). More finely nuanced
+%%% information can enter the report in the section "Overall evaluation:" below the uncommented
+%%% judgement. Confidential remarks to the editors should be confined to the cover letter.
+
+Paper number: 11
+
+Overall evaluation:
+%%% This is an excellent paper and can be accepted for the TYPES 2013 post-proceedings as it is.
+%%% The paper can be accepted for the TYPES 2013 post-proceedings after minor revisions. No further refereeing is needed.
+The paper could possibly be accepted for the TYPES 2013 post-proceedings. Another refereeing round would be needed - if this was not possible, I would recommend rejection.
+%%% The paper does not meet the standards of LIPIcs TYPES post-proceedings, and I recommend rejection.
+
+Reviewer's confidence:
+expert
+%%% high
+%%% medium
+%%% low
+%%% none
+
+Recent developments in Martin-L"of type theory have centered around Voevodsky's Univalent Foundations programme, which seeks to use this type theory to give a synthetic axiomatic foundation for modern homotopy theory. A key point is the introduction of a new axiom to type theory, the so-called univalence axiom, which controls the behaviour of equality in type-theoretic universes. While this is essential for the faithful representation of homotopy theory within type theory, its addition breaks many of the pleasant properties that Martin-L"of type theory possesses; in particular, the normalization of terms to canonical form fails, since reduction will "get stuck" on instances of the univalence axiom. Another way of saying this is that the univalence axiom has no inherent computational meaning. The current paper is a contribution towards realising a computational interpretation of univalence. It does so by describing parts of a constructive model of Martin-L"of type theory + univalence; now terms involving univalence may be computed by interpreting them in the model. This can be seen as a first step toward a "normalization by evaluation" style normalization proof for MLTT + univalence. 
+
+This is an important goal, and the current paper is a substantial step along the road toward it. There is some genuine hard work involved in setting up the model, and the idea that the setting of cubical sets might be a good place to look for a constructive model of type theory is non-obvious. I thus have no doubt that the scientific content of the paper merits publication.
+
+I am, however, a bit concerned by the way the paper is presented. While the mathematical prose is pretty lucid and easy to read, the paper does not really fulfil the claims made for it in the introduction. Firstly, the authors say that they have described a model of dependent type theory. In fact, they have merely proven the main plot points that would be necessary to describe such a model, but have not filled in all the details. Secondly, they claim that their model is equipped with identity types and a universe; in fact, they have only described a rather non-standard version of identity types, and have only sketched a potential candidate for a universe. On a third unrelated note, I feel that the introduction of the paper could do more to justify why the work presented here is important.
+
+I would therefore suggest acceptance of the paper subject to three main revisions:
+
+(1) Section 4 to be expanded to give a rigorous construction of a categorical model of type theory -- thus, first, a presentation of the type theory or a reference to such a presentation; then a description of the notion of model to be employed---for example, a category with families equipped with Sigma and Pi types---together with a reference; finally, a careful proof that the constructions given here yield such a model. The main missing parts seem to be a proof that Kan fibrations pull back, and a proof that the Sigma and Pi operations defined here are stable under pullback.
+(2) Some further explanation in Section 5 that the notion of identity type given here is rather non-standard, and a sketch of the proof that it is more-or-less equivalent to the usual one (except for the fact that the computation rule holds only propositionally rather than on the nose). Also, an indication in the introduction that the material in Section 5 only constructs a non-standard notion of identity type, and that the construction of the universe is not yet complete.
+(3) The addition of extra prose to the start of the introduction explaining better the motivation for seeking a (constructive) model in cubical sets in relation to the univalent foundations project.
+
+I also had a few other suggestions:
+
+-- You should say something about the definition of the cube category C that you choose, and how it relates to other definitions. There is a standard notion of the "cube category", with respect to which yours is non-standard in two respects:
+ * objects are taken to be arbitrary (decidable) subsets of the list of names rather than ordinals {1 < ... < n}
+ * morphisms are not required to be order-preserving on their domain (indeed, given the first point, they can't)
+Although you reference Crans' work, his cube category is in fact the standard one, not your non-standard one. The notion of cubical set with respect to the standard cube category is defined already in:
+
+  Kan, Daniel M. Abstract homotopy. I. Proc. Nat. Acad. Sci. U.S.A. 41 (1955), 1092â1096. 
+
+so if you are going to reference previous work, it would seem to be sensible to reference that. Also, the category you call C is equivalent (classically, on taking a skeleton) to the opposite of the "symmetric cubical site" I_s of Section 2.1 of
+
+  Grandis, Marco. Higher cospans and weak cubical categories (Cospans in algebraic topology, I), Theory and Applications of Categories, Vol. 18, 2007, No. 12, pp 321-347.
+
+I would have thought that there were some older references, but I don't know any.
+
+-- The part at the end of S2 describing a semantics for type theory in presheaf categories doesn't give any background on what it is trying to do. In particular, there's no discussion of what is meant by a model of type theory, or even what type theory is supposed to be in this context. I would suggest some kind of reordering so that there is a discussion of the type theory you wish to model and what your notion of model is before you describe how a presheaf category is an instance of this notion. Also, it would seem logical to introduce the extensional Sigma types at the same time as you introduce the extensional Pi types, and also to explain how substitution of terms into types works (since you need it in Sec 5.1). You also need to make clear that this is not the model that, in the end, you will be interested in, since it does not have the right notion of identity type.
+
+-- on p.4, for the Kan condition for cubical sets, reference Section 4 of [Kan, loc. cit]
+
+-- proof of Theorem 4.1 (the main event in the paper) is unfortunately a bit unclear in its phrasing. In particular, I couldn't parse the last five lines of p.3. I'd recommend rephrasing as follows. From "In the presheaf semantics..." I would proceed as follows:
+
+"It is convenient to first define w_1 in (Pi A B)alpha(x=1), closing the box. For this we first define app(w_1, u_1) in B(alpha(x=1),u_1) for any alpha and any u_1 in Aalpha(x=1)..."
+
+Then explain how to extend this to define app(w_1f, u_1) for any f: I-x --> K and u_1 in Aalpha(x=1)f. This part is actually not in the proof as you have given it (it is implicitly used in the final line of your proof). It needs the fact that (x=1)f = (f,x=x)(x=1).
+
+Then "We next define app(w,u) in B(alpha, u) for every alpha and every u in Aalpha ..."
+
+Then explain how to extend this to define app(wf,u) for any f: I --> K and u in Aalpha f as in the final three lines of your proof.
+
+Finally, you need to check that app(wf,u)g = app(wfg, ug). I guess this is where the uniformity of the Kan condition comes into play; I couldn't see where you made use of this fact in the proof as given.
+
+-- in Section 4.2, there should probably be a Proposition, so as not to conflate the sigma types in the extensional presheaf model with the sigma types in the Kan fibration model.
+
+-- a few comments on Section 5.2:
+ * the method you have of defining a universe can be found in Hofmann and Streicher unpublished note "Lifting Grothendieck universes", though it is  older; an early reference in print (though it may be older than that) is Sec 7.6 of Ross Street, Cosmoi of internal categories, Transactions of the American Mathematical Society 258 (1980), no. 2, 271â318.
+ * are elements of U(I) the same thing as Kan fibrations over the representable I-cube? That is what we expect from the simplicial sets model.
+ * you should explain why it is necessary that a cubical set satisfying the Kan condition must have a composition operation of the kind you discuss here. 
+
+-- in Section 5.3, how do you justify the notion of "equivalence" you give? It isn't a standard one. Also, it was rather sloppily stated. Please make precise!
+
+
+There were also a few typos and minor errors that I picked up, which I now list:
+
+- p.2, third para: the uniqueness needs to be stated more carefully. A map f has potentially many decompositions as a composite of face maps followed by a degeneracy map, because the face maps can be applied in different orders. Rather what you should say is that every map f has a unique decomposition f = gh, where g is a composite of face maps and h is a degeneracy map.
+- p.2, 2nd para of S2: "C^opp" -> "C^op"; on same line "direction" -> "directions"
+- p.3, 2nd para: "cubical sets" -> "cubical set" (first line), "prcise" -> "precise", next para "explicitely" -> "explicitly"
+
+all done
+
+- p.3, para 3: the description of Pi-types in a presheaf category is rather unclear. I would say something like this: an element w of (Pi A B)alpha is given by specifying functions app(wf,-) for each f : I --> J in C, where app(wf,-) assigns to each u in (A alpha f) an element app(wf,u) in B(alpha f, u), subject to the coherence conditions ...
+
+in new \section{Type theory and presheaf semantics}
+last para of old S.2 stays in S.2
+
+- p.3, end of first para of Sec 3: the description of open box is unclear. I would say that: an open box is a family of elements u_{yb} in X(I - y) for each (y,b) in O(J,x) such that u_{yb}(z = c) = u_{zc}(y = b) for all (y,b),(z,c) in O(J,x). 
+- p.4, third line after top display: add "alpha in Gamma(I) and" before "J,x <= I". Earlier in the line, "operations" should probably be "elements" (since you have fully evaluated your operation)
+- p.4, Thm 4.1, third line of proof: remind that w must be in (Pi A B)alpha
+
+all done
+
+- p.5, third display from bottom: subscript {x,y} should be {y,x}; also u_1 should be u_1(y)  (not strictly necessary by the conventions you already set up, but helpful to make this precise)
+
+NO {x,y} is OK, precisely for the reason that u_1 is u_1(y) here!
+Added: "where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$" better clarity.
+
+- p.5, final display: subscript {y,x} should be {x,y}; also w_0 should be w_0(y) (in the app) and u_1 should be u_1(y)
+
+NO, for similar reasons as above. We feel that the arrows in the y-direction in the picture are sufficiently clear. 
+
+- p.6, Sec 4.2: add parentheses around "uf, vf" on third line and around "alpha, B(rho, alpha) | v" in display
+- p.6, Sec 5.1, line 4: rho should be alpha
+
+all done
+- p.6, final display: subscript {x,y} should be {y,x}
+
+Should be {f(x)}, but the formula was obsolete.
+
+- p.7, first display: what does this mean? Id isn't a function type, so you don't need to specify its behaviour under substitution.
+
+This picture illustrates the proof of Thm. 5.1
+Three typos w_0 ---> \omega_0 corrected
+
+- p.7, the two lines below second display: add parentheses around "rho(x), omega"; also [a]rho --->_x [b]rho should be (rho, a rho) -->_x (rho, b rho)  (I think!!)
+
+the [.] should have been explained to mean what you write, thanks! Done in new section.
+
+- p.9, second para: explain why a(x=1) and b(x=0) inhabit the same set (because A_{f(x=1)} = A_{(x=1)(f-x)} = A(x=1)_{f-x} = B(x=0)_{f-x} = B_{(x=0)(f-x)} = B_{f(x=0)})
+- p.9, third para, final line: add "at" before "fx"
+
+Fixed
+
+- p.9, Section 5.2, line -5: end of line should have "u = (A-1 \downarrow \vec a, B_1 \uparrow \vec b)". 
+
+No, the direction (here +) in which we fill is the same as the filling
+we want to define.  (We are given u_x'0 = (a_x'0, b_x'0) which we use
+for both \vec a and \vec b.)
+
+- On previous line, b_{x1} should be b_{x0}
+
+Fixed
+
+

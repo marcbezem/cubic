@@ -1,0 +1,76 @@
+Paper number: 11
+
+Overall evaluation:
+
+The paper could possibly be accepted for the TYPES 2013
+post-proceedings. Another refereeing round would be needed.
+
+However, in the case that no other round is possible, we would expect
+that the authors integrate the suggestions for improvement in an
+appropriate and accurate way.
+
+Reviewer's confidence:
+expert
+
+
+This paper shows how to organise cuboidal sets satisfying the Kan condition into a model of type theory.
+
+Roughly speaking, such a "Kan cuboidal set" X can be seen as a family
+of sets X0, X1, X2, X3, ... with X0 representing the actual elements
+of X, X1 the equality proofs between actual elements of X, X2 the
+equality proofs between proofs in X1, etc. There are appropriate
+mediating maps that associate with each proof the objects whose
+equality it proves. These thus decrease the level. There are also
+"reflexivity maps" that increase level and produce trivial proofs by
+reflexivity. The Kan condition postulates the existence of certain
+equality proofs given other ones and allows in particular for the
+construction of proofs by transitivity.
+
+Unfortunately, the Kan condition is not a universal property and must thus be postulated as additional structure.
+
+The contribution of this paper is to show that the Kan cuboidal sets
+can be organised into a model of Martin Loef type theory in such a way
+that the identity type externalises the "equality proofs" embodied in
+the cuboidal sets. For this to work out, it is necessary to postulate
+a naturality condition on the Kan gluing operation. It is shown that
+the usual type formers preserve this naturality condition. The
+resulting model of type theory is conjectured to satisfy Voevodski's
+univalence axiom (isomorphic elements of a universe are
+propositionally equal); strong evidence for this conjecture is given
+in the form of a nontrivial corollary of the axiom.
+
+I think that this is a very nice idea, however, the execution has some
+problems that require a thorough reworking or at least a thorough
+discussion leaving some of the points to future work.
+
+First, there should be some concrete examples of cuboidal sets. I
+should think that a topological spaces give rise to cuboidal sets
+using homotopy, there should also be trivial examples from sets and
+groupoids.
+
+One should then illustrate some of the concepts with the help of these
+ examples.
+
+Secondly, I have trouble understanding the Kan condition. Intuitively,
+there should be only one gluing operation, but there are two of them:
+downarrow and uparrow. There are no axioms that distinguish the two,
+so for all intents and purposes they could be the same and the paper
+does not give an example where they are necessarily distinct. The role of these two gluing operations should thus be better motivated.
+
+I also find the format of the gluing condition somewhat unusual in
+that it requires "I" to have at least three elements for a nontrivial
+instance. This prevented me from completely understanding the
+mechanism and, to be honest, I did not succeed in using it to compose
+two elements p:X({a}), q:X({a}) with p[a=0] = q[a=1] to form an
+element r:X({a}) satisfying r[a=0]=p[a=0] and r[a=1]=p[a=1]. Is this
+possible by somehow blowing up with dummy elements?
+
+There are some typos:
+
+prcise -> precise
+
+explicitely -> explicitly
+
+a new sets -> a new set
+
+In the 8th last line of Section 3 one uparrow should probably be a downarrow.
