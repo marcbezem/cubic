@@ -192,32 +192,89 @@ simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'
 (J.P. Serre, Th\`ese, Paris, 1951 \cite{Serre}).
 
 
+\begin{abstract}\noindent
+We present a model of dependent type theory in cubical sets 
+and argue that it validates Voevodsky's Univalence Axiom.
+While not expressed internally in type theory, the model is expressed in a constructive metalogic.
+Thus it is a step towards a computational interpretation of univalence.
+It is not the final solution of this important problem: for example, the eliminator for identity types
+satisfies the usual computational equations pathwise, but not definitionally.
+Interestingly, the converse also occurs: for example, concerning functoriality several equations
+hold definitionally, whereas these equations normally hold only pathwise.
+\end{abstract}
+
+
 \section*{Introduction}
 
- We present a model of dependent type theory in cubical sets.
- This provides a generalization to dependent types
+In \cite{Voevodsky}, Voevodsky proposes a new axiom in dependent type theory:
+the Univalence Axiom. This is an interesting axiom for several reasons.
+First, it supports the smooth formalization of homotopy theory in type theory.
+Second, it opens up for many improvements of the encoding in type theory
+of mathematics in general: function extensionality, identification of isomorphic
+structures, quotients, etc.
+
+In order to preserve the good computational properties of type theory it is
+crucial that postulated axioms have a computational interpretation.
+Concerning univalence, this is an important open problem.
+One way of attacking this problem is by constructing a model of the new
+axiom, preferably in type theory itself, or at least in a constructive metalogic.
+The computational interpretation can then be obtained through the semantics,
+for example, by evaluating a term of type $\nat$ in the model.
+
+The model of type theory with the Univalence Axiom given by Voevodsky
+\cite{Voevodsky} is based on Kan simplicial sets.
+Simplicial set maps must preserve degeneracy.
+A problem with a constructive approach to
+Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
+This problem makes it impossible to use the Kan simplicial set model
+to obtain a computational interpretation of univalence.
+
+We present a model of dependent type theory in cubical sets.
+This provides a generalization to dependent types
 of Takeuti/Gandy's interpretation of extensional in intensional type theory \cite{Gandy}, but also
 a generalization of Bishop's notion of {\em set} \cite{Bishop}.
 While not expressed internally in type theory, this model is expressed in a constructive metalogic.
 It can be seen as a simplification and a constructive version of the
 Kan simplicial set model of type theory \cite{Voevodsky}.
-Our notion of cubical set is a variation of the presentation in \cite{Crans}.
+
+Cubical sets are already known for some time, see \cite{Serre}, \cite{Kan},
+or \cite{Crans}, \cite{Williamson} for a more recent account.
+In the standard form they are based on finite linear orders.
+Here we consider a symmetrical variant based on finite sets (of \emph{names}).
+%Should we explain why?
+%Our notion of cubical set is a variation of the presentation in \cite{Crans}.
 We introduce the base category $\CC$ of names and substitutions.
 A \emph{cubical set} is then a covariant presheaf on $\CC$.
-We can then consider the presheaf model of type theory,
-where a context $\Gamma$ is interpreted by a cubical set and a type over $\Gamma$ is interpreted by a fibration
-over the interpretation of $\Gamma$. Like for the classical model based on simplicial sets,
-we restrict our model by considering only Kan fibrations. A problem with a constructive approach to
-Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
-Here we shall use a strengthening of the usual Kan filling condition. (One other possible attempt to solve this
-problem is by marking the degenerated elements, but it is not clear yet in this approach how to treat exponentials
-in a satisfactory way.) The strengthening of the Kan condition is natural given the reformulation of the notion of cubical sets
+We adopt the presheaf semantics of type theory,
+using Dybjer's notion of \emph{category with families} \cite{Dybjer}.
+In this semantics a context $\Gamma$ is interpreted by a cubical set,
+and a dependent type $\Gamma\vdash A$ by a family of sets and maps between these,
+regimented by uniformity conditions imposed by the base category
+(see \cite{Dybjer},\cite{Hofmann}, or Section~\ref{sec:presheaf-models}).
+To the interpretation of a dependent type one can associate a specific fibration.
+Like for the classical model based on simplicial sets,
+we restrict our model by considering only Kan fibrations,
+which are essential for validating univalent.
+{\bf I'm not satisfied yet with the next sentences.}
+In order to preserve the Kan filling condition under all type forming
+operations, in particular $\Pi$, a certain uniformity is required.
+Moreover, we want proofs to be constructive. This can be achieved
+by an induction loading in the form of
+a strengthening of the usual Kan filling condition. 
+The strengthening of the Kan condition is natural given the reformulation of the notion of cubical sets
 that we present in the first section. This reformulation opens connections with the study of nominal
 sets \cite{pitts}; one connection is elaborated in \cite{Pitts}.
 
-The paper is structured as follows. First we introduce the category of
-names and substitutions.  Then we define cubical sets and the uniform
-Kan condition.  In Section~\ref{sec:kancubsetmodel} we show that cubical
+%Perhaps we don't discuss alternatives such as semi simple sets and
+%(One other possible attempt to solve this problem is by marking the degenerated elements, 
+%but it is not clear yet in this approach how to treat exponentials in a satisfactory way.) 
+
+The paper is structured as follows. In the next two section we introduce the category of 
+names and substitutions and we define cubical sets.
+In Section~\ref{sec:presheaf-models} we explain the presheaf semantics of type theory
+in the special case of cubical sets. In the next two sections we define
+the uniform Kan condition and we give examples of cubical sets.
+In Section~\ref{sec:kancubsetmodel} we show that cubical
 sets are a model for dependent types.  In the last section we show how
 identity types can be interpreted the cubical set model, and describe
 the universe, and how to transform an equivalence in an equality of
@@ -247,13 +304,12 @@ If $f:I\to J$ and $g:J\to K$ are morphisms, we define the composition $g\circ f$
 $(g\circ f)(i) = g(f(i))$ if $i$ is in the domain of $f$, and $(g\circ f)(i) = f(i)$ if $f(i)= 0,1$.
 Clearly, $g\circ f: I\to K$ is a morphism.
 We shall write $fg$ for the composition $g\circ f$, so first $f$ and then $g$.
+It is not difficult to see that composition is associative and that $1_I f = f = f 1_J$.
+Hence $\CC$ is a category. From now on, we may simply write $1$ instead of $1_I$.
 
 Every $f:I\to J$ has a unique extension to a map $I \cup \set{0,1} \to J\cup \set{0,1}$
 that is the identity on $\set{0,1}$, and this canonical extension respects composition.
-Together with $I\mapsto I \cup \set{0,1}$ we get a functor.% $\CC\to{\sf Set}$.
-
-It is not difficult to see that composition is associative and that $1_I f = f = f 1_J$.
-Hence $\CC$ is a category. From now on, we may simply write $1$ instead of $1_I$.
+Together with $I\mapsto I \cup \set{0,1}$ we get a functor $\CC\to{\sf Set}$.
 
  We think of $f:I\to J$ as a substitution with renaming,
  where the only values we can substitute are $0$ and $1$.
@@ -1705,189 +1761,4 @@ The unit  is the homotopy equivalence class of $a\to a$.
 combinatorial definition of $\pi_2(X,a) = \pi_1(\Omega(X,a),1_a),\dots$
 
 \end{document}
-
-
-\section*{Appendix 2: unfinished experimental stuff}
-
-\takeout{%
-\subsection*{The classical Kan condition}
-Using classical logic we can prove that the usual Kan condition follows from ours
-(even without using uniformity). We start with a diagram of the case where $x,I,M = x,y,z$.
-
-\[
-\xymatrix@R=.2cm@C=.2cm{
-\ar@{.>}[rrrrrr]&&&&&&&\\
-&&&&&&&\\
-&&\ar[lluu]\ar[rr]                                                                        &&  \ar[rruu]&  &&\\
-\ar[uuu]&y=0  & &x=0&&y=1&\ar[uuu] &\\
-&&&&&&&\\
-&  &\ar[lluu]\ar[rr] \ar[uuu]                                                                        &&  \ar[rruu]\ar[uuu] & &&\\
-\\
-\ar@{->}[rrrrrr]&&&&&&&\\
-&&&z=1&&&&\\
-&  &\ar[lluu]\ar[rr]                                                                        &&  \ar[rruu]& &&\\
-\ar@{.>}[uuu]\ar@{->}[rrrrrr]&& &&&&\ar@{.>}[uuu] &\\
-&&&z=0&&&&\\
-&  &\ar[lluu]\ar[rr] \ar@{.>}[uuu]                                                                        &&  \ar[rruu]\ar@{.>}[uuu] & &&\\
-}
-\]
-}%end\takeout
-%\subsection*{Different definitions of the cubical unit interval}
-
-\newcommand{\mycol}[2]{{\tiny\begin{array}{c}{#1}\\{#2}\end{array}}}
-\def\oooo{\mycol{0}{0}\!\!\!\!\!\mycol{0}{0}}
-\def\llll{\mycol{1}{1}\!\mycol{1}{1}}
-\def\ooll{\mycol{0}{0}\!\mycol{1}{1}}
-\def\olol{\mycol{1}{0}\!\mycol{1}{0}}
-
-
-Any set $S$ can be viewed as a cubical set (`nerve') $N(S)$ of
-$S$-labelled binary cubes in the following way.
-For any object $\set{x_1,\ldots,x_n}$ of $\CC$, the set $S(\set{x_1,\ldots,x_n})$
-consists of $S$-valued functions $\alpha(x_1,\ldots,x_n)$ of boolean arguments $x_i$.
-(Being a set, $\set{x_1,\ldots,x_n}$ is not ordered. Hence it would be slightly better, albeit cumbersome,
-to take $\alpha: \set{0,1}^{\set{x_1,\ldots,x_n}} \to S$.)
-
-
-\medskip
-
-Maps for $N(S)$ are defined by composition with morphisms in $\CC$ in the following way:
-if $m:\set{x_1,\ldots,x_n} \to \set{y_1,\ldots,y_m}$,
-then $N(S)(m): \alpha(x_1,\ldots,x_n) \lto \beta(y_1,\ldots,y_m)$,
-where $\beta(y_1,\ldots,y_m) = \alpha(m(x_1),\ldots,m(x_n))$.
-Here $m(x_i)$ is either the boolean that $m$ assigns to $x_i$,
-or the boolean $y_j$ for the unique $j$ such that $m(x_i)=y_j$.
-(This is well-defined by the definition of morphism in $\CC$.)
-
-\medskip
-
-Clearly, nerves $N(S)$ are Kan. Define $B=N(\set{0,1})$.
-
-\medskip
-
-There are various (equivalent) ways to define the unit interval $I$ as a cubical set:
-\begin{enumerate}
-\item The `official'? definition $Hom_\CC(\set{i},\_)$ for some designated variable $i$:
-\[
-\begin{array}{lcl}
-I(\emptyset)&=&\set{(i=0),(i=1)}\\
-I(\set{x})&=&\set{(i=0)(x),(i=1)(x),(i=x)}\quad\text{(the last is not a swap but a substitution)}\\
-I(\set{x,y})&=&\set{(i=0)(x)(y),(i=1)(x)(y),(i=x)(y),(i=y)(x)}\\
-\ldots
-\end{array}
-\]
-The maps between such $Hom$-sets are defined by composition with corresponding morphisms in $\CC$.
-
-\item The `concrete' definition:
-\[
-\begin{array}{lcl}
-I(\emptyset)&=&\set{0,1}\\
-I(\set{x})&=&\set{00,01,11}\\
-I(\set{x,y})&=&\set{\oooo,\ooll,\olol,\llll}\\
-\ldots
-\end{array}
-\]
-Face maps and degeneracies can also be viewed in a `concrete' way.
-
-\item The `set theoretic' definition: let $\set{x_1,\ldots,x_n}$ be an object of $\CC$;
-then $I(\set{x_1,\ldots,x_n})$ consists of all boolean functions $\alpha(x_1,\ldots,x_n)$
-that are either constant, or the projection on one argument.
-%(Better: take $\alpha$ as a function $\set{0,1}^{\set{x_1,\ldots,x_n}} \to \set{0,1}$.)
-
-Maps are defined by composition with morphisms in $\CC$ as above for nerves.
-This indeed preserves being constant or a projection.
-
-\end{enumerate}
-I have some hope that $B^I$ is not Kan. Let's spell out some details of the attempt.
-
-\medskip
-Two important maps (natural transformations) $I\to B$ are:
-\def\emb{se}
-\def\crs{ce}
-\begin{enumerate}
-\item $\emb$ is the `straight' embedding $I\to B$,
-in particular $\emb(0)=0$, $\emb(1)=1$;%, $\emb(01)=01$;
-\item $\crs$ is the `crossed' embedding $I\to B$,
-in particular $\crs(0)=1$, $\crs(1)=0$.%, $\crs(01)=10$.
-\end{enumerate}
-
-By Yoneda and cartesian closure we have (with $\_\to\_$ denoting sets of maps):
-\[
-B^I(\set{x_1,\ldots,x_n}) \cong (Hom_\CC(\set{x_1,\ldots,x_n},\_)\times I)\to B
-\]
-We easily get $\emb,\crs: I\to B$ as \emph{points} of $B^I$, that is,
-elements of $B^I(\set{})$. For this we note that $\set{}$ is initial in $\CC$,
-such that any $Hom_\CC(\set{},\set{y_1,\ldots,y_m})$ is a singleton.
-
-The next step is that we construct a line from $\emb$ to $\crs$ in $B^I(\set{x})$.
-Note first that $B^I(\set{x}) \cong (Hom_\CC(\set{x},\_)\times I)\to B)$
-and that $Hom_\CC(\set{x},\_) \cong I$.
-Define a map that takes the form $(\alpha,\beta)\lto\gamma$,
-for any object $\set{x_1,\ldots,x_n}$ of $\CC$, by:
-\[
-\gamma(x_1,\ldots,x_n) = \left\{
-\begin{array}{ll}
-\beta(x_1,\ldots,x_n)&\text{if~}\alpha(x_1,\ldots,x_n)=0,\\
-1-\beta(x_1,\ldots,x_n)&\text{otherwise},
-\end{array}\right.
-\]
-where $\alpha,\beta\in I(\set{x_1,\ldots,x_n})$ and $\gamma\in B(\set{x_1,\ldots,x_n})$.
-Indeed we get $(0,b)\lto b $ and $(1,b)\lto1-b$. In general, if $\alpha(x_1,\ldots,x_n)=0$,
-we get $se$, and if $\alpha(x_1,\ldots,x_n)=1$, we get $ce$.
-Hence this is a line from $\emb$ to $\crs$ which we call $sc\in B^I(\set{x})$.
-\medskip
-Consider the following open box, the hope is that it cannot be filled in
-$B^I(\set{x,y}) \cong (Hom_\CC(\set{x,y},\_)\times I)\to B$.
-\[
-\xymatrix@R=.6cm@C=.6cm{
-se\ar@{.>}[rr]                 &&ce                              \\
-                    &&                     &\\
-se\ar[uu]^{se(x)}\ar[rr]_{se(y) }   &&se\ar[uu]_{sc}                       \\
-}
-\]
-
-Here are some (equivalent) ways to define the unit square $Q=Hom_\CC(\set{x,y},\_)$:
-\begin{enumerate}
-\item The `combinatorial' definition:
-\[
-\begin{array}{lclcl}
-Q(\emptyset)&=&\set{(x=0)(y=0),\ldots,(x=1)(y=1)}=\set{(0,0),(0,1),(1,0),(1,1)}\\
-Q(\set{z})&=&Q(\emptyset)(z)\cup\set{(x=0)(y=z),\ldots,(y=1)(x=z)}\quad\text{(eight lines)}\\
-Q(\set{z,u})&=&Q(\set{z})(u)\cup \set{(x=0)(y=u)(z),\ldots,(y=1)(x=u)(z)}\cup\set{(x,y=z,u),(x,y=u,z)}\\
-\ldots
-\end{array}
-\]
-Note that $Q(\set{z,u})$ has two non-degenated cubes. In general there are $4+4n+n(n-1)$ elements
-in $Q(\set{x_1,\ldots,x_n})$.
-
-\item The `set theoretic' definition: let $\set{x_1,\ldots,x_n}$ be an object of $\CC$;
-then $Q(\set{x_1,\ldots,x_n})$ consists of all pairs boolean functions
-$\alpha_b(x_1,\ldots,x_n),~b=0,1$,
-that are either both constant, or one constant and the other a projection, or both projections
-but then on different arguments.
-Maps are defined by composition with morphisms in $\CC$ as above for nerves.
-This indeed preserves the definition.
-\end{enumerate}
-
-Define a map that takes the form $(\alpha_b,\beta)\lto\gamma$,
-for any object $\set{x_1,\ldots,x_n}$ of $\CC$, by:
-\[
-\gamma(x_1,\ldots,x_n) = \left\{
-\begin{array}{ll}
-1-\beta(x_1,\ldots,x_n)&\text{if~}\alpha_0(x_1,\ldots,x_n)=\alpha_1(x_1,\ldots,x_n)=1,\\
-\beta(x_1,\ldots,x_n)&\text{otherwise}
-\end{array}\right.
-\]
-If $\alpha_b,~b=0,1$ are both constant 1, we get $ce$. In all other cases of constant
-$\alpha_b$'s we get $se$. This means the corners are as in the square above.
-Edges are obtained by taking one of the $\alpha_b$'s constant.
-This shows there is something wrong with this square.
-In order to prove that $B^I$ is not Kan, we have to prove that there
-does not exist a filling square as above in $B^I(\set{x,y})$.
-
-\medskip
-This is how far I came.
-
-
-
 
