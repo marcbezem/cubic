@@ -808,11 +808,6 @@ This completes the proof that the cubical nerve of a groupoid is Kan.
 
 \section{The Kan cubical set model}\label{sec:kancubsetmodel}
 
-% We call MLTT the version of Type Theory with rules as presented in
-% Figure~\ref{MLTT}.  This is inspired by the presentation in
-% \cite{Curien} (see also \cite{Dybjer}).  We check that all the rules
-% of MLTT are valid.
-
 In this section we will give a refinement of the model given in
 Section~\ref{sec:presheaf-models}: we restrict the model to those
 types $\Gamma \vdash$ which are Kan fibrations.  This is needed in
@@ -846,118 +841,119 @@ equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
 
 \begin{theorem}
   If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
-  condition then so does $\Gamma\vdash\Pi~A~B$.
+  condition, then so does $\Gamma\vdash\Pi\,A\,B$.  Moreover,
+  $(\Pi\,A\,B) \sigma = \Pi (A \sigma) (B (\sigma \pp, \qq))$ as
+  Kan fibrations.
 \end{theorem}
 
 \begin{proof}
-  Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in
-  I$.  We present the argument in the case $J=\es$, the general case
-  is not essentially more difficult.  Also, as the cases
-  $\rup{},\rdo{}$ are perfectly symmetric, we restrict attention to
-  $\rup{}$.  We have to define $w=\rup{(\Pi~A~B)\alpha} w_0 \in
-  (\Pi~A~B)\alpha$ for all $w_0 \in (\Pi~A~B)\alpha(x=0)$.
-  Informally, $w_0$ forms an open box (as $J=\es$), which has to be
-  closed and filled.  In the presheaf semantics, we should define
-  $wf\in(\Pi~A~B)\alpha f$ for all $f:I\to J$, such that $w=w1$,
-  $w(fg) = (wf)g$ for any $g:J\to K$.  We proceed by first defining
-  $\ul{w}(\alpha,w_0)$, which is the applicative behavior of $w$, for
-  all $\alpha$ and $w_0$.  We then define $wf=\ul{w}(\alpha
-  f,w_0(f-x))$ for all $f:I\to J$.  The definition of $\ul{w}$ will be
-  such that we can calculate:
-  \[
-  (wf)g = (\ul{w}(\alpha f,w_0(f-x)))g = \ul{w}(\alpha
-  fg,w_0(f-x)(g-f(x))) = \ul{w}(\alpha fg,w_0(fg-x)) = w(fg)
-  \]
+  % Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in
+  % I$.
 
-  Instead of $\ul{w}(\alpha,w_0)$ we write $\rup{(\Pi~A~B)\alpha}
-  w_0$, trading readability for a slight abuse of notation.  The
-  applicative behavior should satisfy the following diagram for all
-  $u\in A\alpha$:
+  We present the argument in the case $J=\es$, the general case is not
+  essentially more difficult.  Also, as the cases $\rup{},\rdo{}$ are
+  perfectly symmetric, we restrict attention to $\rup{}$.  We denote
+  the direction of filling with a subscript to $\rup{}, \rdo{}, {}^-,
+  {}^+$.  Let $C = \Pi\,A\,B$.
+
+  First we will define ${C \alpha}^+_x w \in C \alpha (x = 1)$ for
+  $\alpha$ an $I$-cube of $\Gamma$, $x \in I$, and $w$ in $(\Pi\,A\,B)
+  \alpha (x = 0)$.  This amounts to define a dependent function $({C
+    \alpha}^+_x w)_f$ in $\prod_{u \in A \alpha (x=1) f} B (\alpha
+  (x=1) f, u)$ for all $f \colon I-x \to K$, such that
+  \begin{equation}
+    \label{eq:2}
+    \bigl(({C \alpha}^+_x w)_f (u)\bigl) g = ({C \alpha}^+_x w)_{f g}
+    (u g).
+  \end{equation}
+  We will first define $({C \alpha}^+_x w)_f$ for $f = 1 \colon I-x
+  \to I-x$ and arbitrary $\alpha$ and $w$.  For this let $u_1 \in A
+  \alpha (x=1)$.  We use the Kan fillings to map $u_1$ down to
+  $A\alpha^-_xu_1$, apply $w$ (at $1 \colon I-x \to I-x$) and map the
+  result up:
+  \begin{equation}
+    \label{eq:3}
+    ({C \alpha}^+_x w)_1 (u_1) =
+    B(\alpha,\rdo{A\alpha}_x u_1)^+_x (w_1 (A\alpha^-_x u_1))
+  \end{equation}
+  which is in $B (\alpha (x=1), u_1)$ as $(\rdo{A\alpha}_x u_1) (x=1)
+  = u_1$.  For general $f \colon I-x \to K$ we let $z$ be fresh
+  w.r.t.\ $K$ and set:
+  \begin{equation}
+    \label{eq:4}
+    ({C \alpha}^+_x w)_f = ({C \alpha (f, x=z)}^+_z w f)_1
+  \end{equation}
+  By the uniformity conditions, this definition does not depend on the
+  choice of $z$, and we also get
+  \begin{equation}
+    \label{eq:5}
+    \bigl(({C \alpha}^+_x w)_1 (u_1)\bigr) f = ({C \alpha (f,x=z)}^+_x
+    w f)_1 (u_1 f).
+  \end{equation}
+  Note that \eqref{eq:4} suffices to get the uniformity conditions for
+  ${C \alpha}^+_x w$; \eqref{eq:4} together with \eqref{eq:5}, yields
+  \eqref{eq:2} and thus an element in $C \alpha (x=1)$, concluding the
+  definition of ${C \alpha}^+_x w$.
+
+  Next we define $\rup{C \alpha}_x w \in C \alpha$; we do so again by
+  first defining $(\rup{C \alpha}_x w)_f$ for $f = 1 \colon I \to I$.
+  Let $u \in A \alpha$, $u_b = u (x = b)$; the definition of
+  $(\rupx{C\alpha} w)_1 (u) \in B(\alpha,u)$ has to satisfy:
   \[
-  \xymatrix@R=.6cm@C=.6cm{
-    w_1                                         &:&   u_1\del{\in A\alpha(x=1)}             &\lto &   \app(w_1,u_1)\del{\in B(\alpha(x=1),u_1)}  \\
-    \rup{(\Pi~A~B)\alpha}~w_0 &:&    ~~~u\del{\in A\alpha}                  &\lto &    \app(\rup{(\Pi~A~B)\alpha}~w_0,u)\del{\in B(\alpha,u)}   \\
-    w_0\ar@{.>}[uu]                   &:&    u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto &    \app(w_0,u_0)\del{\in B(\alpha(x=0),u_0)}\ar@{.>}[uu]   \\
+  \xymatrix@R=.4cm@C=.6cm {({C \alpha}^+_x w)_1 &:& u_1 \del{\in
+      A\alpha(x=1)} &\lto & ({C \alpha}^+_x w)_1 (u_1)
+    \del{\in B(\alpha(x=1),u_1)}\\
+    (\rupx{C\alpha}w_0)_1 &:& ~~~u\del{\in A\alpha} &\lto &
+    (\rupx{C\alpha} w)_1 (u)\del{\in B(\alpha,u)}\\
+    w_1\ar@{.>}[uu] &:& u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto &
+    w_1 (u_0)\del{\in B(\alpha(x=0),u_0)}\ar@{.>}[uu]\\
   }
   \]
-  It is convenient to first define $w_1$ in $(\Pi~A~B)\alpha(x=1)$,
-  closing the box.  For this we define $\app(w_1,u_1)$ for any $u_1\in
-  A\alpha(x=1)$.  Intuitively, using that $\Gamma\vdash A$ and
-  $\Gamma.A\vdash B$ satisfy the Kan condition for $J=\es$, we map
-  $u_1$ down to $A\alpha^- u_1$, apply $w_0$ and map the result up:
-  $$
-  \app(w_1,u_1) = B(\alpha,\rdo{A\alpha}u_1)^+\app(w_0,A\alpha^- u_1)
-  $$
-  With $\lambda=\rup{B(\alpha,\rdo{A\alpha}u_1)} \app(w_0,A\alpha^-
-  u_1)$, the situation can be depicted as follows:
+  Let $y$ be a fresh name; using the uniform Kan filling for $\Gamma
+  \vdash A$ in $ A \alpha (y)$ with $J = \set {y}$ (denoted by
+  $\rdoxy{A\alpha(y)}$) we construct
   \[
-  \xymatrix@R=.6cm@C=.6cm{
-    u_1            && &   \app(w_1,u_1)  \\
-    ~~~u               && &    \\
-    u_0\ar[uu]      &A\alpha^- u_1\ar[uul]_{\rdo{A\alpha}u_1}&\lto &    \app(w_0,A\alpha^- u_1)\ar[uu]_\lambda  \\
-  }
+  v = \rdoxy{A\alpha(y)} {(u_1 (y),u,\rdox{A\alpha} u_1)},
   \]
-  Note that $A\alpha^- u_1 \in A\alpha(x=0)$ is not necessarily equal
-  to $u_0$ which means that filling the box requires an additional
-  argument.  It is here we need the extra uniformity condition, using
-  that $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
-  condition for $J=\es$ and $|J|=1$.
-
-  We explain how to define for every $u\in A\alpha$
-  $$
-  \app(\rup{(\Pi~A~B)\alpha} w_0,u)
-  $$
-  We write $u_0 = u(x=0)$ and $u_1 = u(x=1)$.  Let $w_1$ be as defined
-  above.  The line $\app((\Pi~A~B)\alpha\uparrow w_0,u)$ must connect
-  $\app(w_0,u_0)$ and $\app(w_1,u_1)$.  Even though $u_0$ and
-  $A\alpha^- u_1$ may be different, they can be connected in a new
-  direction, for which we choose a fresh name $y$ not occurring in
-  $I$.
-
-  Until now we have used $\rup{},\rdo{}$ without making explicit their
-  dependence on $I,J,x$. With the extended $I,y$ we use $\rupxy{}$ in
-  the case $(I,y),\set{x},y$, and $\rupyx{}$ in the case
-  $(I,y),\set{y},x$. Similarly for $\rdo{},{}^+,{}^-$.
-
-  Using the uniform Kan property of $\Gamma\vdash A$ for $J=\set{y}$
-  we define $v$ in $A\alpha(y)$ by
-  $$
-  v = \rdoxy{A\alpha(y)}(u_1,u,\rdo{A\alpha} u_1),~~~\text{where the
-    first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$}
-  $$
-  The line $v(x=0)$ connects then $u_0$ and $A\alpha^-u_1$ in the
-  direction $y$ since we have
-  $$
-  v(x=0,y=0) = u_0~~~~~~~~~~~v(x=0,y=1) = A\alpha^- u_1
-  $$
-
-  Using the uniform Kan property of $\Gamma.A\vdash B$ for $J=\set{x}$
-  we define
-  $$
-  \app(\rup{(\Pi\,A\,B)\alpha} w_0,u) =
-  {B(\alpha(y),v)}^-_{y,x}(\lambda,\app(w_0,v(x=0)),\app(w_1,u_1))
-  $$
-  with $\lambda$ as above, so that $\lambda(x=0) = \app(w_0,A\alpha^-
-  u_1)$ and $\lambda(x=1) = \app(w_1,u_1)$.
-
-  The situation can now be depicted as follows:
+  resulting in a square:
   \[
-  \xymatrix@R=.6cm@C=.6cm{
-    &u_1&                                                                          &&  &\app(w_1,u_1)&\\
-    u_1\ar[ur]^{u_1}&&                                               &&  \app(w_1,u_1)\ar[ur]^{ \app(w_1,u_1)~~~}&&\\
-    &v&                                                                          &\lto& &   &\\
-    &&A\alpha^- u_1\ar[uuul]_{\rdo{A\alpha}u_1}     &&  &&\app(w_0,A\alpha^- u_1)\ar[uuul]_{\lambda} \\
-    &u_0\ar[uuul]^u \ar@{.>}[ur]_{v(x=0)}&                 &&  &\app(w_0,u_0)\ar@{.>}[uuul]^{\app(\rup{(\Pi A B)\alpha} w_0,u)} \ar[ur]_{~~~~\app(w_0,v(x=0))}&\\
-  }
+  \xymatrix@R=.5cm@C=.5cm{
+    u_1 \ar[rr]^{u_1 (y)} & & u_1 \\
+    & v & \\
+    u_0 \ar[uu]^u \ar@{.>}[rr]_{v (x=0)} & & {A \alpha}^-_x u_1
+    \ar[uu]_{ \rdox{A \alpha} u_1} }
   \]
+  With $\lambda = \rupx {B(\alpha,\rdo{A\alpha}_x u_1)} (w_1
+  (A\alpha^-_x u_1))$ we get an open box in $B (\alpha (y), v)$
+  \[
+  \xymatrix@C=2.5cm{ ({C \alpha}^+_x w)_1 (u_1) \ar[r]^{({C \alpha}^+_x
+      w)_{(y)} (u_1 (y))}& ({C \alpha}^+_x w)_1 (u_1) \\
+    w_1 u_0 \ar[r]_{w_{(y)} (v (x=0))} & w_1 ({A \alpha}^-_x u_1)
+    \ar[u]_\lambda}
+  \]
+  where the line on the right hand side line is by the defining
+  equation~\eqref{eq:3}.  Using the uniform Kan operation of
+  $\Gamma.A\vdash B$ for $J=\set{x}$ we define
+  \[
+  (\rupx{C\alpha}w)_1 (u) = {B(\alpha(y),v)}^-_{y,x}\bigl(\lambda,
+  w_{(y)} (v (x=0)), ({C \alpha}^+_x w)_{(y)} (u_1 (y))\bigr)
+  \]
+  with $\lambda$ as above.  Using the uniformity conditions for
+  $\Gamma \vdash A$ and $\Gamma.A \vdash B$, this definition is such
+  that
+  \[
+  \bigl((\rupx{C\alpha}w)_1 (u)\bigr) f = (\rup{C\alpha f}_{fx} {w
+    (f-x)})_1 (u f)
+  \]
+  for $f \colon I \to K$ defined on $x$.
 
-  Now, if $f:I\to K$ is defined on $x$ we define
-  $(\rup{(\Pi~A~B)\alpha} w_0) f = \rup{(\Pi~A~B)(\alpha f)} (w_0
-  (f-x))$.  If $f$ is not defined on $x$, we can write $f=(x=b)f'$ for
-  some $f':I-x \to K$.  Then we can simply define
-  $(\rup{(\Pi~A~B)\alpha} w_0) f = w_b f'$ for $b=0,1$.
-  % Uniformity to be verified, plus some other pending proof obligations.
-  % How much do we include in the paper?
+  Now, if $f:I\to K$ is defined on $x$, we define $(\rup{C\alpha} w)_f
+  = (\rupx{C \alpha f} w (f-x))_1$.  If $f$ is not defined on $x$, we
+  can write $f=(x=b)f'$ for some $f':I-x \to K$.  Then we can simply
+  define $(\rupx{ C\alpha} w)_f = w_{f'}$ for $b=0$, and $(\rupx{
+    C\alpha} w)_f = ({C \alpha}^+_x w)_{f'}$ for $b=1$.  This defines
+  the element $\rup{C\alpha} w$ in $C \alpha$ which satisfies the
+  uniformity conditions.
 \end{proof}
 
 \subsection{Sum type}
