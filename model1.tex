@@ -422,11 +422,11 @@ give rise to a model of dependent type theory.  We use Dybjer's notion
 of \emph{category with families} (CwF) to devise such a
 model~\cite{Dybjer,Curien,Hofmann}.  We would like to stress the fact
 that such a structure is described by a generalized algebraic
-theory~\cite{Cartmell}.  To give a CwF is to give interpretations for
-the sorts of contexts, context morphisms (substitutions), types and
-terms, together with operations satisfying some equations.  This
-amounts to validate the rules given in Figure~\ref{MLTT}.  Note that
-we use polymorphic notation to increase readability as in
+theory~\cite{Cartmell}.  To give a CwF is to give interpretations as
+sets for the sorts of contexts, context morphisms (substitutions),
+types and terms, together with operations satisfying some equations.
+This amounts to validate the rules given in Figure~\ref{MLTT}.  Note
+that we use polymorphic notation to increase readability as in
 \cite{Cartmell,Dybjer}; e.g., without this convention we should have
 written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
 \Gamma.A \to \Gamma$.  Also, we leave the types parameters implicit,
@@ -498,41 +498,46 @@ We can then verify all the equations of Figure~\ref{MLTT}.
 
 \section{The uniform Kan condition}
 
- Using these notations we can formulate the Kan condition (cf.\ \cite{Kan})
-and our strengthening as follows. Let $X$ be a cubical set.
-First we define the notion of an \emph{open box} in $X$, the equivalent of a \emph{horn} in a simplicial set.
-Let $I$ be a finite set of names and let $J,x \subseteq I$.
-The variable $x$ must not be in $J$ and will be the direction in which the box is open.
-For every $y\in J$, the open box will have two faces, one with $y=0$ and one with $y=1$.
-Let $O^+(J,x)$ consist of pairs $(x,0)$ and $(y,b)$ for $y\in J,~b=0,1$.
-In the same way we define $O^-(J,x)$, but with $(x,1)$ instead of $(x,0)$.
-The idea for both is that one face in the direction $x$ is missing.
-We use $O(J,x)$ to denote either $O^+(J,x)$ or $O^-(J,x)$.
-An \emph{open box}, denoted by $\vec u$, is a family of elements (faces)
-$u_{yb}$ in $X(I-y)$ for each $(y,b)\in O(J,x)$ such that 
+Using these notations we can formulate the Kan condition (cf.\
+\cite{Kan}) and our strengthening as follows. Let $X$ be a cubical
+set.  First we define the notion of an \emph{open box} in $X$, the
+equivalent of a \emph{horn} in a simplicial set.  Let $I$ be a finite
+set of names and let $J,x \subseteq I$.  The variable $x$ must not be
+in $J$ and will be the direction in which the box is open.  For every
+$y\in J$, the open box will have two faces, one with $y=0$ and one
+with $y=1$.  Let $O^+(J,x)$ consist of pairs $(x,0)$ and $(y,b)$ for
+$y\in J,~b=0,1$.  In the same way we define $O^-(J,x)$, but with
+$(x,1)$ instead of $(x,0)$.  The idea for both is that one face in the
+direction $x$ is missing.  We use $O(J,x)$ to denote either $O^+(J,x)$
+or $O^-(J,x)$.  An \emph{open box}, denoted by $\vec u$, is a family
+of elements (faces) $u_{yb}$ in $X(I-y)$ for each $(y,b)\in O(J,x)$
+such that
 $$u_{yb}(z = c) = u_{zc}(y = b)$$
-for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$. 
-The latter condition may be phrased as 
-\emph{the faces of an open box are adjacent-compatible}.
-If $f:I\to K$ is defined on $J,x$ we write
+for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$.  The latter condition
+may be phrased as \emph{the faces of an open box are
+  adjacent-compatible}.  If $f:I\to K$ is defined on $J,x$ we write
 $\vec u f$ for the vector $(\vec u f)_{yb} = u_{yb} (f-y)$.
 
- For $X$ to be a (constructive) Kan cubical set, we require to be given operations
-$\rup{X} \vec u$ and $\rdo{X} \vec u$, both in $X(I)$, for every $J,x\subseteq I$.
-Here $\vec u$ is an open box with $u_{x0}$ and $u_{x1}$ in $X(I-x)$ in the
-respective cases $\rup{X} \vec u$ and $\rdo{X} \vec u$. (From now on we will always
-tacitly assume that the open box $\vec u$ is of the right type with respect to $\rup{X},\rdo{X}$.)
-The operations $\rup{X},\rdo{X}$ are to be thought of as a filling their
-respective open boxes. Therefore we require for all $(y,b)\in O(J,x)$:
+For $X$ to be a (constructive) Kan cubical set, we require to be given
+operations $\rup{X} \vec u$ and $\rdo{X} \vec u$, both in $X(I)$, for
+every $J,x\subseteq I$.  Here $\vec u$ is an open box with $u_{x0}$
+and $u_{x1}$ in $X(I-x)$ in the respective cases $\rup{X} \vec u$ and
+$\rdo{X} \vec u$. (From now on we will always tacitly assume that the
+open box $\vec u$ is of the right type with respect to
+$\rup{X},\rdo{X}$.)  The operations $\rup{X},\rdo{X}$ are to be
+thought of as a filling their respective open boxes. Therefore we
+require for all $(y,b)\in O(J,x)$:
 $$
 (\rup{X} \vec u) (y=b) = u_{yb}~~~~~~~~(\rdo{X} \vec u) (y=b) = u_{yb}
 $$
-The new uniformity condition is: if $f:I\to K$ is defined on $J,x$, we require:
+The new uniformity condition is: if $f:I\to K$ is defined on $J,x$, we
+require:
 $$
 (\rup{X} \vec u) f = \rup{X} (\vec{u}f)~~~~~~~~(\rdo{X} \vec u) f = \rdo{X} (\vec{u}f)
 $$
-We refer to the combined condition as the \emph{uniform Kan condition for cubical sets},
-or the \emph{Kan condition} for short. %See Figure~\ref{fillings} for an example.
+We refer to the combined condition as the \emph{uniform Kan condition
+  for cubical sets}, or the \emph{Kan condition} for
+short. %See Figure~\ref{fillings} for an example.
 
 If we only consider the case where $I = J,x$, that is, no other
 variables in $I$, and without the uniformity conditions, we get back
@@ -541,13 +546,16 @@ our notion of cubical ).  For a suggestive description of how to
 define combinatorially $\pi_n(X,u)$ for each point $u$ of $X$ if $X$
 satisfies the Kan property, see \cite{Williamson}.
 
- These new uniformity conditions solve the constructivity problem described in the note \cite{BC}.
-(These uniformity conditions can always be satisfied if we assume decidablity of degeneracy, by a definition similar
-as the one considered in \cite{BCH}.)
+These new uniformity conditions solve the constructivity problem
+described in the note \cite{BC}.  (These uniformity conditions can
+always be satisfied if we assume decidablity of degeneracy, by a
+definition similar as the one considered in \cite{BCH}.)
 
-If $X$ is a Kan cubical set with operations $\rup{X},\rdo{X}$, we define new operations (see figure below)
+If $X$ is a Kan cubical set with operations $\rup{X},\rdo{X}$, we
+define new operations (see figure below)
 $$
-X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec u)(x=0)$$
+X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec
+u)(x=0)$$
 %\begin{figure}
 %\def\emp{{()}}
 \def\noe{\cdot}
@@ -577,16 +585,16 @@ same Kan conditions as $ \rup{X},\rdo{X}$ above.  The usual Kan
 conditions are obtained by simply substituting $A\alpha$ for $X$.
 Since $f:I\to K$ interacts with $\alpha$, we reformulate the
 uniformity conditions:
-$$
-(\rup{A\alpha} \vec u)f = \rup{A\alpha f} (\vec{u}f)~~~~~~~
+\[
+(\rup{A\alpha} \vec u)f = \rup{A\alpha f} (\vec{u}f) \qquad
 (\rdo{A\alpha} \vec u)f = \rdo{A\alpha f} (\vec{u}f)
-$$
+\]
 If $\Gamma\vdash A$ is a Kan fibration with operations
 $\rup{A\alpha},\rdo{A\alpha}$, we define as before
-$$
-A\alpha^+\vec u = (\rup{A\alpha} \vec u)(x=1)~~~~~~~~
+\[
+A\alpha^+\vec u = (\rup{A\alpha} \vec u)(x=1) \qquad
 A\alpha^-\vec u = (\rdo{A\alpha} \vec u)(x=0)
-$$
+\]
 
 We could also have defined when a map $\Delta \to \Gamma$ is a Kan
 fibration; then $\Gamma \vdash A$ satisfies the Kan condition if{f}
