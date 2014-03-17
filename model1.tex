@@ -163,6 +163,7 @@
 \newcommand{\takeout}[1]{}
 % end Marc's macros
 
+\newcommand{\napp}{\mathop{\boldsymbol{@}}}
 \newcommand{\yoneda}{\mathbf{y}}
 \DeclareMathOperator{\mapOnPaths}{\mathsf{mapOnPaths}}
 \newcommand{\interval}{\mathbb{I}}
@@ -973,6 +974,21 @@ done in the proofs of the following theorems.
     C\alpha} w)_f = ({C \alpha}^+_x w)_{f'}$ for $b=1$.  This defines
   the element $\rup{C\alpha} w$ in $C \alpha$ which satisfies the
   uniformity conditions.
+
+  To verify that the Kan structure of $\Pi (A \sigma) (B (\sigma \pp,
+  \qq))$ (as defined above) is equal to the Kan structure for
+  $(\Pi\,A\,B) \sigma$ (as defined in the proof of the preceding
+  theorem), assume that above $\alpha = \sigma \beta$ for $\sigma
+  \colon \Delta \to \Gamma$; then $C \alpha = ((\Pi\,A\,B) \sigma)
+  \beta$ and in equation~\eqref{eq:3} we have
+  \[
+  B(\sigma \beta,\rdo{A(\sigma \beta)}_x u_1)^+_x (w_1 ({A(\sigma
+    \beta)}^-_x u_1)) = (B (\sigma \pp, \qq)) (\beta, \rdo{(A\sigma)
+    \beta}_x u_1)^+_x (w_1 ({(A \sigma) \beta}^-_x u_1))
+  \]
+  and the right hand side is the definition of $\bigl({\Pi(A \sigma)
+    (B (\sigma \pp, \qq))}^+_x w\bigr)_1 (u_1)$.  Similarly for the
+  other parts of the definition.
 \end{proof}
 
 \subsection{Sum type}
@@ -1013,16 +1029,20 @@ an $I$-cube $\alpha$ in $\Gamma$ we define $(\Id_A~a~b)\alpha$ to be
 the set of elements $\bind{x}{\omega}$ in $A\alpha(x)$ where $x$ is a
 fresh variable not in $I$, such that $\omega(x=0) = a\alpha$ and
 $\omega(x=1) = b\alpha$. The latter situation is conveniently
-described by $\omega: a\alpha\to_x b\alpha$.  We recall that $(x)$ denotes
-the canonical injection $I \to I,x$. The element $\bind{x}{\omega}$ is
-the equivalence class of $I,x$-cubes of $A\alpha(x)$, $x$ not in $I$,
-where $\omega$ is identified with $\omega(x=x')$ if $x'$ is not in
-$I$. This operation $\bind{x}{\omega}$ binds the name $x$.  (One could
-define $\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a
-name not in $I$ obtained by a choice function.) If $f$ is a
-substitution $I \to K$ we choose a variable $y$ not in $K$, extend $f$
-to $(f,x=y): I,x \to K,y$ and define $(\bind{x}{\omega}) f$ to be
-$\bind{y}{\omega (f,x=y)}$, preserving equivalence.
+described by $\omega: a\alpha\to_x b\alpha$.  We recall that $(x)$
+denotes the canonical injection $I \to I,x$. The element
+$\bind{x}{\omega}$ is the equivalence class of $I,x$-cubes of
+$A\alpha(x)$, $x$ not in $I$, where $\omega$ is identified with
+$\omega(x=x')$ if $x'$ is not in $I$. This operation
+$\bind{x}{\omega}$ binds the name $x$.  (One could define
+$\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a name not
+in $I$ obtained by a choice function.) If $f$ is a substitution $I \to
+K$ we choose a variable $y$ not in $K$, extend $f$ to $(f,x=y): I,x
+\to K,y$ and define $(\bind{x}{\omega}) f$ to be $\bind{y}{\omega
+  (f,x=y)}$, preserving equivalence.
+% For an element $\bind x \omega$ in $(\Id_A~ a~ b) \alpha$ where
+% $\alpha$ is an $I$-cube, and $y \notin I$, we define $(\bind x
+% \omega) \napp y = \omega (x = y) \in A \alpha (y)$.
 
 \begin{theorem}
   If $\Gamma\vdash A$ has a Kan structure, then so does
