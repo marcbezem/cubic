@@ -169,6 +169,8 @@
 \newcommand{\interval}{\mathbb{I}}
 \newcommand{\DD}{{\cal D}}
 \newcommand{\ND}{N\DD}
+\DeclareMathOperator{\isContr}{\mathsf{isContr}}
+\DeclareMathOperator{\fib}{\mathsf{fib}}
 
 \begin{document}
 
@@ -1425,13 +1427,26 @@ This concludes the definition of $C=\comp(A,B)$.
 
 \subsection{Equivalence and equality of types}
 
- We explain in this section how to transform any equivalence $\sigma:A\to B$ between two Kan cubical sets
-to an equality path $A\to B$, as defined in the previous section.
-By definition (cf.\ \cite[Definition 4.4.1]{HoTTbook}, $\sigma:A\to B$
-is an equivalence if there is a map $\delta:B\to A$ and a map
-$\sigma\delta b\to b$ and a transformation of any equality
-$\omega:\sigma a\to b$, where $a$ (resp. $b$) is an $I$-cube of $A$ (resp. $B$) to a ``square'' (really
-a pair of an $I,x$-cube of $A$ and an $I,x,y$-cube of $B$)
+We explain in this section how to transform any equivalence
+$\sigma:A\to B$ between two Kan cubical sets to an equality path $A\to
+B$, as defined in the previous section.  Let us recall the notion of
+equivalence between types (cf.\ \cite[Definition 4.4.1]{HoTTbook})
+using informal notation.  For a type $A$ we define the proposition of
+being contractible $\isContr A$ to be $(\Sigma {a : A}) (\Pi {x : A})
+\, \Id_A~a~x$.  The \emph{fiber} $\fib_\sigma b$ of a map $\sigma
+\colon A \to B$ over $b : B$ is defined as $(\Sigma {x : A}) \,
+\Id_B~\app (f,x)~ b$.  A map $\sigma \colon A \to B$ is an
+\emph{equivalence} if all its fibers are contractible, i.e., if
+\[
+(\Pi b : B) \, \isContr (\fib_\sigma b).
+\]
+If we now assume that $A$ and $B$ are Kan cubical sets (which
+corresponds to types in the empty context), this definition translates
+to: a map $\sigma:A\to B$ is an equivalence if there is a map
+$\delta:B\to A$ and a map $\sigma\delta b\to b$ and a transformation
+of any equality $\omega:\sigma a\to b$, where $a$ (resp. $b$) is an
+$I$-cube of $A$ (resp. $B$) to a ``square'' (really a pair of an
+$I,x$-cube of $A$ and an $I,x,y$-cube of $B$)
 
 \begin{diagram}
 a          & \rTo & \delta b    \\
