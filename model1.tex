@@ -572,36 +572,36 @@ u)(x=0)$$
 %\caption{Two examples of filling open boxes\label{fillings}}
 %\end{figure}
 
-We now define what is a Kan fibration over a cubical set.  Let
-$\Gamma$ be a cubical set (which does not need to satisfy the Kan
-condition) and $\Gamma\vdash A$ a type over $\Gamma$.  For this type
-to be a \emph{Kan fibration}, we require to be given elements, for any
-$\alpha\in\Gamma(I)$ and $J,x\subseteq I$, $\rup{A\alpha} \vec u$ and
-$\rdo{A\alpha} \vec u$, both in $A\alpha$, defined for every open box
-$\vec u$.  Here \emph{open box} means that $u_{yb}\in A\alpha(y=b)$
-for all $(y,b)\in O(J,x)$, and that these faces are
-adjacent-compatible.  $\rup{A\alpha}, \rdo{A\alpha}$ must satisfy the
-same Kan conditions as $ \rup{X},\rdo{X}$ above.  The usual Kan
-conditions are obtained by simply substituting $A\alpha$ for $X$.
-Since $f:I\to K$ interacts with $\alpha$, we reformulate the
-uniformity conditions:
+%We now define what is a Kan fibration over a cubical set.
+
+Let $\Gamma$ be a cubical set (which does not need to satisfy the Kan
+condition) and $\Gamma\vdash A$ a type over $\Gamma$.  A \emph{Kan
+  structure} on $\Gamma \vdash A$ is given by operations $\rup{A
+  \alpha}$ and $\rdo{A \alpha}$ for each $\alpha\in\Gamma(I)$ and
+$J,x\subseteq I$, such that $\rup{A\alpha} \vec u$ and $\rdo{A\alpha}
+\vec u$ are both in $A\alpha$ for every open box $\vec u$.  Here
+\emph{open box} means that $u_{yb}\in A\alpha(y=b)$ for all $(y,b)\in
+O(J,x)$, and that these faces are adjacent-compatible.
+$\rup{A\alpha}, \rdo{A\alpha}$ must satisfy the same Kan conditions as
+$ \rup{X},\rdo{X}$ above.  The usual Kan conditions are obtained by
+simply substituting $A\alpha$ for $X$.  Since $f:I\to K$ interacts
+with $\alpha$, we reformulate the uniformity conditions:
 \[
 (\rup{A\alpha} \vec u)f = \rup{A\alpha f} (\vec{u}f) \qquad
 (\rdo{A\alpha} \vec u)f = \rdo{A\alpha f} (\vec{u}f)
 \]
-If $\Gamma\vdash A$ is a Kan fibration with operations
+If $\Gamma\vdash A$ has a Kan structure with operations
 $\rup{A\alpha},\rdo{A\alpha}$, we define as before
 \[
 A\alpha^+\vec u = (\rup{A\alpha} \vec u)(x=1) \qquad
 A\alpha^-\vec u = (\rdo{A\alpha} \vec u)(x=0)
 \]
 
-We could also have defined when a map $\Delta \to \Gamma$ is a Kan
-fibration; then $\Gamma \vdash A$ satisfies the Kan condition if{f}
-the first projection is $\pp \colon \Gamma.A \to \Gamma$ is such a Kan
-fibration.
+Notice that if $\Gamma \vdash A$ has a Kan structure, then the map
+$\pp \colon \Gamma.A \to \Gamma$ is a Kan fibration as in~\cite{Kan,
+  Williamson}.
 
-For a Kan fibration $\Gamma \vdash A$ and for $\alpha : \rho_0
+For $\Gamma \vdash A$ with Kan structure and $\alpha : \rho_0
 \longrightarrow \rho_1$ in $\Gamma (x)$ one can define an equivalence
 $A \rho_0 \to A \rho_1$ ($A\rho_i$ considered as a cubical set) by $a
 \mapsto A \alpha^+ a$.  This is in contrast to Kan simplicial sets
@@ -817,23 +817,33 @@ This completes the proof that the cubical nerve of a groupoid is Kan.
 \section{The Kan cubical set model}\label{sec:kancubsetmodel}
 
 In this section we will give a refinement of the model given in
-Section~\ref{sec:presheaf-models}: we restrict the model to those
-types $\Gamma \vdash$ which are Kan fibrations.  This is needed in
-order to justify the elimination rules for the identity types (cf.\
-Section~\ref{sec:identity-type}).
+Section~\ref{sec:presheaf-models}.  The \emph{Kan cubical set model}
+is given as follows: contexts and contexts morphisms are interpreted
+as in Section~\ref{sec:presheaf-models}, i.e., by cubical sets and
+morphisms between cubical sets; a type is given by a type $\Gamma
+\vdash A$ in the sense of Section~\ref{sec:presheaf-models}
+\emph{together} with a Kan structure; terms are given as in
+Section~\ref{sec:presheaf-models}. The Kan structure on types is
+needed in order to justify the elimination rules for the identity
+types (cf.\ Section~\ref{sec:identity-type}).
 
-It is crucial to note that the filling operations are part of when a
-type is a Kan fibration.  Two types $\Gamma \vdash A$ and $\Gamma
-\vdash B$ which are Kan fibrations can be equal as cubical sets, but
-\emph{not} as Kan fibrations.  Thus we have to check whether the
-equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
-  fibrations}.
+It is crucial to note that the Kan structure are part of a type in the
+Kan cubical set model.  Two types $\Gamma \vdash A$ and $\Gamma \vdash
+B$ which have a Kan structure can be equal as cubical sets, but
+\emph{not} with their Kan structure.  Thus we have to check whether
+the equations between types in Figure~\ref{MLTT} are preserved
+\emph{for their Kan structure}.
+
+The definition of the model is such that it follows the model
+described in Section~\ref{sec:presheaf-models}, but additionally we
+have to define how the Kan structure is given on the types.  This is
+done in the proofs of the following theorems.
 
 \begin{theorem}
-  If $\Gamma \vdash A$ is a Kan fibration and $\sigma \colon \Delta
-  \to \Gamma$, then also $\Delta \vdash A \sigma$ is a Kan fibration.
-  Moreover, $A 1 = A$ and $(A \sigma) \tau = A (\sigma \tau)$ as Kan
-  fibrations.
+  If $\Gamma \vdash A$ has a Kan structure and $\sigma \colon \Delta
+  \to \Gamma$, then also $\Delta \vdash A \sigma$ has a Kan structure.
+  Moreover the definition is such that $A 1 = A$ and $(A \sigma) \tau
+  = A (\sigma \tau)$ as types with Kan structures.
 \end{theorem}
 \begin{proof}
   For an $I$-cube $\alpha$ of $\Delta$ recall that $(A \sigma) \alpha
@@ -848,10 +858,10 @@ equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
 \subsection{Dependent product}
 
 \begin{theorem}
-  If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ satisfy the Kan
-  condition, then so does $\Gamma\vdash\Pi\,A\,B$.  Moreover,
-  $(\Pi\,A\,B) \sigma = \Pi (A \sigma) (B (\sigma \pp, \qq))$ as
-  Kan fibrations.
+  If both $\Gamma\vdash A$ and $\Gamma.A\vdash B$ have Kan structures,
+  then so does $\Gamma\vdash\Pi\,A\,B$.  Moreover the definition of
+  the Kan structure is such that $(\Pi\,A\,B) \sigma = \Pi (A \sigma)
+  (B (\sigma \pp, \qq))$.
 \end{theorem}
 
 \begin{proof}
@@ -967,9 +977,10 @@ equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
 \subsection{Sum type}
 
 \begin{theorem}
-  If $\Gamma \vdash A$ and $\Gamma.A \vdash B$ are Kan fibrations,
-  then so is $\Gamma \vdash \Sigma\,A\,B$.  Moreover, $(\Sigma\,A\,B)
-  \sigma = \Sigma (A \sigma) (B (\sigma \pp, \qq))$ as Kan fibrations.
+  If $\Gamma \vdash A$ and $\Gamma.A \vdash B$ have Kan structures,
+  then so does $\Gamma \vdash \Sigma\,A\,B$.  Moreover the definition
+  of the Kan structure is such that $(\Sigma\,A\,B) \sigma = \Sigma (A
+  \sigma) (B (\sigma \pp, \qq))$.
 \end{theorem}
 \begin{proof}
   Given an open box $\vec p$ in $(\Sigma\,A\,B) \alpha$ with
@@ -986,7 +997,7 @@ equations between types in Figure~\ref{MLTT} are preserved \emph{as Kan
   \Gamma$, we get $u = \rup {(A \sigma) \beta} {\vec u}$ and $\rup {B
     (\sigma \beta, u)} {\vec v} = \rup{(B (\sigma \pp, \qq)) (\beta,
     u)} {\vec v}$, yielding $(\Sigma\,A\,B) \sigma = \Sigma (A \sigma)
-  (B (\sigma \pp, \qq))$ as Kan fibrations.
+  (B (\sigma \pp, \qq))$.
 \end{proof}
 
 
@@ -1013,8 +1024,11 @@ to $(f,x=y): I,x \to K,y$ and define $(\bind{x}{\omega}) f$ to be
 $\bind{y}{\omega (f,x=y)}$, preserving equivalence.
 
 \begin{theorem}
-If $\Gamma\vdash A$  satisfies the Kan condition then so does $\Gamma\vdash\Id_A~a~b$ whenever we have
-$\Gamma\vdash a:A$ and $\Gamma\vdash b:A$.
+  If $\Gamma\vdash A$ has a Kan structure, then so does
+  $\Gamma\vdash\Id_A~a~b$ whenever we have $\Gamma\vdash a:A$ and
+  $\Gamma\vdash b:A$.  Moreover the definition is such that
+  $(\Id_A~a~b) \sigma = \Id_{A \sigma} (a \sigma)~(b \sigma)$ as types
+  with Kan structures.
 \end{theorem}
 
 \begin{proof}
@@ -1272,14 +1286,14 @@ $$
 
 We now describe the interpretation of $U$ as a universe of Kan cubical
 sets. Recall that the Yoneda embedding is denoted by $\yoneda$.  An
-element $A$ of $U(I)$ is a Kan fibration $\yoneda I \vdash A$ such
-that for each $f \colon I \to J$ the set $A_f$ is small (we use
-subscripts to keep the notation separate from the restrictions).
-Given such a $\yoneda I \vdash A$ and $f \colon I \to J$ the
-restriction $A f$ of $A$ by $f$ is defined to be $\yoneda J \vdash A
-(\yoneda f)$, where $\yoneda f \colon \yoneda J \to \yoneda I$ is the
-substitution induced by $f$; thus $(A f)_g = A_{f g}$.  This defines
-$U$ as a cubical set.
+element $A$ of $U(I)$ is a type $\yoneda I \vdash A$ with Kan
+structure such that for each $f \colon I \to J$ the set $A_f$ is small
+(we use subscripts to keep the notation separate from the
+restrictions).  Given such a $\yoneda I \vdash A$ and $f \colon I \to
+J$ the restriction $A f$ of $A$ by $f$ is defined to be $\yoneda J
+\vdash A (\yoneda f)$, where $\yoneda f \colon \yoneda J \to \yoneda
+I$ is the substitution induced by $f$; thus $(A f)_g = A_{f g}$.  This
+defines $U$ as a cubical set.
 
 % More concretely, such an element $A$ is given by any family of
 % (small) sets $A_f$ for $f \colon I \to J$, with maps $A_f \to
