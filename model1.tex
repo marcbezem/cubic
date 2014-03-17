@@ -1048,7 +1048,7 @@ K$ we choose a variable $y$ not in $K$, extend $f$ to $(f,x=y): I,x
   If $\Gamma\vdash A$ has a Kan structure, then so does
   $\Gamma\vdash\Id_A~a~b$ whenever we have $\Gamma\vdash a:A$ and
   $\Gamma\vdash b:A$.  Moreover the definition is such that
-  $(\Id_A~a~b) \sigma = \Id_{A \sigma} (a \sigma)~(b \sigma)$ as types
+  $(\Id_A~a~b) \sigma = \Id_{A \sigma}~a \sigma~b \sigma$ as types
   with Kan structures.
 \end{theorem}
 
@@ -1154,6 +1154,29 @@ $$
 The fact that the filling operations commute with substitution ensures
 that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
 
+To summarize, we have an interpretation in the Kan cubical set model
+of the following rules:
+\begin{gather*}
+  \frac {\Gamma \vdash A \quad \Gamma \vdash a : A \quad \Gamma \vdash
+    b : A} {\Gamma \vdash \Id_A~a~b} \qquad
+  %
+  \frac {\Gamma \vdash a : A} {\Gamma\vdash \Ref a:\Id_A~a~a} \qquad
+  \\
+  \frac {\Gamma\vdash a:A \quad \Gamma\vdash b:A \quad \Gamma\vdash
+    u:\Id_A~a~b \quad \Gamma.A \vdash P \quad \Gamma\vdash v:P[a]}
+  {\Gamma\vdash \Transp(u,v):P[b]}
+  \\
+  \frac {\Gamma \vdash a : A \quad \Gamma.A \vdash P \quad \Gamma
+    \vdash v : P [a]} {\Gamma \vdash \HH (v):\Id_{P[a]}~v~\Transp(\Ref
+    a,v)}
+  \\
+  \frac {\Gamma \vdash a : A} {\Gamma \vdash \mathsf{contr}\, a :
+    \Pi\, T (\Id_{T \pp} (a, \Ref a)~\qq) } \quad \text {where } T =
+  \Sigma\,A\,(\Id_{A \pp} a \pp~ \qq)
+\end{gather*}
+plus equations that these commute with substitutions, e.g.,
+$(\Id_A~a~b) \sigma = \Id_{A \sigma}~a\sigma~ b\sigma$.
+
 N.A.~Danielsson has checked formally in Agda that these properties are
 enough to develop all basic propositions of univalent mathematics;
 this Agda development\footnote{Available at {\tt
@@ -1205,7 +1228,7 @@ Given $\rho$ in $\Gamma (I)$ we define $\mapOnPaths (f, p) \rho =
 This satisfies the equations
 \begin{align*}
   \mapOnPaths (\mathrm{id}, p) & = p \\
-  \mapOnPaths (f \circ g, p) &= \mapOnPaths \bigl( f, (\mapOnPaths
+  \mapOnPaths (f \circ g, p) &= \mapOnPaths \bigl( f, \mapOnPaths
   (g, p) \bigr)\\
   \mapOnPaths (f, \Ref a) &= \Ref (\app (f, a))\\
   \mapOnPaths (\lambda (b \pp), p) &= \Ref b
