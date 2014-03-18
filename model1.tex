@@ -432,7 +432,7 @@ This amounts to validate the rules given in Figure~\ref{MLTT}.  Note
 that we use polymorphic notation to increase readability as in
 \cite{Cartmell,Dybjer}; e.g., without this convention we should have
 written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
-\Gamma.A \to \Gamma$.  Also, we leave the types parameters implicit,
+\Gamma.A \to \Gamma$.  Also, we leave the type parameters implicit,
 e.g., $(A \sigma) \delta = A (\sigma \delta)$ tacitly assumes the
 premises $\sigma \colon \Delta \to \Gamma$, $\delta \colon \Theta \to
 \Delta$ and $\Gamma \vdash A$.  These points are also stressed in
@@ -830,7 +830,7 @@ Section~\ref{sec:presheaf-models}. The Kan structure on types is
 needed in order to justify the elimination rules for the identity
 types (cf.\ Section~\ref{sec:identity-type}).
 
-It is crucial to note that the Kan structure are part of a type in the
+It is crucial to note that the Kan structure is part of a type in the
 Kan cubical set model.  Two types $\Gamma \vdash A$ and $\Gamma \vdash
 B$ which have a Kan structure can be equal as cubical sets, but
 \emph{not} with their Kan structure.  Thus we have to check whether
@@ -851,11 +851,11 @@ done in the proofs of the following theorems.
 \begin{proof}
   For an $I$-cube $\alpha$ of $\Delta$ recall that $(A \sigma) \alpha
   = A (\sigma \alpha)$ as cubical sets; we define the filling
-  operations in $(A \sigma) \alpha$ by those in $A (\sigma \alpha)$,
-  i.e., we set $\rup{(A \sigma) \alpha} {\vec u} = \rup {A (\sigma
-    \alpha)} {\vec u}$.  With this definition it is clear that $A 1$
-  and $A$ have the same filling operations, and similarly for the
-  other equation.
+  operations in $(A \sigma) \alpha$ to be those in $A (\sigma
+  \alpha)$, i.e., we set $\rup{(A \sigma) \alpha} {\vec u} = \rup {A
+    (\sigma \alpha)} {\vec u}$.  With this definition it is clear that
+  $A 1$ and $A$ have the same filling operations, and similarly for
+  the other equation.
 \end{proof}
 
 \subsection{Dependent product}
@@ -870,7 +870,6 @@ done in the proofs of the following theorems.
 \begin{proof}
   % Let $I$ be given, $\alpha$ an $I$-cube in $\Gamma$, and let $x\in
   % I$.
-
   We present the argument in the case $J=\es$, the general case is not
   essentially more difficult.  Also, as the cases $\rup{},\rdo{}$ are
   perfectly symmetric, we restrict attention to $\rup{}$.  We denote
@@ -878,10 +877,10 @@ done in the proofs of the following theorems.
   {}^+$.  Let $C = \Pi\,A\,B$.
 
   First we will define ${C \alpha}^+_x w \in C \alpha (x = 1)$ for
-  $\alpha$ an $I$-cube of $\Gamma$, $x \in I$, and $w$ in $(\Pi\,A\,B)
-  \alpha (x = 0)$.  This amounts to define a dependent function $({C
-    \alpha}^+_x w)_f$ in $\prod_{u \in A \alpha (x=1) f} B (\alpha
-  (x=1) f, u)$ for all $f \colon I-x \to K$, such that
+  $\alpha$ an $I$-cube of $\Gamma$, $x \in I$, and $w$ in $C \alpha (x
+  = 0)$.  This amounts to define a dependent function $({C \alpha}^+_x
+  w)_f$ in $\prod_{u \in A \alpha (x=1) f} B (\alpha (x=1) f, u)$ for
+  all $f \colon I-x \to K$, such that
   \begin{equation}
     \label{eq:2}
     \bigl(({C \alpha}^+_x w)_f (u)\bigl) g = ({C \alpha}^+_x w)_{f g}
@@ -958,7 +957,8 @@ done in the proofs of the following theorems.
   B$ for $J=\set{x}$ we define
   \[
   (\rupx{C\alpha}w)_1 (u) = {B(\alpha(y),v)}^-_{y,x}\bigl(\lambda,
-  w_{(y)} (v (x=0)), ({C \alpha}^+_x w)_{(y)} (u_1 (y))\bigr)
+  w_{(y)} (v (x=0)), {\bigl(({C \alpha}^+_x w)_1 (u_1)\bigr)
+    (y)}\bigr)
   \]
   with $\lambda$ as above.  Using the uniformity conditions for
   $\Gamma \vdash A$ and $\Gamma.A \vdash B$, this definition is such
