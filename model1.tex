@@ -171,6 +171,7 @@
 \newcommand{\ND}{N\DD}
 \DeclareMathOperator{\isContr}{\mathsf{isContr}}
 \DeclareMathOperator{\fib}{\mathsf{fib}}
+\DeclareMathOperator{\discr}{\mathsf{K}}
 
 \begin{document}
 
@@ -614,12 +615,19 @@ essential to define such a map~\cite{BC}.
 
 \section{Examples of cubical sets}\label{sec:examples}
 In this section we elaborate the following examples of cubical sets:
-the unit interval $\interval$; the cubical nerve $N$ of the group
-$Z_2$ with two elements; the exponential $N^\interval$.  A noticeable
-difference between simpicial sets and our cubical sets is that, while
-$N$ is Kan, $N^\interval$ is not.  This is important motivation for
-the main result of the next section, implying that $B^A$ is a Kan
-cubical set if both $A$ and $B$ are.
+discrete cubical sets;the unit interval $\interval$; the cubical nerve
+$N$ of the group $Z_2$ with two elements; the exponential
+$N^\interval$.  A noticeable difference between simpicial sets and our
+cubical sets is that, while $N$ is Kan, $N^\interval$ is not.  This is
+important motivation for the main result of the next section, implying
+that $B^A$ is a Kan cubical set if both $A$ and $B$ are.
+
+Every set $A$ gives rise to the \emph{discrete cubical set} $\discr A$
+via the constant presheaf, i.e., $(\discr A) (I) = A$ for each $I$ and
+all restrictions are the identity map $A \to A$.  Note that in an open
+box $\vec u$ all the components have to be equal, say $u$, and this
+$u$ is also the (unique) filler $u = \rup {\discr A} {\vec u}$ making
+the discrete cubical set trivially into a Kan cubical set.
 
 Recall the canonical extension of a map $f:J\to K$ in $\CC$ to a set
 map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on
