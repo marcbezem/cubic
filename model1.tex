@@ -339,10 +339,10 @@ extend $f$ to a map $(f,x=y):I,x\to J,y$ by sending $x$ to $y$.
 
 \section{Cubical sets}
 
-A \emph{cubical set} is a functor $\CC\to{\sf Set}$.
-Let $X$ be a cubical set. Then we have sets $X(I)$ and set maps
-$X(I)\to X(J),~u\longmapsto uf$ for any morphism $f:I\to J$,
-such that $u1 = u$ and $u(fg) = (uf)g$.
+A \emph{cubical set} is a functor $\CC\to{\sf Set}$.  Let $X$ be a
+cubical set. Then we have sets $X(I)$ and set maps (called
+\emph{restrictions}) $X(I)\to X(J),~u\longmapsto uf$ for any morphism
+$f:I\to J$, such that $u1 = u$ and $u(fg) = (uf)g$.
 
 \medskip
 
@@ -450,27 +450,28 @@ interpreted as cubical set maps (i.e., natural transformations), so
 that we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a
 $I$-cube of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by
 sets $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with
-maps $A\alpha\to A\alpha f,~u\longmapsto uf$ for each $f \colon I \to
-J$, satisfying $u1 = u$ and $u(fg) = (uf)g$.  A section (or term)
-$\Gamma\vdash a:A$ is defined by giving an element $a\alpha$ in
-$A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such a way that
-$(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.  The empty
-context $()$ is given by the cubical set with exactly one $I$-cube for
-each $I$.  Given $\Gamma \vdash A$ and $\sigma \colon \Delta \to
-\Gamma$ we define $\Delta \vdash A \sigma$ by $(A \sigma) \alpha = A
-(\sigma \alpha)$ and the induced maps; likewise, substitution in a
-term $\Gamma \vdash a : A$ is given by $(a \sigma) \alpha = a (\sigma
-\alpha)$.  If $\Gamma\vdash A$, we define the cubical set $\Gamma.A$
-by taking as $I$-cubes of $\Gamma.A$ pairs $(\alpha,u)$ with $\alpha$
-an $I$-cube of $\Gamma$ and $u$ in $A\alpha$. For $f:I\to J$ we define
-$(\alpha,u)f = (\alpha f,u f)$.  The first projection $\pp \colon
-\Gamma.A \to \Gamma$, $\pp (\alpha, u) = \alpha$ becomes thus a
-context morphism, and the second projection $\qq (\alpha, u) = u$ a
-section $\Gamma.A \vdash \qq : A \pp$ corresponding to the first de
-Bruijn index.  For $\Gamma \vdash A$, $\sigma \colon \Delta \to
-\Gamma$ and $\Delta \vdash u : A$ we give $(\sigma, u) \colon \Delta
-\to \Gamma.A$ by $(\sigma, u) \beta = (\sigma \beta, u \beta)$.  This
-concludes the description of the CwF without type formers.
+maps (also called restrictions) $A\alpha\to A\alpha f,~u\longmapsto
+uf$ for each $f \colon I \to J$, satisfying $u1 = u$ and $u(fg) =
+(uf)g$.  A section (or term) $\Gamma\vdash a:A$ is defined by giving
+an element $a\alpha$ in $A\alpha$ for each $I$-cube $\alpha$ of
+$\Gamma$ in such a way that $(a\alpha) f = a (\alpha f)$ for any $f
+\colon I \to J$.  The empty context $()$ is given by the cubical set
+with exactly one $I$-cube for each $I$.  Given $\Gamma \vdash A$ and
+$\sigma \colon \Delta \to \Gamma$ we define $\Delta \vdash A \sigma$
+by $(A \sigma) \alpha = A (\sigma \alpha)$ and the induced maps;
+likewise, substitution in a term $\Gamma \vdash a : A$ is given by $(a
+\sigma) \alpha = a (\sigma \alpha)$.  If $\Gamma\vdash A$, we define
+the cubical set $\Gamma.A$ by taking as $I$-cubes of $\Gamma.A$ pairs
+$(\alpha,u)$ with $\alpha$ an $I$-cube of $\Gamma$ and $u$ in
+$A\alpha$. For $f:I\to J$ we define $(\alpha,u)f = (\alpha f,u f)$.
+The first projection $\pp \colon \Gamma.A \to \Gamma$, $\pp (\alpha,
+u) = \alpha$ becomes thus a context morphism, and the second
+projection $\qq (\alpha, u) = u$ a section $\Gamma.A \vdash \qq : A
+\pp$ corresponding to the first de Bruijn index.  For $\Gamma \vdash
+A$, $\sigma \colon \Delta \to \Gamma$ and $\Delta \vdash u : A$ we
+give $(\sigma, u) \colon \Delta \to \Gamma.A$ by $(\sigma, u) \beta =
+(\sigma \beta, u \beta)$.  This concludes the description of the CwF
+without type formers.
 
 We now describe how to interpret $\Pi$ and $\Sigma$. If $\Gamma\vdash
 A$ and $\Gamma.A\vdash B$, we define the type $\Gamma\vdash \Pi\,A\,B$
@@ -494,9 +495,9 @@ for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined by sums in
 each stage, i.e., for an $I$-cube $\alpha$ in $\Gamma$,
 $(\Sigma\,A\,B)\alpha$ consists of pairs $(u,v)$ with $u$ in $A
 \alpha$ and $v$ in $B (\alpha, u)$.  Restrictions are defined
-component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  The
-sections given by the first and second projection give interpretations
-for $\pp$ and $\qq$, respectively.
+component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  If
+$\Gamma \vdash w : \Sigma\,A\,B$ and $w \alpha = (u,v)$, then $(\pp w)
+\alpha = u$ and $(\qq w) \alpha = v$.
 
 We can then verify all the equations of Figure~\ref{MLTT}.
 
@@ -605,12 +606,12 @@ Notice that if $\Gamma \vdash A$ has a Kan structure, then the map
 $\pp \colon \Gamma.A \to \Gamma$ is a Kan fibration as in~\cite{Kan,
   Williamson}.
 
-For $\Gamma \vdash A$ with Kan structure and $\alpha : \rho_0
-\longrightarrow \rho_1$ in $\Gamma (x)$ one can define an equivalence
-$A \rho_0 \to A \rho_1$ ($A\rho_i$ considered as a cubical set) by $a
-\mapsto A \alpha^+ a$ (leaving degenaracies of $\alpha$ implicit).
-This is in contrast to Kan simplicial sets where classical logic is
-essential to define such a map~\cite{BC}.
+For $\Gamma \vdash A$ with Kan structure and a line $\alpha$ in
+$\Gamma (x)$ connecting points $\rho_0$ to $\rho_1$ one can define an
+equivalence $A \rho_0 \to A \rho_1$ ($A\rho_i$ considered as a cubical
+set) by $a \mapsto A \alpha^+ a$ (leaving degeneracies of $\alpha$
+implicit).  This is in contrast to Kan simplicial sets where classical
+logic is essential to define such a map~\cite{BC}.
 
 
 \section{Examples of cubical sets}\label{sec:examples}
@@ -634,15 +635,17 @@ map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on
 $\set{0,1}$.  Together with mapping objects $J$ of $\CC$ to $J \cup
 \set{0,1}$, canonical extension actually forms a functor $\CC\to{\sf
   Set}$.  This covariant functor is called the \emph{unit interval},
-denoted by $\interval$.  We explore: $\interval(\set{})=\set{0,1}$
-($\interval$ has two points); $\interval(\set{x})=\set{0,1,x}$
-($\interval$ has three lines, only $x$ is non-degenerated);
-$\interval(\set{x,y})=\set{0,1,x,y}$ ($\interval$ has four degenerated
-squares, the first four squares in the display below); and so on.  The
-square $x$ varies in direction $x$, but is constant in direction $y$,
-and hence degenerated.  Similarly for objects of higher dimension in
+denoted by $\interval$.  We explore: $\interval()=\set{0,1}$
+($\interval$ has two points); $\interval(x)=\set{0,1,x}$ ($\interval$
+has three lines, only $x$ is non-degenerated); $\interval(x,y) =
+\set{0,1,x,y}$ ($\interval$ has four degenerated squares, the first
+four squares in the display below); and so on.  The square $x$ varies
+in direction $x$, but is constant in direction $y$, and hence
+degenerated.  Similarly for objects of higher dimension in
 $\interval$.  This completes the description of the unit interval as a
-cubical set.
+cubical set.  Note that $\interval \cong \yoneda \set{x}$ for a name
+$x$ (where $\yoneda$ denotes the Yoneda embedding) is another way to
+describe the interval.
 \[
 \def\olll{{1 \atop 0} ~ {1 \atop 1}}
 \def\oool{{0 \atop 0} ~ {1 \atop 0}}
@@ -655,7 +658,7 @@ cubical set.
 \def\Iy{{1 \atop 0} ~ {1 \atop 0}}
 \def\Ix{{0 \atop 0} ~ {1 \atop 1}}
 \interval(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
-N(0\leq1)(\set{x,y}):\oooo\quad\ooll\quad\olol\quad\llll\quad\olll\quad\olll\]
+N(0\leq1)(\set{x,y}):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll\]
 
 Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to
 K\cup\set{0,1}$ such that for every $y\in K$ there exists at most one
@@ -700,7 +703,7 @@ Being the nerve of a groupoid, $N$ is Kan (see the next section).
 
 We now show that $N^\interval$ is not Kan. By the Yoneda Lemma we have
 $N^\interval(J)\cong (Hom^{\CC}(J,\_)\to (\interval\to N))$, the
-latter denoting a set of natural translations.  Defining $p\in
+latter denoting a set of natural transformations.  Defining $p\in
 N^\interval(J)$ means defining maps $pf:\interval(K)\to N(K)$ for
 every $f:J\to K$, such that $(pf)g=p(fg)$ for every $g:K\to L$. We
 explore the points of $N^\interval$ and define $p\in
@@ -1321,7 +1324,7 @@ $$
 \sigma = \pp (w \sigma) \quad (\qq w) \sigma = \qq (w \sigma)
 $$
 $$
-(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = w \qquad \qq
+(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = u \qquad \qq
 (u,v) = v
 $$
 \end{figure}
