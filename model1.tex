@@ -226,6 +226,7 @@ The computational interpretation can then be obtained through the semantics,
 for example, by evaluating a term of type $\nat$ in the model.
 
 The model of type theory with the Univalence Axiom given by Voevodsky
+
 \cite{Voevodsky} is based on Kan simplicial sets.
 Simplicial set maps must preserve degeneracy.
 A problem with a constructive approach to
@@ -702,35 +703,43 @@ N(\set{x,y}){:}~
 Being the nerve of a groupoid, $N$ is Kan (see the next section).
 
 We now show that $N^\interval$ is not Kan. By the Yoneda Lemma we have
-$N^\interval(J)\cong (Hom^{\CC}(J,\_)\to (\interval\to N))$, the
-latter denoting a set of natural transformations.  Defining $p\in
-N^\interval(J)$ means defining maps $pf:\interval(K)\to N(K)$ for
-every $f:J\to K$, such that $(pf)g=p(fg)$ for every $g:K\to L$. We
-explore the points of $N^\interval$ and define $p\in
-N^\interval(\emptyset)$ by, first, $p():\interval(\emptyset)\to
-N(\emptyset):\_\mapsto\star$.  Then, $p(x):\interval(\set{x})\to
+$N^\interval(J)\cong ((\yoneda J \times \interval) \to N)$, the
+latter denoting a set of natural transformations.  
+Defining $p\in N^\interval(J)$ means defining maps (index $K$ omitted)
+$p :\yoneda J (K) \to (\interval(K) \to N(K))$ for all $K$,
+such that $(p_f u) g = p_{fg}(ug)$ 
+for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
+
+We explore the points of $N^\interval$ and define $p\in
+N^\interval(\emptyset)$ by, first, $p_{()}:\interval(\emptyset)\to
+N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{(x)}:\interval(\set{x})\to
 N(\set{x}): 0,1 \mapsto\star(x)=0$ is forced by naturality, but for
-$p(x)(x)$ there is a choice. If we choose $0$, we must make the same
+$p_{(x)} x$ there is a choice. If we choose $0$, we must make the same
 choice for all names $x$ in the name space.  The choice $1$ for all
 names $x$ in the name space would give the only other point. In higher
 dimensions all arguments are degenerated, determining the function
 values, and naturality is compatible with each of the two choices
-above.
+above. We now fix $p$ with $p_{(x)} x = 0$.
 
 Next we explore lines from $p$ to $p$ in $N^\interval$, say in
 direction $i$, and define $\ell:p\to p$ in $N^\interval(\set{i})$ by
-$\ell(i=b) = p()$ and $\ell(i=b)(x) = p(x)$ (forced, $b=0,1$).  For
-$\ell(i=x): \interval(\set{x})\to N(\set{x})$ there is a choice. For
-the moment we put $\ell(i=x)(c) = \ell_c$ for all $c\in
+$\ell_{(i=b)g} = p_g$ for all $b=0,1$ and $g:\es\to K$.  For
+$\ell_{(i=x)}: \interval(\set{x})\to N(\set{x})$ there is a choice. For
+the moment we put $\ell_{(i=x)} c = \ell_c$ for all $c\in
 \interval(\set{x})$. Note that we must make the same choices
-$\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.  On the
-next level, $\ell(i=b)(x)(y) = p(x)(y)$ is forced, as are
-$\ell(i=x)(y),\ell(i=y)(x): \interval(\set{x,y})\to N(\set{x,y})$.
-Applying these to both $x$ and $y$ in $\interval(\set{x,y})$ results
-in the four squares displayed above (NB: $\ell_x=\ell_y$).  Naturality
-now limits the choice on the lower level, since the squares have to
-commute: $\ell_0 = \ell_1$.  In higher dimensions all values are
-determined by naturally, and naturality is compatible with each of the
+$\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.  
+On the next level, there is no choice left.
+First, $\ell_{(i=b)g} = p_g$ for $b=0,1$ and $g=(x)(y)$. 
+Moreover,
+$\ell_{(i=x)(y)},\ell_{(i=y)(x)}: \interval(\set{x,y})\to N(\set{x,y})$
+are completely determined by the choices of $\ell_0,\ell_1,\ell_x$.
+Even more so, naturality limits the choice on the lower level.
+This can be seen by applying $\ell_{(i=x)(y)}$ and $\ell_{(i=y)(x)}$
+to both $x$ and $y$ in $\interval(\set{x,y})$. This results
+in the four squares displayed above (NB: $\ell_x=\ell_y$).
+Since the squares have to commute we get $\ell_0 = \ell_1$.  
+In higher dimensions all values are
+determined by naturality, and naturality is compatible with each of the
 four possible choices (recall that objects in $\interval$ can be
 non-degenerated in at most one direction).  This yields in total four
 lines from $p$ to $p$ in $N^\interval$.
