@@ -113,7 +113,7 @@
 \newcommand{\app}{\mathsf{app}}
 \newcommand{\APP}{\mathsf{APP}}
 \newcommand{\BAPP}[2]{\mathsf{app}(#1,#2)}
-\newcommand{\nat}{{N}}
+\newcommand{\nat}{\mathsf{N}}
 \newcommand{\NNO}{\hbox{\sf N$_0$}}
 \newcommand{\UU}{\hbox{\sf U}}
 \newcommand{\VV}{\hbox{\sf V}}
@@ -210,37 +210,39 @@ hold definitionally, whereas these equations normally hold only pathwise.
 
 \section*{Introduction}
 
-In \cite{Voevodsky}, Voevodsky proposes a new axiom in dependent type theory:
-the Univalence Axiom. This is an interesting axiom for several reasons.
-First, it supports the smooth formalization of homotopy theory in type theory.
-Second, it opens up for many improvements of the encoding in type theory
-of mathematics in general: function extensionality, identification of isomorphic
+In \cite{Voevodsky}, Voevodsky proposes a new axiom in dependent type
+theory: the Univalence Axiom. This is an interesting axiom for several
+reasons.  It opens up for many improvements of programming with
+dependent types and the encoding in type theory of mathematics in
+general: function extensionality, identification of isomorphic
 structures, quotients, etc.
 
-In order to preserve the good computational properties of type theory it is
-crucial that postulated axioms have a computational interpretation.
-Concerning univalence, this is an important open problem.
-One way of attacking this problem is by constructing a model of the new
-axiom, preferably in type theory itself, or at least in a constructive metalogic.
-The computational interpretation can then be obtained through the semantics,
-for example, by evaluating a term of type $\nat$ in the model.
+In order to preserve the good computational properties of type theory
+it is crucial that postulated axioms have a computational
+interpretation.  Concerning univalence, this is an important open
+problem.  One way of attacking this problem is by constructing a model
+of the new axiom, preferably in type theory itself, or at least in a
+constructive metalogic.  The computational interpretation can then be
+obtained through the semantics, for example, by evaluating a term of
+type $\nat$ (natural numbers) in the model.
 
 The model of type theory with the Univalence Axiom given by Voevodsky
 
 \cite{Voevodsky} is based on Kan simplicial sets.
-Simplicial set maps must preserve degeneracy.
+% Simplicial set maps must preserve degeneracy.
 A problem with a constructive approach to
 Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
 This problem makes it impossible to use the Kan simplicial set model
 to obtain a computational interpretation of univalence.
 
-We present a model of dependent type theory in cubical sets.
-This provides a generalization to dependent types
-of Takeuti/Gandy's interpretation of extensional in intensional type theory \cite{Gandy}, but also
-a generalization of Bishop's notion of {\em set} \cite{Bishop}.
-While not expressed internally in type theory, this model is expressed in a constructive metalogic.
-It can be seen as a simplification and a constructive version of the
-Kan simplicial set model of type theory \cite{Voevodsky}.
+We present a model of dependent type theory in cubical sets.  This
+provides a generalization to dependent types of Takeuti/Gandy's
+interpretation of extensional in intensional type theory \cite{Gandy},
+but also a generalization of Bishop's notion of {\em set}
+\cite{Bishop}.  While not expressed internally in type theory, this
+model is expressed in a constructive metalogic.  It can be seen as a
+simplification and a constructive version of the Kan simplicial set
+model of type theory \cite{Voevodsky}.
 
 Cubical sets are already known for some time, see \cite{Serre}, \cite{Kan},
 or \cite{Crans}, \cite{Williamson} for a more recent account.
@@ -250,43 +252,63 @@ Here we consider a symmetrical variant based on finite sets (of \emph{names}).
 %Our notion of cubical set is a variation of the presentation in \cite{Crans}.
 We introduce the base category $\CC$ of names and substitutions.
 A \emph{cubical set} is then a covariant presheaf on $\CC$.
-We adopt the presheaf semantics of type theory,
-using Dybjer's notion of \emph{category with families} \cite{Dybjer}.
-In this semantics a context $\Gamma$ is interpreted by a cubical set,
-and a dependent type $\Gamma\vdash A$ by a family of sets and maps between these,
-regimented by uniformity conditions imposed by the base category
-(see \cite{Dybjer},\cite{Hofmann}, or Section~\ref{sec:presheaf-models}).
-To the interpretation of a dependent type one can associate a specific fibration.
-Like for the classical model based on simplicial sets,
-we restrict our model by considering only Kan fibrations,
-which are essential for validating univalent.
-{\bf I'm not satisfied yet with the next sentences.}
-In order to preserve the Kan filling condition under all type forming
-operations, in particular $\Pi$, a certain uniformity is required.
-Moreover, we want proofs to be constructive. This can be achieved
-by an induction loading in the form of
-a strengthening of the usual Kan filling condition. 
-The strengthening of the Kan condition is natural given the reformulation of the notion of cubical sets
-that we present in the first section. This reformulation opens connections with the study of nominal
-sets \cite{pitts}; one connection is elaborated in \cite{Pitts}.
+
+We adopt the presheaf semantics of type theory, using Dybjer's notion
+of \emph{category with families} \cite{Dybjer}.  In this semantics a
+context $\Gamma$ is interpreted by a cubical set, and a dependent type
+$\Gamma\vdash A$ by a family of sets and maps between these,
+regimented by equations imposed by the base category.
+
+% (see
+% \cite{Dybjer},\cite{Hofmann}, or Section~\ref{sec:presheaf-models}).
+
+% To the interpretation of a dependent type one can associate a specific
+% fibration.  Like for the classical model based on simplicial sets, we
+% restrict our model by considering only Kan fibrations, which are
+% essential for validating univalent.
+
+To the interpretation of a dependent type one can associate a specific
+fibration.  Like for the classical model based on simplicial sets
+where one restricts the model to Kan fibrations, we restrict our model
+by requiring a certain \emph{Kan structure} on dependent types.  Such
+a Kan structure requires fillers of open boxes.  In order for this
+structure to be preserved---in a constructive metalogic---under all
+type forming operations, in particular $\Pi$, a certain uniformity
+condition is required on the choice of the fillers. This structure is
+essential for validating the elimination rule of identity types.
+
+The strengthening of the Kan condition is natural given the
+reformulation of the notion of cubical sets that we present in the
+first section. This reformulation opens connections with the study of
+nominal sets \cite{pitts}; one connection is elaborated in
+\cite{Pitts}.
 
 %Perhaps we don't discuss alternatives such as semi simple sets and
 %(One other possible attempt to solve this problem is by marking the degenerated elements, 
 %but it is not clear yet in this approach how to treat exponentials in a satisfactory way.) 
 
-The paper is structured as follows. In the next two section we introduce the category of 
-names and substitutions and we define cubical sets.
-In Section~\ref{sec:presheaf-models} we explain the presheaf semantics of type theory
-in the special case of cubical sets. In the next two sections we define
-the uniform Kan condition and we give examples of cubical sets.
-In Section~\ref{sec:kancubsetmodel} we show that cubical
-sets are a model for dependent types.  In the last section we show how
-identity types can be interpreted the cubical set model, and describe
-the universe, and how to transform an equivalence in an equality of
-types.  Finally, we explain how to represent in our model spaces up to
-homotopy such as the sphere, and the operation of propositional
-reflection, giving in particular a new computational interpretation of
-the axiom of description \cite{Russell}.
+
+C.~Cohen, A.~M\"ortberg and the last two authors have implemented a
+type checker\footnote{Available at: {\tt github.com/simhu/cubical}}
+based on this paper.  This implementation supports computing with the
+univalence axiom.  The correctness of this implementation and the
+verification of univalence in the semantics presented here are
+addressed in future research.
+
+The paper is structured as follows. In the next two section we
+introduce the category of names and substitutions and we define
+cubical sets.  In Section~\ref{sec:presheaf-models} we explain the
+presheaf semantics of type theory in the special case of cubical
+sets. In the next two sections we define the uniform Kan condition and
+we give examples of cubical sets.  In Section~\ref{sec:kancubsetmodel}
+we show that Kan cubical sets are a model for dependent types.  In the
+last section we show how identity types can be interpreted the Kan
+cubical set model, and describe the universe as a cubical set, and how
+to transform an equivalence in an equality of types.  Finally, we
+explain how to represent in our model spaces up to homotopy such as
+the sphere, and the operation of propositional reflection, giving in
+particular a new computational interpretation of the axiom of
+description \cite{Russell}.
 
 \section{The category of names and substitutions}
 
@@ -1014,6 +1036,12 @@ done in the proofs of the following theorems.
   other parts of the definition.
 \end{proof}
 
+Notice that we make essential use of the uniformity conditions in the
+above proof in order to verify that the fillers we define are indeed
+elements in the dependent product .  Moreover, note that, for general
+$J$, the fillings used from $\Gamma \vdash A$ are only with $J$ such
+that $\lvert J \rvert \leq 1$.
+
 \subsection{Sum type}
 
 \begin{theorem}
@@ -1177,33 +1205,37 @@ $$
 The fact that the filling operations commute with substitution ensures
 that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
 
-To summarize, we have an interpretation in the Kan cubical set model
-of the following rules:
-\begin{gather*}
-  \frac {\Gamma \vdash A \quad \Gamma \vdash a : A \quad \Gamma \vdash
-    b : A} {\Gamma \vdash \Id_A~a~b} \qquad
-  %
-  \frac {\Gamma \vdash a : A} {\Gamma\vdash \Ref a:\Id_A~a~a} \qquad
-  \\
-  \frac {\Gamma\vdash a:A \quad \Gamma\vdash b:A \quad \Gamma\vdash
-    u:\Id_A~a~b \quad \Gamma.A \vdash P \quad \Gamma\vdash v:P[a]}
-  {\Gamma\vdash \Transp(u,v):P[b]}
-  \\
-  \frac {\Gamma \vdash a : A \quad \Gamma.A \vdash P \quad \Gamma
-    \vdash v : P [a]} {\Gamma \vdash \HH (v):\Id_{P[a]}~v~\Transp(\Ref
-    a,v)}
-  \\
-  \frac {\Gamma \vdash a : A} {\Gamma \vdash \mathsf{contr}\, a :
-    \Pi\, T (\Id_{T \pp} (a, \Ref a)~\qq) } \quad \text {where } T =
-  \Sigma\,A\,(\Id_{A \pp} a \pp~ \qq)
-\end{gather*}
-plus equations that these commute with substitutions, e.g.,
-$(\Id_A~a~b) \sigma = \Id_{A \sigma}~a\sigma~ b\sigma$.
+We summarize the rules we interpret in the Kan cubical set model in
+Figure~\ref{fig:idtype}, where we left out the equations that the
+operations commute with substitutions, e.g., $(\Id_A~a~b) \sigma =
+\Id_{A \sigma}~a\sigma~ b\sigma$.
+\begin{figure}[t]
+  \label{fig:idtype}
+  \caption{Rules for $\Id$-types}
+  \begin{gather*}
+    \frac {\Gamma \vdash A \quad \Gamma \vdash a : A \quad \Gamma \vdash
+      b : A} {\Gamma \vdash \Id_A~a~b} \qquad
+    %
+    \frac {\Gamma \vdash a : A} {\Gamma\vdash \Ref a:\Id_A~a~a} \qquad
+    \\
+    \frac {\Gamma\vdash a:A \quad \Gamma\vdash b:A \quad \Gamma\vdash
+      u:\Id_A~a~b \quad \Gamma.A \vdash P \quad \Gamma\vdash v:P[a]}
+    {\Gamma\vdash \Transp(u,v):P[b]}
+    \\
+    \frac {\Gamma \vdash a : A \quad \Gamma.A \vdash P \quad \Gamma
+      \vdash v : P [a]} {\Gamma \vdash \HH (v):\Id_{P[a]}~v~\Transp(\Ref
+      a,v)}
+    \\
+    \frac {\Gamma \vdash a : A} {\Gamma \vdash \mathsf{contr}\, a :
+      \Pi\, T (\Id_{T \pp} (a, \Ref a)~\qq) } \quad \text {where } T =
+    \Sigma\,A\,(\Id_{A \pp} a \pp~ \qq)
+  \end{gather*}
+\end{figure}
 
 N.A.~Danielsson has checked formally in Agda that these properties are
 enough to develop all basic propositions of univalent mathematics;
-this Agda development\footnote{Available at {\tt
-    www.cse.chalmers.se/\textasciitilde nad/}.} is accompanying the
+this Agda development\footnote{Available at: {\tt
+    www.cse.chalmers.se/\textasciitilde nad/}} is accompanying the
 paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
@@ -1484,40 +1516,32 @@ $b(y=0) = \sigma a$.
 It can be then be checked in an elementary way that if $\sigma$ is an equivalence,
 then this ``heterogeneous'' notion of cube has the uniform Kan property.
 
- In pictures, the main issue is to complete an open box
-
+In pictures, the main issue is to complete an open box
 \begin{diagram}
 \sigma a_0 & \rTo & b_0    \\
            &      & \dTo \\
 \sigma a_1 & \rTo & b_1
 \end{diagram}
-
 to a square
-
 \begin{diagram}
 a_0  & \sigma a_0 & \rTo & b_0    \\
 \dTo & \dTo       &      & \dTo \\
 a_1  & \sigma a_1 & \rTo & b_1
 \end{diagram}
-
- For this, using the fact that $\sigma$ is an equivalence, we transform the open box in an open box in $A$
-
+For this, using the fact that $\sigma$ is an equivalence, we transform
+the open box in an open box in $A$
 \begin{diagram}
 a_0 & \rTo & \delta b_0    \\
            &      & \dTo \\
 a_1 & \rTo & \delta b_1
 \end{diagram}
-
 and since $A$ is Kan, it can be filled to a box
-
 \begin{diagram}
 a_0 & \rTo & \delta b_0    \\
 \dTo       &      & \dTo \\
 a_1 & \rTo & \delta b_1
 \end{diagram}
-
 and we can then fill the box in $B$
-
 \begin{diagram}[tight,width=2em,height=2em]
 a_0 & & \sigma a_0 &                 &               &  \rTo   &      &           &               b_0 \\
     & &  & \rdTo           &               &               &      & \ldTo     &   \\
@@ -1527,7 +1551,6 @@ a_0 & & \sigma a_0 &                 &               &  \rTo   &      &         
  &  &    & \ruTo^{}  &               &               &      &  \luTo    &   \\
 a_1 &  & \sigma a_1    &                 &   \rTo        &               &      &                & b_1
 \end{diagram}
-
 \medskip
 
  Since our model is constructive, this gives a way to effectively transport properties and structures
