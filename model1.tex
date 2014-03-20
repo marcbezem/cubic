@@ -320,7 +320,7 @@ $f(i)$ and $f(j)$ are in $J$. Notice that $\set{0,1}$ is disjoint from $J$ since
 names. We say that $i$ is in the \emph{domain} of $f$, or that $f(i)$ is \emph{defined},
 if $f(i)$ is an element of $J$\footnote%
 {In a previous attempt, we have been considering the category of finite sets
-with maps $I \to J+2$ (i.e. the Kleisli category for the monad $I+2$).
+with maps $I \to J+2$ (i.e.\ the Kleisli category for the monad $I+2$).
 This category appears on pages 47--48 in Pursuing Stacks
 \cite{Grothendieck} as ``in a sense, the smallest test category''.}.
 So the condition for $f$ being a morphism can be reformulated by saying that $f$ is injective on its domain.
@@ -419,7 +419,7 @@ not need to be decidable.
 
  If $X$ is a cubical set and $a$ and $u$ are two points ($\es$-cube) of $X$ we can define a new cubical set $\Id_X~a~u$
 by taking an element in $(\Id_X~a~u)(I)$ to be an $I,x$-cube $\omega$ of $X$ where $x$ is
-a fresh variable (i.e., $x \notin I$), such that $\omega(x=0) = a$ and $\omega(x=1) = u$. The name $x$ is ``bound''
+a fresh variable (i.e.\ $x \notin I$), such that $\omega(x=0) = a$ and $\omega(x=1) = u$. The name $x$ is ``bound''
 in this operation so that another $I,x'$-cube $\omega'$ is equal to $\omega$
 if{f} $\omega'(x'=x) = \omega$.
 %More precisely, if $I=\set{x_1,\dots,x_n}$, then the morphisms
@@ -457,10 +457,10 @@ theory~\cite{Cartmell}.  To give a CwF is to give:
 \end{enumerate}
 This amounts to validate the rules given in Figure~\ref{MLTT}.  Note
 that we use polymorphic notation to increase readability as in
-\cite{Cartmell,Dybjer}; e.g., without this convention we should have
+\cite{Cartmell,Dybjer}; e.g.\ without this convention we should have
 written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
 \Gamma.A \to \Gamma$.  Also, we leave the type parameters implicit,
-e.g., $(A \sigma) \delta = A (\sigma \delta)$ tacitly assumes the
+e.g.\ $(A \sigma) \delta = A (\sigma \delta)$ tacitly assumes the
 premises $\sigma \colon \Delta \to \Gamma$, $\delta \colon \Theta \to
 \Delta$ and $\Gamma \vdash A$.  These points are also stressed in
 \cite[Sec.~1]{VoevodskyCMU} and \cite{Dybjer}.
@@ -472,22 +472,22 @@ we use covariant presheaves and write composition in diagram order.
 
 A context $\Gamma$, written $\Gamma \vdash$, is interpreted by a
 cubical set, and context morphisms $\sigma:\Delta\to\Gamma$ are
-interpreted as cubical set maps (i.e., natural transformations), i.e.,
-that we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a
-$I$-cube of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by
-sets $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with
-maps (also called restrictions) $A\alpha\to A\alpha f,~u\longmapsto
-uf$ for each $f \colon I \to J$, satisfying $u1 = u$ and $u(fg) =
-(uf)g$.  A section (or term) $\Gamma\vdash a:A$ is defined by giving
-an element $a\alpha$ in $A\alpha$ for each $I$-cube $\alpha$ of
-$\Gamma$ in such a way that $(a\alpha) f = a (\alpha f)$ for any $f
-\colon I \to J$.  The empty context $()$ is given by the cubical set
-with exactly one $I$-cube for each $I$.  Given $\Gamma \vdash A$ and
-$\sigma \colon \Delta \to \Gamma$ we define $\Delta \vdash A \sigma$
-by $(A \sigma) \alpha = A (\sigma \alpha)$ and the induced maps;
-likewise, substitution in a term $\Gamma \vdash a : A$ is given by $(a
-\sigma) \alpha = a (\sigma \alpha)$.  If $\Gamma\vdash A$, we define
-the cubical set $\Gamma.A$ by taking as $I$-cubes of $\Gamma.A$ pairs
+interpreted as cubical set maps (i.e.\ natural transformations), that
+is we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a $I$-cube
+of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by sets
+$A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with maps
+(also called restrictions) $A\alpha\to A\alpha f,~u\longmapsto uf$ for
+each $f \colon I \to J$, satisfying $u1 = u$ and $u(fg) = (uf)g$.  A
+section (or term) $\Gamma\vdash a:A$ is defined by giving an element
+$a\alpha$ in $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such
+a way that $(a\alpha) f = a (\alpha f)$ for any $f \colon I \to J$.
+The empty context $()$ is given by the cubical set with exactly one
+$I$-cube for each $I$.  Given $\Gamma \vdash A$ and $\sigma \colon
+\Delta \to \Gamma$ we define $\Delta \vdash A \sigma$ by $(A \sigma)
+\alpha = A (\sigma \alpha)$ and the induced maps; likewise,
+substitution in a term $\Gamma \vdash a : A$ is given by $(a \sigma)
+\alpha = a (\sigma \alpha)$.  If $\Gamma\vdash A$, we define the
+cubical set $\Gamma.A$ by taking as $I$-cubes of $\Gamma.A$ pairs
 $(\alpha,u)$ with $\alpha$ an $I$-cube of $\Gamma$ and $u$ in
 $A\alpha$. For $f:I\to J$ we define $(\alpha,u)f = (\alpha f,u f)$.
 The first projection $\pp \colon \Gamma.A \to \Gamma$, $\pp (\alpha,
@@ -518,7 +518,7 @@ b (\alpha, u\alpha) = (b [u]) \alpha$.
 
 The definition of dependent sums is easier: $\Gamma\vdash\Sigma\,A\,B$
 for $\Gamma \vdash A$ and $\Gamma.A \vdash B$ is defined by sums in
-each stage, i.e., for an $I$-cube $\alpha$ in $\Gamma$,
+each stage, i.e.\ for an $I$-cube $\alpha$ in $\Gamma$,
 $(\Sigma\,A\,B)\alpha$ consists of pairs $(u,v)$ with $u$ in $A
 \alpha$ and $v$ in $B (\alpha, u)$.  Restrictions are defined
 component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  If
@@ -724,7 +724,7 @@ important motivation for the main result of the next section, implying
 that $B^A$ is a Kan cubical set if both $A$ and $B$ are.
 
 Every set $A$ gives rise to the \emph{discrete cubical set} $\discr A$
-via the constant presheaf, i.e., $(\discr A) (I) = A$ for each $I$ and
+via the constant presheaf, i.e.\ $(\discr A) (I) = A$ for each $I$ and
 all restrictions are the identity map $A \to A$.  Note that in an open
 box $\vec u$ all the components have to be equal, say $u$, and this
 $u$ is also the (unique) filler $u = \rup {\discr A} {\vec u}$ making
@@ -942,7 +942,7 @@ This completes the proof that the cubical nerve of a groupoid is Kan.
 In this section we will give a refinement of the model given in
 Section~\ref{sec:presheaf-models}.  The \emph{Kan cubical set model}
 is given as follows: contexts and contexts morphisms are interpreted
-as in Section~\ref{sec:presheaf-models}, i.e., by cubical sets and
+as in Section~\ref{sec:presheaf-models}, i.e.\ by cubical sets and
 morphisms between cubical sets; a type is given by a type $\Gamma
 \vdash A$ in the sense of Section~\ref{sec:presheaf-models}
 \emph{together} with a Kan structure; terms are given as in
@@ -972,7 +972,7 @@ done in the proofs of the following theorems.
   For an $I$-cube $\alpha$ of $\Delta$ recall that $(A \sigma) \alpha
   = A (\sigma \alpha)$ as cubical sets; we define the filling
   operations in $(A \sigma) \alpha$ to be those in $A (\sigma
-  \alpha)$, i.e., we set $\rup{(A \sigma) \alpha} {\vec u} = \rup {A
+  \alpha)$, i.e.\ we set $\rup{(A \sigma) \alpha} {\vec u} = \rup {A
     (\sigma \alpha)} {\vec u}$.  With this definition it is clear that
   $A 1$ and $A$ have the same filling operations, and similarly for
   the other equation.
@@ -1284,7 +1284,7 @@ that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
 
 We summarize the rules we interpret in the Kan cubical set model in
 Figure~\ref{fig:idtype}, where we left out the equations that the
-operations commute with substitutions, e.g., $(\Id_A~a~b) \sigma =
+operations commute with substitutions, e.g.\ $(\Id_A~a~b) \sigma =
 \Id_{A \sigma}~a\sigma~ b\sigma$.
 \begin{figure}[t]
   \label{fig:idtype}
@@ -1409,7 +1409,7 @@ defines $U$ as a cubical set.
 % \backslash I$ to the category of small sets.  Moreover, we require
 % operations similar to the uniform Kan conditions: For any $f \colon
 % I \to K$ and $J, x \subseteq K$ with $x \notin J$, and $\vec a$ an
-% open box in $A_f$, i.e., $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
+% open box in $A_f$, i.e. $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
 % \in \OO^+ (J,x)$ such that
 % \[
 % a_{yb} (z=c) = a_{zc} (y=b) \quad \text{for }(y,b),(z,c) \in \OO^+
@@ -1456,7 +1456,7 @@ define $(a,b)g = (ag,bg)$.
 It remains to define the Kan fillings for $C$; it suffices to give
 them for $C_1$ as $C_f$ is either determined by $A_f$, $B_f$, or
 $\comp (Af,Bf)_1$; so let $J, x' \subseteq I$, $x' \notin J$, and
-$\vec u$ be a open box in $C_1$, i.e., $u_{yc} \in C_{(y=c)}$ for
+$\vec u$ be a open box in $C_1$, i.e.\ $u_{yc} \in C_{(y=c)}$ for
 $(y,c) \in \OO^+ (J,x')$ with $u_{yc} (z=d) = u_{zd} (y=c)$.  Note
 that for $y \neq x$, $u_{yc}= (a_{yc}, b_{yc})$ with $a_{yc} \in A_1$
 and $b_{yc} \in B_1$ with $a_{yc} (x=1) = b_{yc} (x=0)$.  We want to
@@ -1497,7 +1497,7 @@ being contractible $\isContr A$ to be $(\Sigma {a : A}) (\Pi {x : A})
 \, \Id_A~a~x$.  The \emph{fiber} $\fib_\sigma b$ of a map $\sigma
 \colon A \to B$ over $b : B$ is defined as $(\Sigma {x : A}) \,
 \Id_B~\app (f,x)~ b$.  A map $\sigma \colon A \to B$ is an
-\emph{equivalence} if all its fibers are contractible, i.e., if
+\emph{equivalence} if all its fibers are contractible, i.e.\ if
 \[
 (\Pi b : B) \, \isContr (\fib_\sigma b).
 \]
