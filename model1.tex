@@ -26,7 +26,8 @@
 \DeclareMathOperator{\Ref}{\mathsf{Ref}}
 \DeclareMathOperator{\Transp}{\mathsf{T}}
 \DeclareMathOperator{\HH}{{\sf H}}
-\newcommand{\inh}{\mathsf{inh}}
+\DeclareMathOperator{\inh}{\mathsf{inh}}
+\DeclareMathOperator{\prop}{\mathsf{prop}}
 
 \DeclareMathOperator{\Jel}{\mathsf{J}}
 
@@ -197,15 +198,13 @@ simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'
 
 
 \begin{abstract}\noindent
-We present a model of type theory with dependent product, sum, and identity, in cubical sets.
-We describe a universe and explain how to transform an equivalence between two types in an equality. 
-We also explain how to model propositional truncation and the circle.
-While not expressed internally in type theory, the model is expressed in a constructive metalogic.
-Thus it is a step towards a computational interpretation of Voevodsky's Univalence Axiom.
-It is not the final solution of this important problem: for example, the eliminator for identity types
-satisfies the usual computational equations only pathwise, not definitionally.
-Interestingly, the converse also occurs: for example, concerning functoriality several equations
-hold definitionally, whereas these equations normally hold only pathwise.
+  We present a model of type theory with dependent product, sum, and
+  identity, in cubical sets.  We describe a universe and explain how
+  to transform an equivalence between two types in an equality.  We
+  also explain how to model propositional truncation and the circle.
+  While not expressed internally in type theory, the model is
+  expressed in a constructive metalogic.  Thus it is a step towards a
+  computational interpretation of Voevodsky's Univalence Axiom.
 \end{abstract}
 
 \section*{Introduction}
@@ -288,12 +287,11 @@ nominal sets \cite{pitts}; one connection is elaborated in
 %but it is not clear yet in this approach how to treat exponentials in a satisfactory way.) 
 
 
+Based on the model described in this paper (a nominal version of it)
 C.~Cohen, A.~M\"ortberg and the last two authors have implemented a
 type checker\footnote{Available at: {\tt github.com/simhu/cubical}}
 based on this paper.  This implementation supports computing with the
-univalence axiom.  The correctness of this implementation and the
-verification of univalence in the semantics presented here are
-addressed in future research.
+univalence axiom and Kan operations for the universe.
 
 The paper is structured as follows. In the next two section we
 introduce the category of names and substitutions and we define
@@ -303,12 +301,13 @@ sets. In the next two sections we define the uniform Kan condition and
 we give examples of cubical sets.  In Section~\ref{sec:kancubsetmodel}
 we show that Kan cubical sets are a model for dependent types.  In the
 last section we show how identity types can be interpreted the Kan
-cubical set model, and describe the universe as a cubical set, and how
-to transform an equivalence in an equality of types.  Finally, we
-explain how to represent in our model spaces up to homotopy such as
-the sphere, and the operation of propositional reflection, giving in
-particular a new computational interpretation of the axiom of
-description \cite{Russell}.
+cubical set model, and describe the universe as a cubical set (and
+only indicate how Kan fillings can be given), and how to transform an
+equivalence in an equality of types.  Finally, we explain how to
+represent in our model spaces up to homotopy such as the sphere, and
+the operation of propositional reflection, giving in particular a new
+computational interpretation of the axiom of description
+\cite{Russell}.
 
 \section{The category of names and substitutions}
 
@@ -447,11 +446,15 @@ to any cubical set. A category equivalent to to the category of cubical sets is 
 We will now recall how cubical sets, as does any presheaf category,
 give rise to a model of dependent type theory.  We use Dybjer's notion
 of \emph{category with families} (CwF) to devise such a
-model~\cite{Dybjer,Curien,Hofmann}.  We would like to stress the fact
-that such a structure is described by a generalized algebraic
-theory~\cite{Cartmell}.  To give a CwF is to give interpretations (as
-sets) for the sorts of contexts, context morphisms (substitutions),
-types and terms, together with operations satisfying some equations.
+model~\cite{Dybjer,Curien,Hofmann}.  We stress the fact that such a
+structure is described by a generalized algebraic
+theory~\cite{Cartmell}.  To give a CwF is to give:
+\begin{enumerate}
+\item interpretations (as sets) for the sorts of contexts; context
+  morphisms (substitutions), types and terms;
+\item operations;
+\item checking equations;
+\end{enumerate}
 This amounts to validate the rules given in Figure~\ref{MLTT}.  Note
 that we use polymorphic notation to increase readability as in
 \cite{Cartmell,Dybjer}; e.g., without this convention we should have
@@ -460,7 +463,7 @@ written $\pp_{\Gamma, A}$ for the first projection $\pp \colon
 e.g., $(A \sigma) \delta = A (\sigma \delta)$ tacitly assumes the
 premises $\sigma \colon \Delta \to \Gamma$, $\delta \colon \Theta \to
 \Delta$ and $\Gamma \vdash A$.  These points are also stressed in
-\cite[Sec.~1]{VoevodskyCMU}.
+\cite[Sec.~1]{VoevodskyCMU} and \cite{Dybjer}.
 
 We will now describe how cubical sets give rise to such a structure.
 This construction works for any presheaf category and is described
@@ -469,7 +472,7 @@ we use covariant presheaves and write composition in diagram order.
 
 A context $\Gamma$, written $\Gamma \vdash$, is interpreted by a
 cubical set, and context morphisms $\sigma:\Delta\to\Gamma$ are
-interpreted as cubical set maps (i.e., natural transformations), so
+interpreted as cubical set maps (i.e., natural transformations), i.e.,
 that we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a
 $I$-cube of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by
 sets $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with
@@ -523,6 +526,80 @@ $\Gamma \vdash w : \Sigma\,A\,B$ and $w \alpha = (u,v)$, then $(\pp w)
 \alpha = u$ and $(\qq w) \alpha = v$.
 
 We can then verify all the equations of Figure~\ref{MLTT}.
+\begin{figure}[t]
+\caption{Rules of MLTT\label{MLTT}}
+\centering
+$$
+\frac{\Gamma\vdash}{1:\Gamma\to \Gamma}~~~~~~~~
+\frac{\sigma:\Delta\to\Gamma~~~~\delta:\Theta\to\Delta}
+     {\sigma\delta:\Theta\to\Gamma}
+$$
+$$
+\frac{\Gamma\vdash A~~~~~~\sigma:\Delta\to\Gamma}{\Delta\vdash A\sigma}~~~~~
+\frac{\Gamma\vdash t:A~~~~~~\sigma:\Delta\to\Gamma}{\Delta\vdash t\sigma:A\sigma}~~~~~
+$$
+$$
+\frac{}{()\vdash}~~~~~~
+\frac{\Gamma\vdash~~~~~\Gamma\vdash A}{\Gamma.A\vdash}~~~~~~~~~~
+\frac{\Gamma\vdash A}{\pp:\Gamma.A\to\Gamma}~~~~~~~~~
+\frac{\Gamma\vdash A}{\Gamma.A\vdash \qq:A\pp}
+$$
+$$
+\frac{\sigma:\Delta\to\Gamma~~~~\Gamma\vdash A~~~~~\Delta\vdash u:A\sigma}
+     {(\sigma,u):\Delta\to\Gamma.A}~~~~~~~~
+$$
+$$
+\frac{\Gamma.A\vdash B}{\Gamma\vdash\Pi~A~B}~~~~~~~~
+\frac{\Gamma.A\vdash B~~~~\Gamma.A\vdash b:B}
+     {\Gamma\vdash\lambda b:\Pi~A~B}
+%\frac{\Gamma.A\vdash b:B}{\Gamma\vdash\lambda b:\Pi~A~B}
+$$
+$$
+\frac{\Gamma.A\vdash B}{\Gamma\vdash\Sigma~A~B}~~~~~~~~
+\frac{\Gamma.A\vdash B~~~~\Gamma\vdash u:A~~~~\Gamma\vdash v:B[u]}
+     {\Gamma\vdash (u,v):\Sigma~A~B}
+$$
+$$
+\frac{\Gamma\vdash w:\Pi~A~B~~~~~~\Gamma\vdash u:A}
+     {\Gamma\vdash \app(w,u):B[u]}
+$$
+$$
+\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \pp w : A}~~~~~~~
+\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \qq w : B[\pp w]}
+$$
+
+
+\medskip
+
+$$
+{1\sigma = \sigma 1 = \sigma}~~~~~~{(\sigma\delta)\nu = \sigma(\delta\nu)}~~~~~~~~[u] = (1,u)
+$$
+$$
+{A 1 = A \quad (A \sigma) \delta = A (\sigma \delta) \qquad  u 1 = u \quad
+(u \sigma) \delta = u (\sigma \delta)}
+$$
+$$
+{(\sigma,u)\delta = (\sigma\delta,u\delta)} \quad {\pp (\sigma,u) =
+  \sigma} \quad {\qq(\sigma,u) = u} \quad (\pp, \qq) = 1
+$$
+$$
+{(\Pi~A~B)\sigma = \Pi~(A\sigma)~(B(\sigma\pp,\qq))} \qquad
+{(\lambda b) \sigma = \lambda (b (\sigma \pp, \qq))}
+$$
+$$
+     {\app(w,u)\delta= \app(w\delta,u\delta)}\qquad
+     {\app(\lambda b,u)= b[u]}\qquad
+     {w = \lambda (\app(w \pp, \qq))} \qquad
+$$
+$$
+(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq)) \quad (\pp w)
+\sigma = \pp (w \sigma) \quad (\qq w) \sigma = \qq (w \sigma)
+$$
+$$
+(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = u \qquad \qq
+(u,v) = v
+$$
+\end{figure}
 
 \section{The uniform Kan condition}
 
@@ -1293,82 +1370,9 @@ $\lambda (b \pp)$ is constant.
 
 \medskip
 
-This interpretation of identity satisfies function extensionality.
+This interpretation of identity satisfies function extensionality
+(left to the reader).
 
-\begin{figure}[t]
-\caption{Rules of MLTT\label{MLTT}}
-\centering
-$$
-\frac{\Gamma\vdash}{1:\Gamma\to \Gamma}~~~~~~~~
-\frac{\sigma:\Delta\to\Gamma~~~~\delta:\Theta\to\Delta}
-     {\sigma\delta:\Theta\to\Gamma}
-$$
-$$
-\frac{\Gamma\vdash A~~~~~~\sigma:\Delta\to\Gamma}{\Delta\vdash A\sigma}~~~~~
-\frac{\Gamma\vdash t:A~~~~~~\sigma:\Delta\to\Gamma}{\Delta\vdash t\sigma:A\sigma}~~~~~
-$$
-$$
-\frac{}{()\vdash}~~~~~~
-\frac{\Gamma\vdash~~~~~\Gamma\vdash A}{\Gamma.A\vdash}~~~~~~~~~~
-\frac{\Gamma\vdash A}{\pp:\Gamma.A\to\Gamma}~~~~~~~~~
-\frac{\Gamma\vdash A}{\Gamma.A\vdash \qq:A\pp}
-$$
-$$
-\frac{\sigma:\Delta\to\Gamma~~~~\Gamma\vdash A~~~~~\Delta\vdash u:A\sigma}
-     {(\sigma,u):\Delta\to\Gamma.A}~~~~~~~~
-$$
-$$
-\frac{\Gamma.A\vdash B}{\Gamma\vdash\Pi~A~B}~~~~~~~~
-\frac{\Gamma.A\vdash B~~~~\Gamma.A\vdash b:B}
-     {\Gamma\vdash\lambda b:\Pi~A~B}
-%\frac{\Gamma.A\vdash b:B}{\Gamma\vdash\lambda b:\Pi~A~B}
-$$
-$$
-\frac{\Gamma.A\vdash B}{\Gamma\vdash\Sigma~A~B}~~~~~~~~
-\frac{\Gamma.A\vdash B~~~~\Gamma\vdash u:A~~~~\Gamma\vdash v:B[u]}
-     {\Gamma\vdash (u,v):\Sigma~A~B}
-$$
-$$
-\frac{\Gamma\vdash w:\Pi~A~B~~~~~~\Gamma\vdash u:A}
-     {\Gamma\vdash \app(w,u):B[u]}
-$$
-$$
-\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \pp w : A}~~~~~~~
-\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \qq w : B[\pp w]}
-$$
-
-
-\medskip
-
-$$
-{1\sigma = \sigma 1 = \sigma}~~~~~~{(\sigma\delta)\nu = \sigma(\delta\nu)}~~~~~~~~[u] = (1,u)
-$$
-$$
-{A 1 = A \quad (A \sigma) \delta = A (\sigma \delta) \qquad  u 1 = u \quad
-(u \sigma) \delta = u (\sigma \delta)}
-$$
-$$
-{(\sigma,u)\delta = (\sigma\delta,u\delta)} \quad {\pp (\sigma,u) =
-  \sigma} \quad {\qq(\sigma,u) = u} \quad (\pp, \qq) = 1
-$$
-$$
-{(\Pi~A~B)\sigma = \Pi~(A\sigma)~(B(\sigma\pp,\qq))} \qquad
-{(\lambda b) \sigma = \lambda (b (\sigma \pp, \qq))}
-$$
-$$
-     {\app(w,u)\delta= \app(w\delta,u\delta)}\qquad
-     {\app(\lambda b,u)= b[u]}\qquad
-     {w = \lambda (\app(w \pp, \qq))} \qquad
-$$
-$$
-(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq)) \quad (\pp w)
-\sigma = \pp (w \sigma) \quad (\qq w) \sigma = \qq (w \sigma)
-$$
-$$
-(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = u \qquad \qq
-(u,v) = v
-$$
-\end{figure}
 
 \subsection{Description of a universe}
 
@@ -1384,7 +1388,11 @@ $$
 % uniform Kan condition.
 
 We now describe the interpretation of $U$ as a universe of Kan cubical
-sets. Recall that the Yoneda embedding is denoted by $\yoneda$.  An
+sets.  We give $U$ only as a cubical set (following
+\cite{HofmannStreicher}) and only indicate how an operation similar to
+the Kan fillings can be given.
+
+Recall that the Yoneda embedding is denoted by $\yoneda$.  An
 element $A$ of $U(I)$ is a type $\yoneda I \vdash A$ with Kan
 structure such that for each $f \colon I \to J$ the set $A_f$ is small
 (we use subscripts to keep the notation separate from the
@@ -1493,13 +1501,16 @@ being contractible $\isContr A$ to be $(\Sigma {a : A}) (\Pi {x : A})
 \[
 (\Pi b : B) \, \isContr (\fib_\sigma b).
 \]
-If we now assume that $A$ and $B$ are Kan cubical sets (which
-corresponds to types in the empty context), this definition translates
-to: a map $\sigma:A\to B$ is an equivalence if there is a map
-$\delta:B\to A$ and a map $\sigma\delta b\to b$ and a transformation
-of any equality $\omega:\sigma a\to b$, where $a$ (resp. $b$) is an
-$I$-cube of $A$ (resp. $B$) to a ``square'' (really a pair of an
-$I,x$-cube of $A$ and an $I,x,y$-cube of $B$)
+This amounts to give $\varphi : (\Pi b : B) (\Sigma x : A) \Id_B~\app
+(f,x)~ b$ and $\psi : (\Pi b : A) (\Pi u : \fib_\sigma
+b)\,\Id_{\fib_\sigma b}~\app (\varphi, b)~u$.  If we now assume that
+$A$ and $B$ are Kan cubical sets (which corresponds to types in the
+empty context), this definition unfolds to the following data: a map
+$\sigma:A\to B$ is an equivalence if there is a map $\delta:B\to A$
+and a map assigning to $b$ a line $\sigma\delta b\to b$, and a
+transformation of any equality $\omega:\sigma a\to b$, where $a$
+(resp. $b$) is an $I$-cube of $A$ (resp. $B$) to a ``square'' (really
+a pair of an $I,x$-cube of $A$ and an $I,x,y$-cube of $B$)
 
 \begin{diagram}
 a          & \rTo & \delta b    \\
@@ -1565,39 +1576,68 @@ in this model in an elementary way as well.
 
 \subsection{Propositional reflection}
 
- We can describe the operation of Kan ``completion''. Given a cubical set $X$ we add
-operations $X^+$, $X\uparrow$, $X^-$, $X\downarrow$ in a {\em free} way, i.e.
-considering these operations as {\em constructors}.
- The uniformity condition defines what should be the degeneracies of these elements
-We get in this way a new cubical set $Y$, satisfying by definition the Kan extension
-property, with a map $X\to Y$. Furthermore, if $Z$ is Kan, and we have a map
-$\sigma:X\to Z$ there is a map $Y\to Z$ extending $\sigma$.
-This map is furthermore unique if we impose
-it to commute with the Kan  operations.
-In general however, the maps of Kan cubical sets do not need to commute with the Kan operations.
+We can describe the operation of Kan ``completion''. Given a cubical
+set $X$ we add operations $X^+$, $X\uparrow$, $X^-$, $X\downarrow$ in
+a {\em free} way, i.e.\ considering these operations as {\em
+  constructors}.  At the same time one defines the restrictions of the
+added operations, resulting in an inductive-recursive definition.  The
+uniformity condition determine what the restrictions of these elements
+should.  In this way we get a new cubical set $Y$, satisfying by
+definition the Kan extension property, with a map $X \to Y$.
+Furthermore, if $Z$ is Kan, and we have a map $\sigma:X\to Z$ there is
+a map $Y\to Z$ extending $\sigma$.  This map is furthermore unique if
+we impose it to commute with the Kan operations.  In general however,
+the maps of Kan cubical sets do not need to commute with the Kan
+operations.
 
- The same idea can be used to define the spheres. For instance $\Sph$ will be the
-Kan completion of the cubical set generated by a point ${\sf base}$ and a loop ${\sf loop}$.
-If we have a dependent type $\Sph\vdash P$ and $a$ in $P~{\sf base}$ and $l$ in $P~{\sf loop}$
-then we can define a section $\Sph\vdash t:P$ satisfying
-$$
-t~{\sf base} = a~~~~~~~~~~~t~{\sf loop} = l
-$$
+The same idea can be used to define $\inh X$, the {\em proposition}
+stating that $X$ is inhabited.  Besides adding constructors $(\inh
+X)^+$, $(\inh X)\uparrow$, $(\inh X)^-$ and $(\inh X)\downarrow$, we
+also add a constructor $\alpha_x(u_0,u_1)$ connecting formally along
+the dimension $x$ any two $I$-cubes $u_0$ and $u_1$ (with $x$ not in
+$I$) and constructors for the Kan filling and composition operations.
+Thus each $I$-cube $u$ in $\inh X$ is of one of the forms: either $u$
+an $I$-cube of X; a formal Kan filling, e.g.\ $\rup {(\inh X)} {\vec
+  u}$ with $\vec u$ an open box in $\inh X$; or of the form
+$\alpha_x(u_0,u_1)$ with $a_i$ in $(\inh X) (I-x)$.  At the same time
+we define the restrictions
+\[
+\alpha_x(u_0,u_1)(x=0) = u_0 \qquad \qquad \alpha_x(u_0,u_1)(x=1) =
+u_1
+\]
+and, if $f$ is defined on $x$ with $y=f(x)$,
+\[
+\alpha_x(u_0,u_1)f = \alpha_y(u_0(f-x),u_1(f-x)).
+\]
+This satisfies the required induction principle of $\inh X$: if we
+have a map $\varphi : X \to Y$, we can extend this to a map
+$\tilde\varphi : \prop Y \times \inh X \to Y$ where $\prop Y$ is $(\Pi
+y_0~y_1 : Y) \, \Id_Y~y_0~y_1$.  For $p \in(\prop Y) (I)$ and $u \in
+(\inh X) (I)$ we define $\tilde\varphi (p,u)$ in $Y (I)$ by induction
+on $u$.  The difficult case is when $u$ is $\alpha_x (u_0, u_1)$ with
+$x \in I$ and $u_i \in (\inh X) (I-x)$.  By induction hypothesis, we
+already defined $v_i = \tilde\varphi (p (x = 0), u_i) \in Y (I-x)$.
+Applying $p (x=0)$ to both $v_0$ and $v_1$ gives a path $\bind x
+\omega$ in $Y$ connecting $v_0$ to $v_1$, and we set $\tilde\varphi
+(p,u) = \omega$.  Note that the choice of $p (x = 0) \in (\prop Y)
+(I-x)$ above is \emph{not} canonical.
 
- Finally, we can define $\inh~X$, the {\em proposition} stating that $X$ is inhabited.
-For this we add a constructor $\alpha_x(a_0,a_1)$ connecting formally along the dimension $x$
-any two $I$-cubes  $a_0$ and $a_1$ (with $x$ not in $I$) and constructors for the Kan filling
-and composition operations. We define then
-$$\alpha_x(a_0,a_1)(x=0) ~=~ a_0~~~~~~~~\alpha_x(a_0,a_1)(x=1) ~=~ a_1$$
-and, if $f$ is defined on $x$ with $y=f(x)$
-$$\alpha_x(a_0,a_1)f ~=~ \alpha_y(a_0(f-x),a_1(f-x))$$
- This satisfies the required induction principle of $\inh~X$: if $Y$ is a proposition
-and $X\to Y$ then we have $\inh~X\to Y$.
+We can also define the spheres. For instance $\Sph$ will be the Kan
+completion of the cubical set generated by a point ${\sf base}$ and a
+loop ${\sf loop}$.
+% If we have a dependent type $\Sph\vdash P$ and $a$
+% in $P~{\sf base}$ and $l$ in $P~{\sf loop}$ then we can define a
+% section $\Sph\vdash t:P$ satisfying
+% \[
+% t~{\sf base} = a \qquad \qquad t~{\sf loop} = l
+% \]
 
- We can then define $\exists~A~B$ to be $\inh(\Sigma~A~B)$. If $\Sigma~A~B$ is a proposition we have
-an inhabitant of $\exists~A~B\to \Sigma~ A~B$ and this can be seen as a generalisation of
-the {\em axiom of description} since if $A$ set, $B$ proposition and $B$ is satisfied by at most
-one element of $A$ then $\Sigma~A~B$ is a proposition.
+We can then define $\exists~A~B$ to be $\inh(\Sigma~A~B)$. If
+$\Sigma~A~B$ is a proposition we have an inhabitant of $\exists~A~B\to
+\Sigma~ A~B$ and this can be seen as a generalisation of the {\em
+  axiom of description} since if $A$ set, $B$ proposition and $B$ is
+satisfied by at most one element of $A$ then $\Sigma~A~B$ is a
+proposition.
 
 \section*{Acknowledgement}
 The research for this paper has been started while the first two
@@ -1678,6 +1718,11 @@ M. Hofmann.
 \newblock{Semantics and logics of computation (A.M.~Pitts and
   P.~Dybjer, eds.), Cambridge University Press, p. 79--130, 1997.}
 
+\bibitem{HofmannStreicher}
+M. Hofmann and T. Streicher.
+\newblock{Lifting Grothendieck Universes.}
+\newblock{Unpublished note.}
+
 \bibitem{hurewicz}
 W. Hurewicz.
 \newblock{On the concept of fiber space.}
@@ -1687,6 +1732,12 @@ W. Hurewicz.
 D. Kan.
 \newblock{Abstract homotopy. I.}
 \newblock{Proc. Nat. Acad. Sci. U.S.A. 41, p. 1092--1096, 1955.}
+
+
+\bibitem{Voevodsky}
+C. Kapulkin, P.L. Lumsdaine and V. Voevodsky.
+\newblock{The Simplicial Model of Univalent Foundations.}
+\newblock{Preprint, 2012, {\tt http://arxiv.org/abs/1211.2851}}
 
 \bibitem{MLTT}
 P. Martin-L\"of.
@@ -1708,10 +1759,10 @@ B. Russell.
 \newblock{{\em Principia Mathematica}, second edition, Introduction.}
 \newblock{Cambridge University Press, 1925.}
 
-\bibitem{Russell1}
-B. Russell.
-\newblock{The Theory of Implications.}
-\newblock{American Journal of Mathematics, Vol. 28, 2, p. 159-202, 1906.}
+% \bibitem{Russell1}
+% B. Russell.
+% \newblock{The Theory of Implications.}
+% \newblock{American Journal of Mathematics, Vol. 28, 2, p. 159-202, 1906.}
 
 \bibitem{Serre}
 J.P. Serre.
@@ -1728,11 +1779,11 @@ G. Takeuti.
 \newblock{On a generalized logic calculus.}
 \newblock{{\em Japanese Journal of Mathemathics} 23, p. 39-96, 1953.}
 
-\bibitem{Tarski}
-A. Tarski.
-\newblock{\"Uber die Beschr\"anktheit der Ausdrucksmittel deduktiver Theorien.}
-\newblock{In {\em Ergebnisse eines mathematischen Kolloquiums}, facsicule 7 (1934-35),
-          English translation ``On the limitations of the means of expression of deductive theories''.}
+% \bibitem{Tarski}
+% A. Tarski.
+% \newblock{\"Uber die Beschr\"anktheit der Ausdrucksmittel deduktiver Theorien.}
+% \newblock{In {\em Ergebnisse eines mathematischen Kolloquiums}, facsicule 7 (1934-35),
+%           English translation ``On the limitations of the means of expression of deductive theories''.}
 
 \bibitem{HoTTbook}
 The Univalent Foundations Program.
@@ -1750,10 +1801,10 @@ V. Voevodsky.
   type theory.}
 \newblock{Talk at CMU on February 4, 2010.}
 
-\bibitem{Voevodsky}
-V. Voevodsky.
-\newblock{Univalent foundations project.}
-\newblock{NSF grant application, 2010.}
+% \bibitem{Voevodsky}
+% V. Voevodsky.
+% \newblock{Univalent foundations project.}
+% \newblock{NSF grant application, 2010.}
 
 \bibitem{Williamson}
 R. Williamson.
