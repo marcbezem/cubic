@@ -858,12 +858,12 @@ p\ar[rr]_{p}\ar[uu]^{p}& & p\ar[uu]_{\ell} &
 \star\ar[rr]_{0}\ar[uu]^{0}& & \star\ar[uu]_{1}     \\
 }
 \]
-By contradiction, assume we can fill the box.  Call the closing
-(dotted) line above $\ell'$.  Applying the first square to the second
-results in the third square, yielding $\ell'_0 = 0$.  Applying the
-first square to the fourth results in the last square, yielding
-$\ell'_1 = 1$.  This conflicts with $\ell'_0 = \ell'_1$ for any line
-$p\to p$.
+Assume we could fill the box.  Call the closing (dotted) line above
+$\ell'$.  Applying the first square to the second results in the third
+square, yielding $\ell'_0 = 0$.  Applying the first square to the
+fourth results in the last square, yielding $\ell'_1 = 1$.  This
+contradicts $\ell'_0 = \ell'_1$ for any line $p\to p$.  Hence the
+above box has no filler.
 
 \subsection{The nerve of a groupoid is Kan}\label{sec:groupoidnerve}
 Let $G$ be a groupoid, and $N$ its cubical nerve.
@@ -1576,7 +1576,7 @@ in this model in an elementary way as well.
 \subsection{Propositional reflection}
 
 We can describe the operation of Kan ``completion''. Given a cubical
-set $X$ we add operations $X^+$, $X\uparrow$, $X^-$, $X\downarrow$ in
+set $X$ we add operations $X^+$, $\rup X$, $X^-$, $\rdo X$ in
 a {\em free} way, i.e.\ considering these operations as {\em
   constructors}.  At the same time one defines the restrictions of the
 added operations, resulting in an inductive-recursive definition.  The
@@ -1591,7 +1591,7 @@ operations.
 
 The same idea can be used to define $\inh X$, the {\em proposition}
 stating that $X$ is inhabited.  Besides adding constructors $(\inh
-X)^+$, $(\inh X)\uparrow$, $(\inh X)^-$ and $(\inh X)\downarrow$, we
+X)^+$, $\rup {(\inh X)}$, $(\inh X)^-$ and $\rdo{(\inh X)}$, we
 also add a constructor $\alpha_x(u_0,u_1)$ connecting formally along
 the dimension $x$ any two $I$-cubes $u_0$ and $u_1$ (with $x$ not in
 $I$) and constructors for the Kan filling and composition operations.
