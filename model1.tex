@@ -817,53 +817,50 @@ the lines:
 \def\oo{{0 \atop 0}}
 \def\lo{{0 \atop 1}}
 \def\ll{{1 \atop 1}}
-N(\set{x,y}){:}~
+N(x,y){:}~
 0\oo0 \quad 1\oo1 \quad 0\ll0 \quad 1\lo0 \quad 1\ol0 \quad 0\ol1 \quad 0\lo1 \quad 1\ll1
 \quad\mbox{For later:}~0{\ell_x \atop \ell_x}0 \quad 0{\ell_1 \atop \ell_0}0
 \quad \ell_0{0 \atop 0}\ell_1 \quad \ell_y{0 \atop 0}\ell_y\]
 Being the nerve of a groupoid, $N$ is Kan (see the next section).
 
 We now show that $N^\interval$ is not Kan. By the Yoneda Lemma we have
-$N^\interval(J)\cong ((\yoneda J \times \interval) \to N)$, the
-latter denoting a set of natural transformations.  
-Defining $p\in N^\interval(J)$ means defining maps (index $K$ omitted)
-$p :\yoneda J (K) \to (\interval(K) \to N(K))$ for all $K$,
-such that $(p_f u) g = p_{fg}(ug)$ 
-for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
+$N^\interval(J)\cong ((\yoneda J \times \interval) \to N)$, the latter
+denoting a set of natural transformations.  Defining $p\in
+N^\interval(J)$ means defining maps (index $K$ omitted) $p :\yoneda J
+(K) \to (\interval(K) \to N(K))$ for all $K$, such that $(p_f u) g =
+p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
 
 We explore the points of $N^\interval$ and define $p\in
 N^\interval(\emptyset)$ by, first, $p_{()}:\interval(\emptyset)\to
-N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{(x)}:\interval(\set{x})\to
-N(\set{x}): 0,1 \mapsto\star(x)=0$ is forced by naturality, but for
-$p_{(x)} x$ there is a choice. If we choose $0$, we must make the same
-choice for all names $x$ in the name space.  The choice $1$ for all
-names $x$ in the name space would give the only other point. In higher
-dimensions all arguments are degenerated, determining the function
-values, and naturality is compatible with each of the two choices
-above. We now fix $p$ with $p_{(x)} x = 0$.
+N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{(x)}:\interval(x)\to N(x):
+0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p_{(x)} x$
+there is a choice. If we choose $0$, we must make the same choice for
+all names $x$ in the name space.  The choice $1$ for all names $x$ in
+the name space would give the only other point. In higher dimensions
+all arguments are degenerated, determining the function values, and
+naturality is compatible with each of the two choices above. We now
+fix $p$ with $p_{(x)} x = 0$.
 
 Next we explore lines from $p$ to $p$ in $N^\interval$, say in
-direction $i$, and define $\ell:p\to p$ in $N^\interval(\set{i})$ by
+direction $i$, and define $\ell:p\to p$ in $N^\interval(i)$ by
 $\ell_{(i=b)g} = p_g$ for all $b=0,1$ and $g:\es\to K$.  For
-$\ell_{(i=x)}: \interval(\set{x})\to N(\set{x})$ there is a choice. For
-the moment we put $\ell_{(i=x)} c = \ell_c$ for all $c\in
-\interval(\set{x})$. Note that we must make the same choices
-$\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.  
-On the next level, there is no choice left.
-First, $\ell_{(i=b)g} = p_g$ for $b=0,1$ and $g=\iota_x\iota_y$. 
-Moreover,
-$\ell_{(i=x)\iota_y,\ell_{(i=y)\iota_x}}: \interval(\set{x,y})\to N(\set{x,y})$
+$\ell_{(i=x)}: \interval(x)\to N(x)$ there is a choice. For the moment
+we put $\ell_{(i=x)} c = \ell_c$ for all $c\in \interval(x)$. Note
+that we must make the same choices $\ell_0,\ell_1,\ell_x$ for all
+names $x$ in the name space.  On the next level, there is no choice
+left.  First, $\ell_{(i=b)g} = p_g$ for $b=0,1$ and
+$g=\iota_x\iota_y$.  Moreover,
+$\ell_{(i=x)\iota_y},\ell_{(i=y)\iota_x}: \interval(x,y)\to N(x,y)$
 are completely determined by the choices of $\ell_0,\ell_1,\ell_x$.
-Even more so, naturality limits the choice on the lower level.
-This can be seen by applying $\ell_{(i=x)\iota_y}$ and $\ell_{(i=y)\iota_x}$
-to both $x$ and $y$ in $\interval(\set{x,y})$. This results
-in the four squares displayed above (NB: $\ell_x=\ell_y$).
-Since the squares have to commute we get $\ell_0 = \ell_1$.  
-In higher dimensions all values are
-determined by naturality, and naturality is compatible with each of the
-four possible choices (recall that objects in $\interval$ can be
-non-degenerated in at most one direction).  This yields in total four
-lines from $p$ to $p$ in $N^\interval$.
+Even more so, naturality limits the choice on the lower level.  This
+can be seen by applying $\ell_{(i=x)\iota_y}$ and
+$\ell_{(i=y)\iota_x}$ to both $x$ and $y$ in $\interval(x,y)$. This
+results in the four squares displayed above (NB: $\ell_x=\ell_y$).
+Since the squares have to commute we get $\ell_0 = \ell_1$.  In higher
+dimensions all values are determined by naturality, and naturality is
+compatible with each of the four possible choices (recall that objects
+in $\interval$ can be non-degenerated in at most one direction).  This
+yields in total four lines from $p$ to $p$ in $N^\interval$.
 
 In order to show that $N^\interval$ is not Kan, consider lines
 $p,\ell: p\to p$, where $p$ is degenerated ($p_0=p_x=p_1=0$) and
