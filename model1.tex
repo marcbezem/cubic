@@ -272,7 +272,7 @@ opens connections with the theory of nominal sets \cite{pitts,Pitts}.
 % restrict our model by considering only Kan fibrations, which are
 % essential for validating univalent.
 
- Following e.g. \cite{Hofmann}, we can give a model of type theory
+ Following e.g.\ \cite{Hofmann}, we can give a model of type theory
 where a context is interpreted by a cubical set.
 Like for the classical model based on simplicial sets
 where one restricts the model to Kan fibrations, we restrict our model
@@ -832,14 +832,14 @@ p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
 
 We explore the points of $N^\interval$ and define $p\in
 N^\interval(\emptyset)$ by, first, $p_{()}:\interval(\emptyset)\to
-N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{(x)}:\interval(x)\to N(x):
-0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p_{(x)} x$
+N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{\iota_x}:\interval(x)\to N(x):
+0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p_{\iota_x} x$
 there is a choice. If we choose $0$, we must make the same choice for
 all names $x$ in the name space.  The choice $1$ for all names $x$ in
 the name space would give the only other point. In higher dimensions
 all arguments are degenerated, determining the function values, and
 naturality is compatible with each of the two choices above. We now
-fix $p$ with $p_{(x)} x = 0$.
+fix $p$ with $p_{\iota_x} x = 0$.
 
 Next we explore lines from $p$ to $p$ in $N^\interval$, say in
 direction $i$, and define $\ell:p\to p$ in $N^\interval(i)$ by
@@ -1182,7 +1182,7 @@ $\omega(x=1) = b\alpha$. The latter situation is conveniently
 described by $\omega: a\alpha\to_x b\alpha$.  We recall that $\iota_x$
 denotes the canonical injection $I \to I,x$. The element
 $\bind{x}{\omega}$ is the equivalence class of $I,x$-cubes of
-$A\alpha(x)$, $x$ not in $I$, where $\omega$ is identified with
+$A\alpha \iota_x$, $x$ not in $I$, where $\omega$ is identified with
 $\omega(x=x')$ if $x'$ is not in $I$. This operation
 $\bind{x}{\omega}$ binds the name $x$.  (One could define
 $\bind{x}{\omega}$ to be $\omega(x = x_I)$ where $x_I$ is a name not
@@ -1279,7 +1279,7 @@ an interpretation of an operator
 $$
 \Gamma\vdash \HH(v):\Id_{P[a]}~v~\Transp(\Ref a,v)
 $$
-by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho (x),a\rho)} v\rho}$.  The
+by taking $\HH(v)\rho = \bind{x}{\rup{P(\rho \iota_x,a\rho)} v\rho}$.  The
 computation rule for identity is thus only validated by a path to $v$
 via $\HH(v)$\footnote{The validity of the computation rule for
   identity corresponds to considering only fibrations that are {\em
