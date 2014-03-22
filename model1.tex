@@ -476,7 +476,7 @@ interpreted as cubical set maps (i.e.\ natural transformations), that
 is we have $(\sigma\beta)f = \sigma(\beta f)$ if $\beta$ is a $I$-cube
 of $\Delta$.  A dependent type $\Gamma\vdash A$ is given by sets
 $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ together with maps
-(also called restrictions) $A\alpha\to A\alpha f,~u\longmapsto uf$ for
+(also called \emph{restrictions}) $A\alpha\to A\alpha f,~u\longmapsto uf$ for
 each $f \colon I \to J$, satisfying $u1 = u$ and $u(fg) = (uf)g$.  A
 section (or term) $\Gamma\vdash a:A$ is defined by giving an element
 $a\alpha$ in $A\alpha$ for each $I$-cube $\alpha$ of $\Gamma$ in such
@@ -708,10 +708,22 @@ $\pp \colon \Gamma.A \to \Gamma$ is a Kan fibration as in~\cite{Kan,
 
 For $\Gamma \vdash A$ with Kan structure and a line $\alpha$ in
 $\Gamma (x)$ connecting points $\rho_0$ to $\rho_1$ one can define an
-equivalence $A \rho_0 \to A \rho_1$ ($A\rho_i$ considered as a cubical
-set) by $a \mapsto A \alpha^+ a$ (leaving degeneracies of $\alpha$
-implicit).  This is in contrast to Kan simplicial sets where classical
-logic is essential to define such a map~\cite{BC}.
+\emph{equivalence} (see Section~\ref{sec:equivalence}) 
+$A \rho_0 \to A \rho_1$ as follows.  First, consider $A\rho_i$ as a cubical
+set with set of points $A\rho_i$, set of lines $A\rho_i(x)$, and so on.
+In general, we define $A\rho_i(I)$ by taking $(I)$ to be the unique 
+morphism $\es\to I$; restrictions are induced by $\Gamma \vdash A$.
+Then, the equivalence $A \rho_0 \to A \rho_1$ is defined
+by $a \mapsto A \alpha^+ a$. One has to verify that the fibers are
+contractible (see Section~\ref{sec:equivalence}). This amounts to
+giving a line from $a$ to $a'$ whenever there is a line from
+$A \alpha^+ a$ to $A \alpha^+ a'$. Using the Kan structure,
+this can be achieved by mapping the latter line down as shown in the
+picture above. The equivalence $a \mapsto A \alpha^+ a$ works
+uniformly and does
+not distinguish cases in which $a$ is degenerated or not.
+This is in contrast to Kan simplicial sets where classical
+logic is essential to define such an equivalence~\cite{BC}.
 
 
 \section{Examples of cubical sets}\label{sec:examples}
@@ -867,7 +879,7 @@ above box has no filler.
 
 \subsection{The nerve of a groupoid is Kan}\label{sec:groupoidnerve}
 Let $G$ be a groupoid, and $N$ its cubical nerve.
-We prove that $N$ is Kan. Take $I=x,J,z$ in $\CC$,
+We sketch a proof that $N$ is Kan. Take $I=x,J,z$ in $\CC$,
 with $J=y_1,\ldots,y_k$ $(k\geq 0)$. Taking one variable $z$ instead of
 $z_1,\ldots,z_n$ simplifies the presentation, but is otherwise inessential.
 
@@ -891,7 +903,10 @@ For $b=0,1$, the faces $u_{y_1b}$ contain all edges in which $y_1 = b$,
 and the faces $u_{y_2b}$ contain all edges in which $y_2 = b$.
 In particular, the two faces $u_{y_2b}$ contain all edges in direction $y_1$.
 Hence, the four faces $u_{y_1b}$, $u_{y_2b}$ together contain all edges.
-For this reason we can take $I=x,y,z,~J=y$ and define edges in $u_{x1}$ in direction $y$.
+The groupoid structure guarantees that all squares of the closing face commute.
+
+The most interesting case to elaborate is $I=x,y,z,~J=y$,
+where we have to define the edges in $u_{x1}$ in direction $y$.
 This situation is depicted below, left, with the new edges as defined right.
 The new edges make essential use of the inverses in the groupoid
 and are uniquely defined.
@@ -934,7 +949,7 @@ By the lemma we have $u_{x0}(f-x) = uf(f(x)=0)$ and $u_{yb}(f-y) = uf(f(y)=b)$.
 This means that $u'$ and $uf$ agree on the open box defining $u'$,
 so they are equal by uniqueness.
 Again, a similar argument can be used if $J$ contains more variables.
-This completes the proof that the cubical nerve of a groupoid is Kan.
+This completes the proof sketch that the cubical nerve of a groupoid is Kan.
 
 \section{The Kan cubical set model}\label{sec:kancubsetmodel}
 
@@ -1485,7 +1500,7 @@ and $\vec b$ in $A_1$ and $B_1$, respectively. Setting $u = (\rup{A_1}
 \]
 This concludes the definition of $C=\comp(A,B)$.
 
-\subsection{Equivalence and equality of types}
+\subsection{Equivalence and equality of types}\label{sec:equivalence}
 
 We explain in this section how to transform any equivalence
 $\sigma:A\to B$ between two Kan cubical sets to an equality path $A\to
