@@ -210,11 +210,10 @@ simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'
 \section*{Introduction}
 
 In \cite{Voevodsky}, Voevodsky proposes a new axiom in dependent type
-theory: the Univalence Axiom. This is an interesting axiom for several
-reasons.  It opens up for many improvements of programming with
-dependent types and the encoding in type theory of mathematics in
+theory: the Univalence Axiom. This opens up for many improvements for
+the encoding in type theory of mathematics in
 general: function extensionality, identification of isomorphic
-structures, quotients, etc.
+structures, etc.
 
 In order to preserve the good computational properties of type theory
 it is crucial that postulated axioms have a computational
@@ -243,20 +242,25 @@ model is expressed in a constructive metalogic.  It can be seen as a
 simplification and a constructive version of the Kan simplicial set
 model of type theory \cite{Voevodsky}.
 
-Cubical sets are already known for some time, see \cite{Serre}, \cite{Kan},
-or \cite{Crans}, \cite{Williamson} for a more recent account.
-In the standard form they are based on finite linear orders.
+The first presentation of Kan for a combinatorial description of 
+homotopy groups used cubical sets \cite{Kan}, 
+see \cite{Crans}, \cite{Williamson} for a more recent account.
 Here we consider a symmetrical variant based on finite sets (of \emph{names}).
+This amounts to have a formal representation of the notion of cubes
+seen as continuous maps $[0,1]^I\rightarrow X$, where $I$ is a finite
+sets of names, instead of using only continuous maps $[0,1]^n\rightarrow X$.
 %Should we explain why?
 %Our notion of cubical set is a variation of the presentation in \cite{Crans}.
-We introduce the base category $\CC$ of names and substitutions.
-A \emph{cubical set} is then a covariant presheaf on $\CC$.
+In our presentation, a \emph{cubical set} is a covariant presheaf on $\CC$,
+where $\CC$ is a base category, where objects are finite sets of names and
+maps are substitutions. This presentation opens connections with the theory
+of nominal sets \cite{pitts,Pitts}.
 
-We adopt the presheaf semantics of type theory, using Dybjer's notion
-of \emph{category with families} \cite{Dybjer}.  In this semantics a
-context $\Gamma$ is interpreted by a cubical set, and a dependent type
-$\Gamma\vdash A$ by a family of sets and maps between these,
-regimented by equations imposed by the base category.
+%We adopt the presheaf semantics of type theory, using Dybjer's notion
+%of \emph{category with families} \cite{Dybjer}.  In this semantics a
+%context $\Gamma$ is interpreted by a cubical set, and a dependent type
+%$\Gamma\vdash A$ by a family of sets and maps between these,
+%regimented by equations imposed by the base category.
 
 % (see
 % \cite{Dybjer},\cite{Hofmann}, or Section~\ref{sec:presheaf-models}).
@@ -266,28 +270,32 @@ regimented by equations imposed by the base category.
 % restrict our model by considering only Kan fibrations, which are
 % essential for validating univalent.
 
-To the interpretation of a dependent type one can associate a specific
-fibration.  Like for the classical model based on simplicial sets
+ Following e.g. \cite{Hofmann}, we can give a model of type theory
+where a context is interpreted by a cubical set.
+Like for the classical model based on simplicial sets
 where one restricts the model to Kan fibrations, we restrict our model
-by requiring a certain \emph{Kan structure} on dependent types.  Such
-a Kan structure requires fillers of open boxes.  In order for this
+by requiring a certain \emph{Kan structure} on dependent types.  Like
+in Kan's original paper \cite{Kan}, such
+a Kan structure requires fillers of open boxes.  However, in order for this
 structure to be preserved---in a constructive metalogic---under all
 type forming operations, in particular $\Pi$, a certain uniformity
 condition is required on the choice of the fillers. This structure is
 essential for validating the elimination rule of identity types.
 
-The strengthening of the Kan condition is natural given the
+ The strengthening of the Kan condition is natural given the
 reformulation of the notion of cubical sets that we present in the
-first section. This reformulation opens connections with the study of
-nominal sets \cite{pitts}; one connection is elaborated in
-\cite{Pitts}.
+first section, and the connection mentionned above with nominal sets.
 
 %Perhaps we don't discuss alternatives such as semi simple sets and
 %(One other possible attempt to solve this problem is by marking the degenerated elements, 
 %but it is not clear yet in this approach how to treat exponentials in a satisfactory way.) 
 
-
-Based on the model described in this paper (a nominal version of it)
+In this paper we present the semantics of dependent products, sums, 
+identity types. We also show how to interpret the universe, but only
+sketch on one special case how one could define the Kan structure on
+the universe. We also only describe how to transform an equivalence
+between two small types into a path between these types.
+Based on the model described in the first version of this paper (a nominal version of it)
 C.~Cohen, A.~M\"ortberg and the last two authors have implemented a
 type checker\footnote{Available at: {\tt github.com/simhu/cubical}}
 based on this paper.  This implementation supports computing with the
@@ -346,9 +354,9 @@ Thus cubical sets have $2n$ face maps when $I$ has $n$ elements, that is, in dim
 
  We say that a map $f:I\to J$ is a {\em degeneracy map} if{f} all elements in $I$ are in
 the domain of $f$. For instance, if $I\subseteq J$ the canonical inclusion $I \to J$ defines
-a degeneracy map. If $x$ is not in $I$ the inclusion map $I \to I,x$ will be written as $(x)$.
+a degeneracy map. If $x$ is not in $I$ the inclusion map $I \to I,x$ will be written as $\iota_x.$
 We have two face maps $(x=0), (x=1):I,x\to I$ and we
-have $(x)(x=0) = (x)(x=1) = 1_I$, which is one example of a \emph{cubical identity}.
+have $\iota_x(x=0) = \iota_x(x=1) = 1_I$, which is one example of a \emph{cubical identity}.
 There are many more cubical identities, often implicit in the notations. We also have
 the following result (cf.\ simplicial sets): every morphism $f$ has a unique decomposition
 $f=gh$ where $g$ is a composite of face maps and $h$ is a degeneracy map.
@@ -405,15 +413,15 @@ u(0,0)\ar[rr]_{u(x,0)}\ar[uu]^{u(0,0)}&      & u(1,0)\ar[uu]_{u(1,0)}       \\
 %\caption{A square $u(x,y)$ and a degenerated square $u(x,0)$\label{squares}}
 %\end{figure}
 
-If $v$ is an $I-x$ cube of $X$ then we can consider $v(x)$ which is an
-$I$-cube of $X$ (we recall that $(x):I-x\to I$ is the canonical
-inclusion). The map $v\longmapsto v(x)$ is injective (we have
-$v(x)(x=0) = v$) and it is sometimes natural to identify $v$ and
-$v(x)$, thus considering $X(I-x)$ to be a subset of $X(I)$. An example
+If $v$ is an $I-x$ cube of $X$ then we can consider $v\iota_x$ which is an
+$I$-cube of $X$ (we recall that $\iota_x:I-x\to I$ is the canonical
+inclusion). The map $v\longmapsto v\iota_x$ is injective (we have
+$v\iota_x(x=0) = v$) and it is natural to identify $v$ and
+$v\iota_x$, thus considering $X(I-x)$ to be a subset of $X(I)$. An example
 is the degenerated right square above.
 
  If $u$ is in $X(I)$ and $x$ is in $I$, there may exist a $v$ in $X(I-x)$ such that
-$u = v(x) = v$.  Intuitively, this means that $x$ ``does not occur'' in $u$, or that $u$ is
+$u = v\iota_x = v$.  Intuitively, this means that $x$ ``does not occur'' in $u$, or that $u$ is
 ``independent'' of $x$. One sometimes uses the notation $x\#u$ to express this relation. In general, this relation does
 not need to be decidable.
 
@@ -503,8 +511,9 @@ We now describe how to interpret $\Pi$ and $\Sigma$. If $\Gamma\vdash
 A$ and $\Gamma.A\vdash B$, we define the type $\Gamma\vdash \Pi\,A\,B$
 as follows.  For each $I$-cube $\alpha$ of $\Gamma$, an element $w$ of
 $(\Pi\,A\,B)\alpha$ is a family $(w_f)$ indexed by $f:I\to J$ such
-that $w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$ is a dependent
-function such that $(w_f (u)) g = w_{fg} (u g)$ for $g \colon J \to K$
+that 
+$$w_f \in \prod_{u \in A \alpha f} B (\alpha f, u)$$
+is a dependent function and $(w_f (u)) g = w_{fg} (u g)$ for $g \colon J \to K$
 and $u \in A \alpha f$.  We define the family $wf$ in $(\Pi\,A\,B)
 \alpha f$ by putting $(wf)_g = w_{fg}$, which completes the definition
 of $\Gamma\vdash \Pi\,A\,B$.  Given $\Gamma.A \vdash b : B$ we
@@ -827,12 +836,12 @@ the moment we put $\ell_{(i=x)} c = \ell_c$ for all $c\in
 \interval(\set{x})$. Note that we must make the same choices
 $\ell_0,\ell_1,\ell_x$ for all names $x$ in the name space.  
 On the next level, there is no choice left.
-First, $\ell_{(i=b)g} = p_g$ for $b=0,1$ and $g=(x)(y)$. 
+First, $\ell_{(i=b)g} = p_g$ for $b=0,1$ and $g=\iota_x\iota_y$. 
 Moreover,
-$\ell_{(i=x)(y)},\ell_{(i=y)(x)}: \interval(\set{x,y})\to N(\set{x,y})$
+$\ell_{(i=x)\iota_y,\ell_{(i=y)\iota_x}}: \interval(\set{x,y})\to N(\set{x,y})$
 are completely determined by the choices of $\ell_0,\ell_1,\ell_x$.
 Even more so, naturality limits the choice on the lower level.
-This can be seen by applying $\ell_{(i=x)(y)}$ and $\ell_{(i=y)(x)}$
+This can be seen by applying $\ell_{(i=x)\iota_y}$ and $\ell_{(i=y)\iota_x}$
 to both $x$ and $y$ in $\interval(\set{x,y})$. This results
 in the four squares displayed above (NB: $\ell_x=\ell_y$).
 Since the squares have to commute we get $\ell_0 = \ell_1$.  
@@ -1049,35 +1058,35 @@ done in the proofs of the following theorems.
   }
   \]
   Let $y$ be a fresh name; using the uniform Kan filling for $\Gamma
-  \vdash A$ in $ A \alpha (y)$ with $J = \set {y}$ (denoted by
-  $\rdoxy{A\alpha(y)}$) we construct
+  \vdash A$ in $ A \alpha $ with $J = \set {y}$ (denoted by
+  $\rdoxy{A\alpha}$) we construct
   \[
-  v = \rdoxy{A\alpha(y)} {(u_1 (y),u,\rdox{A\alpha} u_1)},
+  v = \rdoxy{A\alpha} {(u_1 ,u,\rdox{A\alpha} u_1)},
   \]
   resulting in a square:
   \[
   \xymatrix@R=.5cm@C=.5cm{
-    u_1 \ar[rr]^{u_1 (y)} & & u_1 \\
+    u_1 \ar[rr]^{u_1 } & & u_1 \\
     & v & \\
     u_0 \ar[uu]^u \ar@{.>}[rr]_{v (x=0)} & & {A \alpha}^-_x u_1
     \ar[uu]_{ \rdox{A \alpha} u_1} }
   \]
   With $\lambda = \rupx {B(\alpha,\rdo{A\alpha}_x u_1)} (w_1
-  (A\alpha^-_x u_1))$ we get an open box in $B (\alpha (y), v)$
+  (A\alpha^-_x u_1))$ we get an open box in $B (\alpha , v)$
   \[
   \xymatrix@C=2.5cm{ ({C \alpha}^+_x w)_1 (u_1) \ar[r]^{\left(({C
-          \alpha}^+_x w)_1 (u_1)\right) (y)}& ({C \alpha}^+_x w)_1
+          \alpha}^+_x w)_1 (u_1)\right) }& ({C \alpha}^+_x w)_1
     (u_1) \\
-    w_1 u_0 \ar[r]_{w_{(y)} (v (x=0))} & w_1 ({A \alpha}^-_x u_1)
+    w_1 u_0 \ar[r]_{w_{} (v (x=0))} & w_1 ({A \alpha}^-_x u_1)
     \ar[u]_\lambda}
   \]
   where the line on the right hand side is by the defining
   equation~\eqref{eq:3}.  Using the Kan structure of $\Gamma.A\vdash
   B$ for $J=\set{x}$ we define
   \[
-  (\rupx{C\alpha}w)_1 (u) = {B(\alpha(y),v)}^-_{y,x}\bigl(\lambda,
-  w_{(y)} (v (x=0)), {\bigl(({C \alpha}^+_x w)_1 (u_1)\bigr)
-    (y)}\bigr)
+  (\rupx{C\alpha}w)_1 (u) = {B(\alpha,v)}^-_{y,x}\bigl(\lambda,
+  w_{} (v (x=0)), {\bigl(({C \alpha}^+_x w)_1 (u_1)\bigr)
+    }\bigr)
   \]
   with $\lambda$ as above.  Using the uniformity conditions for
   $\Gamma \vdash A$ and $\Gamma.A \vdash B$, this definition is such
@@ -1114,8 +1123,8 @@ done in the proofs of the following theorems.
 
 Notice that we make essential use of the uniformity conditions in the
 above proof in order to verify that the fillers we define are indeed
-elements in the dependent product .  Moreover, note that, for general
-$J$, the fillings used from $\Gamma \vdash A$ are only with $J$ such
+elements in the dependent product .  Moreover, note that, in general,
+the fillings used from $\Gamma \vdash A$ are only with $J$ such
 that $\lvert J \rvert \leq 1$.
 
 \subsection{Sum type}
@@ -1153,10 +1162,10 @@ that $\lvert J \rvert \leq 1$.
 We describe the interpretation of $\Gamma\vdash\Id_A~a~b$ given
 $\Gamma\vdash A$ and $\Gamma\vdash a:A$ and $\Gamma\vdash b:A$. Given
 an $I$-cube $\alpha$ in $\Gamma$ we define $(\Id_A~a~b)\alpha$ to be
-the set of elements $\bind{x}{\omega}$ in $A\alpha(x)$ where $x$ is a
+the set of elements $\bind{x}{\omega}$ in $A\alpha\iota_x$ where $x$ is a
 fresh variable not in $I$, such that $\omega(x=0) = a\alpha$ and
 $\omega(x=1) = b\alpha$. The latter situation is conveniently
-described by $\omega: a\alpha\to_x b\alpha$.  We recall that $(x)$
+described by $\omega: a\alpha\to_x b\alpha$.  We recall that $\iota_x$
 denotes the canonical injection $I \to I,x$. The element
 $\bind{x}{\omega}$ is the equivalence class of $I,x$-cubes of
 $A\alpha(x)$, $x$ not in $I$, where $\omega$ is identified with
@@ -1190,9 +1199,9 @@ K$ we choose a variable $y$ not in $K$, extend $f$ to $(f,x=y): I,x
   omitting subscripts $J$,
   $$
   \rupx{(\Id_A~a~b)\alpha}\bind{y}{\vec{\omega}} =
-  \bind{y}{(\rupxy{A\alpha(y)} (\vec{\omega},a\alpha,b\alpha))}
+  \bind{y}{(\rupxy{A\alpha} (\vec{\omega},a\alpha,b\alpha))}
   % (\Id_A~a~b)\alpha\uparrow _{x,x_1,\dots} (\bind{y}\omega_0,\bind{y}\omega_0^1,\bind{y}\omega_1^1,\dots) =
-  % \bind{y}A\alpha(y)\uparrow _{x,y,x_1,\dots} (\omega_0,a\alpha,b\alpha,\omega_0^1,\omega_1^1,\dots)
+  % \bind{y}A\alpha\uparrow _{x,y,x_1,\dots} (\omega_0,a\alpha,b\alpha,\omega_0^1,\omega_1^1,\dots)
   $$
   which shows that $\Gamma\vdash \Id_A~a~b$ satisfies the Kan
   condition for $J,x$ if $\Gamma\vdash A$ satisfies the Kan condition for
@@ -1208,9 +1217,9 @@ K$ we choose a variable $y$ not in $K$, extend $f$ to $(f,x=y): I,x
 \end{proof}
 \[
 \xymatrix@R=1.1cm@C=.6cm{
-a\alpha\ar@{.>}[rr]^{A\alpha(y)_{x,y}^+(\omega_0,a\alpha,b\alpha)}&      & b\alpha                                     &&&
+a\alpha\ar@{.>}[rr]^{A\alpha_{x,y}^+(\omega_0,a\alpha,b\alpha)}&      & b\alpha                                     &&&
 \bind{y}{\omega_1}                                &          \\
-                                      &\rupxy{A\alpha(y)}(\omega_0,a\alpha,b\alpha)&                          &&&
+                                      &\rupxy{A\alpha}(\omega_0,a\alpha,b\alpha)&                          &&&
                                       \rupx{(\Id_A~a~b)\alpha} \bind{y}{\omega_0}&                           \\
 a\alpha\ar[rr]_{\omega_0}\ar[uu]^{a\alpha}&      & b\alpha\ar[uu]_{b\alpha}                                     &&&
 \bind{y}{\omega_0}\ar@{.>}[uu]     &                             \\
@@ -1221,7 +1230,7 @@ We give the interpretation of $\Gamma\vdash \Ref a:\Id_A~a~a$ given
 $\Gamma\vdash a:A$. For any set of directions $I$, and any $I$-cube
 $\rho$, we have to give a line $a\rho\to a\rho$. For this, we choose a
 direction $x$ not in $I$ and we define 
-$(\Ref a)\rho = \bind{x}{a\rho(x)}$, 
+$(\Ref a)\rho = \bind{x}{a\rho\iota_x}$, 
 which can also simply be written $(\Ref a)\rho = \bind{x}{a\rho}$.
 
 Next we show that we can interpret an elimination operator for the
@@ -1233,11 +1242,11 @@ $$
 $$
 Let $\rho$ be some $I$-cube of $\Gamma$. Then $u\rho$ is of the form
 $\bind{x}{\omega}$ for some path $\omega:a\rho\to _x b\rho$, $x$ not
-in $I$, $\omega\in A\rho(x)$.  The $I,x$-cube $(\rho (x),\omega)$ in
+in $I$, $\omega\in A\rho$.  The $I,x$-cube $(\rho ,\omega)$ in
 $\Gamma.A$ is then a path $[a]\rho\to _x [b]\rho$ and we define (see
 the picture below)
 $$
-\Transp(u,v)\rho = P(\rho (x),\omega)^+ v\rho~~~~{\rm
+\Transp(u,v)\rho = P(\rho ,\omega)^+ v\rho~~~~{\rm
   where~~~~~}\bind{x}{\omega} = u\rho
 $$
 The condition $(\Transp(u,v)\rho)f = \Transp(u,v)(\rho f)$ follows
@@ -1246,11 +1255,11 @@ from the uniformity condition on the Kan filling operations.
 \[
 \xymatrix@R=.6cm@C=.6cm{
 b\rho                 &&[b]\rho                    &   \Transp(u,v)\rho                                 \\
-\omega ~~~     &&\rho(x),\omega~~  &\rup{P(\rho(x),\omega)} v\rho \\
+\omega ~~~     &&\rho,\omega~~  &\rup{P(\rho,\omega)} v\rho \\
 a\rho\ar[uu]      &&[a]\rho\ar[uu]       &   v\rho\ar@{.>}[uu]                        \\
 }
 \]
-We have that $\rup{P(\rho(x),\omega)} v\rho$ is a line connecting
+We have that $\rup{P(\rho,\omega)} v\rho$ is a line connecting
 $v\rho$ and $\Transp(u,v)\rho$.  In particular for $u=\Ref a$, this gives
 an interpretation of an operator
 $$
@@ -1274,9 +1283,9 @@ element of $A\rho$ and $\alpha$ is a line connecting $a\rho$ and $v$
 in some direction $x$ not in $I$. We introduce a direction $y$ not in
 $I,x$ and define, stipulating degeneracies:
 $$
-u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho(y)^+ _{x,y}
-  (a\rho(y),a\rho(x),\alpha),\bind{x}{\rupxy{A\rho(y)}
-    (a\rho(y),a\rho(x),\alpha)})}
+u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho^+ _{x,y}
+  (a\rho,a\rho,\alpha),\bind{x}{\rupxy{A\rho}
+    (a\rho,a\rho,\alpha)})}
 $$
 The fact that the filling operations commute with substitution ensures
 that this defines a section $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.
@@ -1366,6 +1375,10 @@ This satisfies the equations
 \end{align*}
 where now $f \circ g$ denotes ordinary function composition and
 $\lambda (b \pp)$ is constant.
+
+ Notice that some of these equations do {\em not} hold if the
+identity type is defined as an inductive family, as in \cite{MLTT}.
+
 
 \medskip
 
@@ -1526,7 +1539,7 @@ $b(y=0) = \sigma a$.
 It can be then be checked in an elementary way that if $\sigma$ is an equivalence,
 then this ``heterogeneous'' notion of cube has the uniform Kan property.
 
-In pictures, the main issue is to complete an open box
+In pictures, the main difficult case is to complete an open box
 \begin{diagram}
 \sigma a_0 & \rTo & b_0    \\
            &      & \dTo \\
@@ -1569,8 +1582,8 @@ and structures of a groupoid to one which is categorically equivalent.
 
 \medskip
 
- We have only checked a weak corollary of the Axiom of Univalence, but we expect the complete Axiom to be valid
-in this model in an elementary way as well.
+ We have only described here a weak corollary of the Axiom of Univalence, but 
+the complete Axiom to be validated as well in this model.
 
 
 \subsection{Propositional reflection}
