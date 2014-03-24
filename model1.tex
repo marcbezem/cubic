@@ -216,16 +216,15 @@ general: function extensionality, identification of isomorphic
 structures, etc.
 
 In order to preserve the good computational properties of type theory
-it is crucial that postulated axioms have a computational
+it is crucial that postulated constants have a computational
 interpretation.  Concerning univalence, this is an important open
 problem.  One way of attacking this problem is by constructing a model
-of the new axiom, preferably in type theory itself, or at least in a
-constructive metalogic.  The computational interpretation can then be
-obtained through the semantics, for example, by evaluating a term of
-type $\nat$ (natural numbers) in the model.
+of the new axiom, in type theory itself, or at least in a constructive
+metalogic.  The computational interpretation can then be obtained
+through the semantics, for example, by evaluating a term of type
+$\nat$ (natural numbers) in the model.
 
 The model of type theory with the Univalence Axiom given by Voevodsky
-
 \cite{Voevodsky} is based on Kan simplicial sets.
 % Simplicial set maps must preserve degeneracy.
 A problem with a constructive approach to
@@ -233,14 +232,12 @@ Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
 This problem makes it impossible to use the Kan simplicial set model
 to obtain a computational interpretation of univalence.
 
-We present a model of dependent type theory in cubical sets.  This
-provides a generalization to dependent types of Takeuti/Gandy's
-interpretation of extensional in intensional type theory \cite{Gandy},
-but also a generalization of Bishop's notion of {\em set}
-\cite{Bishop}.  While not expressed internally in type theory, this
-model is expressed in a constructive metalogic.  It can be seen as a
-simplification and a constructive version of the Kan simplicial set
-model of type theory \cite{Voevodsky}.
+We present a model of dependent type theory in cubical sets.  This can
+be seen as a generalization of Bishop's notion of {\em set}
+\cite{Bishop,Gandy}.  While not expressed internally in type theory,
+this model is expressed in a constructive metalogic.  It can be seen
+as a simplification and a constructive version of the Kan simplicial
+set model of type theory \cite{Voevodsky}.
 
 The first combinatorial description of homotopy groups by Kan used
 cubical sets \cite{Kan}; see \cite{Crans}, \cite{Williamson} for a
@@ -315,7 +312,7 @@ cubical set model, and describe the universe as a cubical set (and
 only indicate how Kan fillings can be given), and how to transform an
 equivalence in an equality of types.  Finally, we explain how to
 represent in our model spaces up to homotopy such as the sphere, and
-the operation of propositional reflection, giving in particular a new
+the operation of propositional truncation, giving in particular a new
 computational interpretation of the axiom of description
 \cite{Russell}.
 
@@ -385,6 +382,11 @@ $\yoneda I$, which can be thought of as a formal representation of
 $[0,1]^I$.  An element of $X(I)$ can then be seen as a formal
 representation of a ``continuous'' map $[0,1]^I\to X$, and it is
 natural to call an element of $X(I)$ an $I$-cube.
+
+For finite sets of names we will write commas instead of unions and
+often omit curly braces; e.g.\ we write $I,x$ for $I \cup \set{x}$, $I
+- x$ for $I - \set{x}$, and $X (x_1,\dots,x_n)$ for
+$X(\set{x_1,\dots,x_n})$.
 
 We think of $u$ in $X(I)$ as meaning that $u$ may depend on the names
 in $I$, and only on those names; we think of $uf$ in $X(J)$ as the
@@ -662,10 +664,10 @@ our notion of cubical sets).  For a suggestive description of how to
 define combinatorially $\pi_n(X,u)$ for each point $u$ of $X$ if $X$
 satisfies the Kan property, see \cite{Williamson}.
 
-These new uniformity conditions solve the constructivity problem
-described in the note \cite{BC}.  (These uniformity conditions can
-always be satisfied if we assume decidablity of degeneracy, by a
-definition similar as the one considered in \cite{BCH}.)
+% These new uniformity conditions solve the constructivity problem
+% described in the note \cite{BC}.  (These uniformity conditions can
+% always be satisfied if we assume decidablity of degeneracy, by a
+% definition similar as the one considered in \cite{BCH}.)
 
 If $X$ is a Kan cubical set with operations $\rup{X},\rdo{X}$, we
 define new operations (see figure below)
@@ -717,31 +719,20 @@ Notice that if $\Gamma \vdash A$ has a Kan structure, then the map
 $\pp \colon \Gamma.A \to \Gamma$ is a Kan fibration as in~\cite{Kan,
   Williamson}.
 
-\[
-\xymatrix@R=1.1cm@C=.6cm{
-A \alpha^+ a  \ar[rr]^{p}                                 &      & A \alpha^+ a'      \\
-                                      &\rdo{A\alpha}(p, \rup{A\alpha}a, \rup{A\alpha}a' )&                              \\
-a \ar@{.>}[rr]_{A\alpha^-(p, \rup{A\alpha}a, \rup{A\alpha}a' )}  \ar[uu]^{\rup{A\alpha}a}     &      &  a' \ar[uu]_{\rup{A\alpha}a'}  \\
-}
-\]
-
 For $\Gamma \vdash A$ with Kan structure and a line $\alpha$ in
-$\Gamma (x)$ connecting points $\rho_0$ to $\rho_1$ one can define an
-\emph{equivalence} (see Section~\ref{sec:equivalence}) $A \rho_0 \to A
-\rho_1$ as follows.  First, consider $A\rho_i$ as a cubical set with
-set of points $A\rho_i$, set of lines $A\rho_i(x)$, and so on.  In
-general, we define $A\rho_i(I)$ by taking $(I)$ to be the unique
-morphism $\es\to I$; restrictions are induced by $\Gamma \vdash A$.
-Then, the equivalence $A \rho_0 \to A \rho_1$ is defined by $a \mapsto
-A \alpha^+ a$. Verifying that this is indeed an equivalence requires
-the apparatus of Section~\ref{sec:equivalence}.  One key aspect can be
-explained here, and serves as an example of reasoning with the Kan
-structure: every line from $A \alpha^+ a$ to $A \alpha^+ a'$ can be
-mapped down to a line from $a$ to $a'$ as shown in the picture
-above. The equivalence $a \mapsto A \alpha^+ a$ works uniformly and
-does not distinguish cases in which $a$ is degenerated or not.  This
-is in contrast to Kan simplicial sets where classical logic is
-essential to define such an equivalence~\cite{BC}.
+$\Gamma (x)$ connecting points $\rho_0$ to $\rho_1$ one can define a
+map of cubical sets $A \rho_0 \to A \rho_1$ as follows.  First,
+consider $A\rho_i$ as a cubical set with set of points $A\rho_i$, set
+of lines $A\rho_i\iota_x$, and so on.  In general, we define
+$A\rho_i\iota_I$ by taking $\iota_I$ to be the unique morphism $\es\to
+I$; restrictions are induced by $\Gamma \vdash A$.  Then, the map $A
+\rho_0 \to A \rho_1$ is defined by $a \mapsto A \alpha^+ a$.  The
+equivalence $a \mapsto A \alpha^+ a$ works uniformly and does not
+distinguish cases in which $a$ is degenerated or not.  One can show
+that this map is an equivalence (see Section~\ref{sec:identity-type}
+and \ref{sec:equivalence}).  This is in contrast to Kan simplicial
+sets where classical logic is essential to define such an
+equivalence~\cite{BC}.
 
 
 \section{Examples of cubical sets}\label{sec:examples}
@@ -787,8 +778,9 @@ describe the interval.
 \def\Txy{{1 \atop 1} ~ {1 \atop 1}}
 \def\Iy{{1 \atop 0} ~ {1 \atop 0}}
 \def\Ix{{0 \atop 0} ~ {1 \atop 1}}
-\interval(\set{x,y}):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
-N(0\leq1)(\set{x,y}):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll\]
+\interval(x,y):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
+N(0\leq1)(x,y):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll
+\]
 
 Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to
 K\cup\set{0,1}$ such that for every $y\in K$ there exists at most one
@@ -1027,37 +1019,39 @@ done in the proofs of the following theorems.
 
   First we will define ${C \alpha}^+_x w \in C \alpha (x = 1)$ for
   $\alpha$ an $I$-cube of $\Gamma$, $x \in I$, and $w$ in $C \alpha (x
-  = 0)$.  This amounts to define a dependent function $({C \alpha}^+_x
-  w)_f$ in $\prod_{u \in A \alpha (x=1) f} B (\alpha (x=1) f, u)$ for
-  all $f \colon I-x \to K$, such that
+  = 0)$.  This amounts to define a family of dependent functions $({C
+    \alpha}^+_x w)_f$ in $\prod_{u \in A \alpha (x=1) f} B (\alpha
+  (x=1) f, u)$ for all $f \colon I-x \to K$, such that
   \begin{equation}
     \label{eq:2}
     \bigl(({C \alpha}^+_x w)_f (u)\bigl) g = ({C \alpha}^+_x w)_{f g}
     (u g).
   \end{equation}
   We will first define $({C \alpha}^+_x w)_f$ for $f = 1 \colon I-x
-  \to I-x$ and arbitrary $\alpha$ and $w$.  For this let $u_1 \in A
-  \alpha (x=1)$.  We use the Kan fillings to map $u_1$ down to
-  $A\alpha^-_xu_1$, apply $w$ (at $1 \colon I-x \to I-x$) and map the
-  result up:
+  \to I-x$.  For this let $u \in A \alpha (x=1)$.  We use the Kan
+  fillings to map $u$ down to $A\alpha^-_xu$, apply $w$ (at $1 \colon
+  I-x \to I-x$) and map the result up:
   \begin{equation}
     \label{eq:3}
-    ({C \alpha}^+_x w)_1 (u_1) =
-    B(\alpha,\rdo{A\alpha}_x u_1)^+_x (w_1 (A\alpha^-_x u_1))
+    ({C \alpha}^+_x w)_1 (u) =
+    B(\alpha,\rdo{A\alpha}_x u)^+_x (w_1 (A\alpha^-_x u))
   \end{equation}
-  which is in $B (\alpha (x=1), u_1)$ as $(\rdo{A\alpha}_x u_1) (x=1)
-  = u_1$.  For general $f \colon I-x \to K$ we let $z$ be fresh
+  which is in $B (\alpha (x=1), u)$ as $(\rdo{A\alpha}_x u) (x=1) =
+  u$. So we have defined $({C \alpha}^+ w)_1$ for arbitrary $\alpha$
+  and $w$.
+
+  For general $f \colon I-x \to K$ we let $z$ be fresh
   w.r.t.\ $K$ and set:
   \begin{equation}
     \label{eq:4}
     ({C \alpha}^+_x w)_f = ({C \alpha (f, x=z)}^+_z w f)_1
   \end{equation}
   By the uniformity conditions, this definition does not depend on the
-  choice of $z$, and we also get
+  choice of $z$, and we also get by uniformity and \eqref{eq:3}
   \begin{equation}
     \label{eq:5}
-    \bigl(({C \alpha}^+_x w)_1 (u_1)\bigr) f = ({C \alpha (f,x=z)}^+_x
-    w f)_1 (u_1 f).
+    \bigl(({C \alpha}^+_x w)_1 (u)\bigr) f = ({C \alpha (f,x=z)}^+_x
+    w f)_1 (u f).
   \end{equation}
   Note that \eqref{eq:4} suffices to get the uniformity conditions for
   ${C \alpha}^+_x w$; \eqref{eq:4} together with \eqref{eq:5}, yields
@@ -1066,14 +1060,15 @@ done in the proofs of the following theorems.
 
   Next we define $\rup{C \alpha}_x w \in C \alpha$; we do so again by
   first defining $(\rup{C \alpha}_x w)_f$ for $f = 1 \colon I \to I$.
-  Let $u \in A \alpha$, $u_b = u (x = b)$; the definition of
-  $(\rupx{C\alpha} w)_1 (u) \in B(\alpha,u)$ has to satisfy:
+  Let $\gamma \in A \alpha$, $u_0 = \gamma (x = 0)$ and $u = \gamma
+  (x=1)$; the definition of $(\rupx{C\alpha} w)_1 (\gamma) \in
+  B(\alpha,\gamma)$ has to satisfy:
   \[
-  \xymatrix@R=.4cm@C=.6cm {({C \alpha}^+_x w)_1 &:& u_1 \del{\in
-      A\alpha(x=1)} &\lto & ({C \alpha}^+_x w)_1 (u_1)
-    \del{\in B(\alpha(x=1),u_1)}\\
-    (\rupx{C\alpha}w_0)_1 &:& ~~~u\del{\in A\alpha} &\lto &
-    (\rupx{C\alpha} w)_1 (u)\del{\in B(\alpha,u)}\\
+  \xymatrix@R=.4cm@C=.6cm {({C \alpha}^+_x w)_1 &:& u \del{\in
+      A\alpha(x=1)} &\lto & ({C \alpha}^+_x w)_1 (u)
+    \del{\in B(\alpha(x=1),u)}\\
+    (\rupx{C\alpha}w_0)_1 &:& ~~~\gamma\del{\in A\alpha} &\lto &
+    (\rupx{C\alpha} w)_1 (\gamma)\del{\in B(\alpha,u)}\\
     w_1\ar@{.>}[uu] &:& u_0\del{\in A\alpha(x=0)}\ar[uu] &\lto &
     w_1 (u_0)\del{\in B(\alpha(x=0),u_0)}\ar@{.>}[uu]\\
   }
@@ -1082,37 +1077,38 @@ done in the proofs of the following theorems.
   \vdash A$ in $ A \alpha $ with $J = \set {y}$ (denoted by
   $\rdoxy{A\alpha}$) we construct
   \[
-  v = \rdoxy{A\alpha} {(u_1 ,u,\rdox{A\alpha} u_1)},
+  \theta = \rdoxy{A\alpha} {(u, \gamma,\rdox{A\alpha} u)},
   \]
   resulting in a square:
   \[
   \xymatrix@R=.5cm@C=.5cm{
-    u_1 \ar[rr]^{u_1 } & & u_1 \\
-    & v & \\
-    u_0 \ar[uu]^u \ar@{.>}[rr]_{v (x=0)} & & {A \alpha}^-_x u_1
-    \ar[uu]_{ \rdox{A \alpha} u_1} }
+    u \ar[rr]^{u } & & u \\
+    & \theta & \\
+    u_0 \ar[uu]^\gamma \ar@{.>}[rr]_{\theta(x=0)} & & {A \alpha}^-_x u
+    \ar[uu]_{ \rdox{A \alpha} u} }
   \]
-  With $\lambda = \rupx {B(\alpha,\rdo{A\alpha}_x u_1)} (w_1
-  (A\alpha^-_x u_1))$ we get an open box in $B (\alpha , v)$
+  With $\lambda = \rupx {B(\alpha,\rdo{A\alpha}_x u)} (w_1
+  (A\alpha^-_x u))$ we get an open box in $B (\alpha , \theta)$
   \[
-  \xymatrix@C=2.5cm{ ({C \alpha}^+_x w)_1 (u_1) \ar[r]^{({C
-        \alpha}^+_x w)_1 (u_1) }& ({C \alpha}^+_x w)_1 (u_1) \\
-    w_1 u_0 \ar[r]_{w_{} (v (x=0))} & w_1 ({A \alpha}^-_x u_1)
+  \xymatrix@C=2.5cm{ ({C \alpha}^+_x w)_1 (u) \ar[r]^{({C
+        \alpha}^+_x w)_1 (u) }& ({C \alpha}^+_x w)_1 (u) \\
+    w_1 u_0 \ar[r]_{w_{\iota_y} (\theta (x=0))} & w_1 ({A \alpha}^-_x u)
     \ar[u]_\lambda}
   \]
   where the line on the right hand side is by the defining
   equation~\eqref{eq:3}.  Using the Kan structure of $\Gamma.A\vdash
   B$ for $J=\set{x}$ we define
   \[
-  (\rupx{C\alpha}w)_1 (u) = {B(\alpha,v)}^-_{y,x}\bigl(\lambda,
-  w_{} (v (x=0)), ({C \alpha}^+_x w)_1 (u_1)\bigr)
+  (\rupx{C\alpha}w)_1 (\gamma) =
+  {B(\alpha,\theta)}^-_{y,x}\bigl(\lambda, w_{\iota_y} (\theta (x=0)),
+  ({C \alpha}^+_x w)_1 (u)\bigr)
   \]
   with $\lambda$ as above.  Using the uniformity conditions for
   $\Gamma \vdash A$ and $\Gamma.A \vdash B$, this definition is such
   that
   \[
-  \bigl((\rupx{C\alpha}w)_1 (u)\bigr) f = (\rup{C\alpha f}_{fx} {w
-    (f-x)})_1 (u f)
+  \bigl((\rupx{C\alpha}w)_1 (\gamma)\bigr) f = (\rup{C\alpha f}_{fx} {w
+    (f-x)})_1 (\gamma f)
   \]
   for $f \colon I \to K$ defined on $x$.
 
@@ -1131,12 +1127,12 @@ done in the proofs of the following theorems.
   \colon \Delta \to \Gamma$; then $C \alpha = ((\Pi\,A\,B) \sigma)
   \beta$ and in equation~\eqref{eq:3} we have
   \[
-  B(\sigma \beta,\rdo{A(\sigma \beta)}_x u_1)^+_x (w_1 ({A(\sigma
-    \beta)}^-_x u_1)) = (B (\sigma \pp, \qq)) (\beta, \rdo{(A\sigma)
-    \beta}_x u_1)^+_x (w_1 ({(A \sigma) \beta}^-_x u_1))
+  B(\sigma \beta,\rdo{A(\sigma \beta)}_x u)^+_x (w_1 ({A(\sigma
+    \beta)}^-_x u)) = (B (\sigma \pp, \qq)) (\beta, \rdo{(A\sigma)
+    \beta}_x u)^+_x (w_1 ({(A \sigma) \beta}^-_x u))
   \]
   and the right hand side is the definition of $\bigl({\Pi(A \sigma)
-    (B (\sigma \pp, \qq))}^+_x w\bigr)_1 (u_1)$.  Similarly for the
+    (B (\sigma \pp, \qq))}^+_x w\bigr)_1 (u)$.  Similarly for the
   other parts of the definition.
 \end{proof}
 
@@ -1174,6 +1170,26 @@ that $\lvert J \rvert \leq 1$.
 
 
 \section{Extensions}
+
+\subsection{Inductive types}
+\label{sec:inductive-types}
+
+We can interpret inductive types as discrete Kan cubical sets (see
+Section~\ref{sec:examples}).  E.g.\ the booleans
+$\Gamma \vdash \bool$ are defined by $\bool \alpha = \set {\true,
+  \false}$ for each $\alpha \in \Gamma (I)$, and restrictions being
+the identity map.  As in Section~\ref{sec:examples} one defines a Kan
+structure.  We interpret the constants $\Gamma \vdash \true : \bool$
+by $\true \alpha = \true$, and similar for $\Gamma \vdash \false :
+\bool$.  To interpret the elimination principle
+\[
+\frac{\Gamma.\bool \vdash C \quad \Gamma \vdash d_0 : C [\true] \quad
+  \Gamma \vdash d_1 : C [\false] \quad \Gamma \vdash b : \bool}
+{\Gamma \vdash \ifte b {d_0} {d_1} : C[b]}
+\]
+we define $(\ifte b {d_0} {d_1}) \alpha = d_0 \alpha$ for $b \alpha =
+\true$, and $(\ifte b {d_0} {d_1}) \alpha = d_1 \alpha$ for $b \alpha
+= \false$.
 
 \subsection{Identity type}
 \label{sec:identity-type}
