@@ -1,6 +1,18 @@
+We thank the reviewer for his constructive criticism. In response to this criticism,
+the paper has new sections 3 and 5. Also, a new appendix has been added. Most of the criticism was justified. Answers are marked "BCH" below. 
+
 (1) Section 4 to be expanded to give a rigorous construction of a categorical model of type theory -- thus, first, a presentation of the type theory or a reference to such a presentation; then a description of the notion of model to be employed---for example, a category with families equipped with Sigma and Pi types---together with a reference; finally, a careful proof that the constructions given here yield such a model. The main missing parts seem to be a proof that Kan fibrations pull back, and a proof that the Sigma and Pi operations defined here are stable under pullback.
+
+BCH There is a whole new section 3 on the presheaf semantics. This semantics is not abstract categorical, the pullback issues above do not arise.
+
 (2) Some further explanation in Section 5 that the notion of identity type given here is rather non-standard, and a sketch of the proof that it is more-or-less equivalent to the usual one (except for the fact that the computation rule holds only propositionally rather than on the nose). Also, an indication in the introduction that the material in Section 5 only constructs a non-standard notion of identity type, and that the construction of the universe is not yet complete.
+
+BCH The abstract, introduction and the section on identity types have been reformulated
+to make this clear.
+
 (3) The addition of extra prose to the start of the introduction explaining better the motivation for seeking a (constructive) model in cubical sets in relation to the univalent foundations project.
+
+BCH This is now stated better in the introduction. 
 
 I also had a few other suggestions:
 
@@ -17,9 +29,15 @@ so if you are going to reference previous work, it would seem to be sensible to 
 
 I would have thought that there were some older references, but I don't know any.
 
+BCH We added the reference to Kan and say that our cubical sets are a symmetric variant of the standard definition (in introduction).
+
 -- The part at the end of S2 describing a semantics for type theory in presheaf categories doesn't give any background on what it is trying to do. In particular, there's no discussion of what is meant by a model of type theory, or even what type theory is supposed to be in this context. I would suggest some kind of reordering so that there is a discussion of the type theory you wish to model and what your notion of model is before you describe how a presheaf category is an instance of this notion. Also, it would seem logical to introduce the extensional Sigma types at the same time as you introduce the extensional Pi types, and also to explain how substitution of terms into types works (since you need it in Sec 5.1). You also need to make clear that this is not the model that, in the end, you will be interested in, since it does not have the right notion of identity type.
 
+BCH There is a whole new section 3 on the semantics.
+
 -- on p.4, for the Kan condition for cubical sets, reference Section 4 of [Kan, loc. cit]
+
+BCH Done
 
 -- proof of Theorem 4.1 (the main event in the paper) is unfortunately a bit unclear in its phrasing. In particular, I couldn't parse the last five lines of p.3. I'd recommend rephrasing as follows. From "In the presheaf semantics..." I would proceed as follows:
 
@@ -33,15 +51,22 @@ Then explain how to extend this to define app(wf,u) for any f: I --> K and u in 
 
 Finally, you need to check that app(wf,u)g = app(wfg, ug). I guess this is where the uniformity of the Kan condition comes into play; I couldn't see where you made use of this fact in the proof as given.
 
+BCH This proof of (now) Thm. 6.1 has been reformulated. Please inspect.
+
 -- in Section 4.2, there should probably be a Proposition, so as not to conflate the sigma types in the extensional presheaf model with the sigma types in the Kan fibration model.
+
+BCH This should be the new Thm 6.3 now.
 
 -- a few comments on Section 5.2:
  * the method you have of defining a universe can be found in Hofmann and Streicher unpublished note "Lifting Grothendieck universes", though it is  older; an early reference in print (though it may be older than that) is Sec 7.6 of Ross Street, Cosmoi of internal categories, Transactions of the American Mathematical Society 258 (1980), no. 2, 271â318.
  * are elements of U(I) the same thing as Kan fibrations over the representable I-cube? That is what we expect from the simplicial sets model.
  * you should explain why it is necessary that a cubical set satisfying the Kan condition must have a composition operation of the kind you discuss here. 
 
+BCH Also this section, now 7.2, has been modified. Feel free to mention remaining issues.
+
 -- in Section 5.3, how do you justify the notion of "equivalence" you give? It isn't a standard one. Also, it was rather sloppily stated. Please make precise!
 
+BCH Should be much better now.
 
 There were also a few typos and minor errors that I picked up, which I now list:
 
@@ -49,58 +74,55 @@ There were also a few typos and minor errors that I picked up, which I now list:
 - p.2, 2nd para of S2: "C^opp" -> "C^op"; on same line "direction" -> "directions"
 - p.3, 2nd para: "cubical sets" -> "cubical set" (first line), "prcise" -> "precise", next para "explicitely" -> "explicitly"
 
-all done
+BCH all done
 
 - p.3, para 3: the description of Pi-types in a presheaf category is rather unclear. I would say something like this: an element w of (Pi A B)alpha is given by specifying functions app(wf,-) for each f : I --> J in C, where app(wf,-) assigns to each u in (A alpha f) an element app(wf,u) in B(alpha f, u), subject to the coherence conditions ...
 
-in new \section{Type theory and presheaf semantics}
+BCH in new \section{Cubical sets as a presheaf model}
 last para of old S.2 stays in S.2
 
 - p.3, end of first para of Sec 3: the description of open box is unclear. I would say that: an open box is a family of elements u_{yb} in X(I - y) for each (y,b) in O(J,x) such that u_{yb}(z = c) = u_{zc}(y = b) for all (y,b),(z,c) in O(J,x). 
 - p.4, third line after top display: add "alpha in Gamma(I) and" before "J,x <= I". Earlier in the line, "operations" should probably be "elements" (since you have fully evaluated your operation)
 - p.4, Thm 4.1, third line of proof: remind that w must be in (Pi A B)alpha
 
-all done
+BCH all done
 
 - p.5, third display from bottom: subscript {x,y} should be {y,x}; also u_1 should be u_1(y)  (not strictly necessary by the conventions you already set up, but helpful to make this precise)
 
-No, {x,y} is OK, precisely for the reason that u_1 is u_1(y) here!
+BCH No, {x,y} is OK, precisely for the reason that u_1 is u_1(y) here!
 Added: "where the first $u_1$ is $u_1(y) \in A\alpha(y)(x=1)$" for clarity.
 
 - p.5, final display: subscript {y,x} should be {x,y}; also w_0 should be w_0(y) (in the app) and u_1 should be u_1(y)
 
-No, for similar reasons as above. We feel that the arrows in the y-direction in the picture are sufficiently clear. 
+BCH No, for similar reasons as above. We feel that the arrows in the y-direction in the picture are sufficiently clear. 
 
 - p.6, Sec 4.2: add parentheses around "uf, vf" on third line and around "alpha, B(rho, alpha) | v" in display
 - p.6, Sec 5.1, line 4: rho should be alpha
 
-all done
+BCH all done
+
 - p.6, final display: subscript {x,y} should be {y,x}
 
-Should be {f(x)}, but the formula was obsolete.
+BCH Should have been {f(x)}, but the formula was obsolete.
 
 - p.7, first display: what does this mean? Id isn't a function type, so you don't need to specify its behaviour under substitution.
 
-This picture illustrates the proof of Thm. 5.1
-Three typos w_0 ---> \omega_0 corrected
+BCH This picture illustrates the proof of Thm. 5.1 Three typos w_0 ---> \omega_0 corrected
 
 - p.7, the two lines below second display: add parentheses around "rho(x), omega"; also [a]rho --->_x [b]rho should be (rho, a rho) -->_x (rho, b rho)  (I think!!)
 
-the [.] should have been explained to mean what you write, thanks! Done in new section.
+BCH the [.] should have been explained to mean what you write, thanks! Done in new section.
 
 - p.9, second para: explain why a(x=1) and b(x=0) inhabit the same set (because A_{f(x=1)} = A_{(x=1)(f-x)} = A(x=1)_{f-x} = B(x=0)_{f-x} = B_{(x=0)(f-x)} = B_{f(x=0)})
 - p.9, third para, final line: add "at" before "fx"
 
-Fixed
+BCH Fixed
 
 - p.9, Section 5.2, line -5: end of line should have "u = (A-1 \downarrow \vec a, B_1 \uparrow \vec b)". 
 
-No, the direction (here +) in which we fill is the same as the filling
-we want to define.  (We are given u_x'0 = (a_x'0, b_x'0) which we use
-for both \vec a and \vec b.)
+BCH No, the direction (here +) in which we fill is the same as the filling we want to define.  (We are given u_x'0 = (a_x'0, b_x'0) which we use for both \vec a and \vec b.)
 
 - On previous line, b_{x1} should be b_{x0}
 
-Fixed
-
+BCH Fixed
 
