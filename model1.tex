@@ -239,21 +239,23 @@ this model is expressed in a constructive metalogic.  It can be seen
 as a simplification and a constructive version of the Kan simplicial
 set model of type theory \cite{Voevodsky}.
 
+
 The first combinatorial description of homotopy groups by Kan used
 cubical sets \cite{Kan}; see \cite{Crans}, \cite{Williamson} for a
-more recent account.  The idea was to give a combinatorial description
-of cubes in a topological space $X$, where a cube is a function
-$[0,1]^n\rightarrow X$.  Here we consider a variant based on finite
-sets (of \emph{names} or \emph{symbols}).  This amounts to have a
-formal representation of the notion of cubes seen as continuous maps
-$[0,1]^I\rightarrow X$, where $I$ is a finite sets of names, instead
-of using only continuous maps $[0,1]^n\rightarrow X$.
-%Should we explain why?
-%Our notion of cubical set is a variation of the presentation in \cite{Crans}.
-In our presentation, a \emph{cubical set} is a covariant presheaf on
-$\CC$, where $\CC$ is a base category, where objects are finite sets
-of symbols and maps are suitable substitutions. This presentation
-opens connections with the theory of nominal sets \cite{pitts,Pitts}.
+more recent account.  Our presentation of cubical sets amounts to have
+a formal representation of cubes seen as continuous maps
+$[0,1]^I\rightarrow X$, where $I$ is a finite set of symbols, instead
+of using only continuous maps $[0,1]^n\rightarrow X$. If $I =
+x_1,\dots,x_n$ such a continuous map $u$ can be seen as a quantity as
+a function of $x_1,\dots,x_n$ which vary in the unit interval. We can
+then consider for instance $u(x_i=0)$, which is the quantity $u$ where
+we set $x_i$ to be $0$, or we can introduce a new symbol $y$ and
+consider $u$ to be a quantity as a function of $x_1,\dots,x_n,y$,
+which is actually independent of $y$. We formalize this by defining a
+cubical set to be a covariant presheaf on a suitable base category,
+where objects are finite sets of symbols and maps are
+substitution. This open connections with the theory of nominal sets
+\cite{pitts,Pitts}.
 
 %We adopt the presheaf semantics of type theory, using Dybjer's notion
 %of \emph{category with families} \cite{Dybjer}.  In this semantics a
