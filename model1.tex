@@ -717,24 +717,31 @@ Notice that if $\Gamma \vdash A$ has a Kan structure, then the map
 $\pp \colon \Gamma.A \to \Gamma$ is a Kan fibration as in~\cite{Kan,
   Williamson}.
 
+\[
+\xymatrix@R=1.1cm@C=.6cm{
+A \alpha^+ a  \ar[rr]^{p}                                 &      & A \alpha^+ a'      \\
+                                      &\rdo{A\alpha}(p, \rup{A\alpha}a, \rup{A\alpha}a' )&                              \\
+a \ar@{.>}[rr]_{A\alpha^-(p, \rup{A\alpha}a, \rup{A\alpha}a' )}  \ar[uu]^{\rup{A\alpha}a}     &      &  a' \ar[uu]_{\rup{A\alpha}a'}  \\
+}
+\]
+
 For $\Gamma \vdash A$ with Kan structure and a line $\alpha$ in
 $\Gamma (x)$ connecting points $\rho_0$ to $\rho_1$ one can define an
-\emph{equivalence} (see Section~\ref{sec:equivalence}) 
-$A \rho_0 \to A \rho_1$ as follows.  First, consider $A\rho_i$ as a cubical
-set with set of points $A\rho_i$, set of lines $A\rho_i(x)$, and so on.
-In general, we define $A\rho_i(I)$ by taking $(I)$ to be the unique 
+\emph{equivalence} (see Section~\ref{sec:equivalence}) $A \rho_0 \to A
+\rho_1$ as follows.  First, consider $A\rho_i$ as a cubical set with
+set of points $A\rho_i$, set of lines $A\rho_i(x)$, and so on.  In
+general, we define $A\rho_i(I)$ by taking $(I)$ to be the unique
 morphism $\es\to I$; restrictions are induced by $\Gamma \vdash A$.
-Then, the equivalence $A \rho_0 \to A \rho_1$ is defined
-by $a \mapsto A \alpha^+ a$. One has to verify that the fibers are
-contractible (see Section~\ref{sec:equivalence}). This amounts to
-giving a line from $a$ to $a'$ whenever there is a line from
-$A \alpha^+ a$ to $A \alpha^+ a'$. Using the Kan structure,
-this can be achieved by mapping the latter line down as shown in the
-picture above. The equivalence $a \mapsto A \alpha^+ a$ works
-uniformly and does
-not distinguish cases in which $a$ is degenerated or not.
-This is in contrast to Kan simplicial sets where classical
-logic is essential to define such an equivalence~\cite{BC}.
+Then, the equivalence $A \rho_0 \to A \rho_1$ is defined by $a \mapsto
+A \alpha^+ a$. Verifying that this is indeed an equivalence requires
+the apparatus of Section~\ref{sec:equivalence}.  One key aspect can be
+explained here, and serves as an example of reasoning with the Kan
+structure: every line from $A \alpha^+ a$ to $A \alpha^+ a'$ can be
+mapped down to a line from $a$ to $a'$ as shown in the picture
+above. The equivalence $a \mapsto A \alpha^+ a$ works uniformly and
+does not distinguish cases in which $a$ is degenerated or not.  This
+is in contrast to Kan simplicial sets where classical logic is
+essential to define such an equivalence~\cite{BC}.
 
 
 \section{Examples of cubical sets}\label{sec:examples}
