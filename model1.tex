@@ -227,10 +227,10 @@ $\nat$ (natural numbers) in the model.
 The model of type theory with the Univalence Axiom given by Voevodsky
 \cite{Voevodsky} is based on Kan simplicial sets.
 % Simplicial set maps must preserve degeneracy.
-A problem with a constructive approach to
-Kan simplicial sets is that degeneracy is in general undecidable \cite{BC}.
-This problem makes it impossible to use the Kan simplicial set model
-to obtain a computational interpretation of univalence.
+A problem with a constructive approach to Kan simplicial sets is that
+degeneracy is in general undecidable \cite{BC}.  This problem makes it
+impossible to use the Kan simplicial set model as it is to obtain a
+computational interpretation of univalence.
 
 We present a model of dependent type theory in cubical sets.  This can
 be seen as a generalization of Bishop's notion of {\em set}
@@ -246,16 +246,15 @@ more recent account.  Our presentation of cubical sets amounts to have
 a formal representation of cubes seen as continuous maps
 $[0,1]^I\rightarrow X$, where $I$ is a finite set of symbols, instead
 of using only continuous maps $[0,1]^n\rightarrow X$. If $I =
-x_1,\dots,x_n$ such a continuous map $u$ can be seen as a quantity as
-a function of $x_1,\dots,x_n$ which vary in the unit interval. We can
-then consider for instance $u(x_i=0)$, which is the quantity $u$ where
-we set $x_i$ to be $0$, or we can introduce a new symbol $y$ and
-consider $u$ to be a quantity as a function of $x_1,\dots,x_n,y$,
-which is actually independent of $y$. We formalize this by defining a
-cubical set to be a covariant presheaf on a suitable base category,
-where objects are finite sets of symbols and maps are
-substitution. This open connections with the theory of nominal sets
-\cite{pitts,Pitts}.
+x_1,\dots,x_n$ such a continuous map $u$ can be seen as a function of
+$x_1,\dots,x_n$ which vary in the unit interval. We can then consider
+for instance $u(x_i=0)$, which is the quantity $u$ where we set $x_i$
+to be $0$, or we can introduce a new symbol $y$ and consider $u$ to be
+a quantity as a function of $x_1,\dots,x_n,y$, which is actually
+independent of $y$. We formalize this by defining a cubical set to be
+a covariant presheaf on a suitable base category, where objects are
+finite sets of symbols and maps are substitution. This open
+connections with the theory of nominal sets \cite{pitts,Pitts}.
 
 %We adopt the presheaf semantics of type theory, using Dybjer's notion
 %of \emph{category with families} \cite{Dybjer}.  In this semantics a
@@ -537,8 +536,8 @@ each stage, i.e.\ for an $I$-cube $\alpha$ in $\Gamma$,
 $(\Sigma\,A\,B)\alpha$ consists of pairs $(u,v)$ with $u$ in $A
 \alpha$ and $v$ in $B (\alpha, u)$.  Restrictions are defined
 component-wise: $(u,v)f = (u f, v f)$ where $f \colon I \to J$.  If
-$\Gamma \vdash w : \Sigma\,A\,B$ and $w \alpha = (u,v)$, then $(\pp w)
-\alpha = u$ and $(\qq w) \alpha = v$.
+$\Gamma \vdash w : \Sigma\,A\,B$ and $w \alpha = (u,v)$, then $(w.1)
+\alpha = u$ and $(w.2) \alpha = v$.
 
 We can then verify all the equations of Figure~\ref{MLTT}.
 \begin{figure}[t]
@@ -579,8 +578,8 @@ $$
      {\Gamma\vdash \app(w,u):B[u]}
 $$
 $$
-\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \pp w : A}~~~~~~~
-\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash \qq w : B[\pp w]}
+\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash w.1 : A}~~~~~~~
+\frac{\Gamma\vdash w:\Sigma~A~B}{\Gamma\vdash w.2 : B[w.1]}
 $$
 
 
@@ -607,12 +606,12 @@ $$
      {w = \lambda (\app(w \pp, \qq))} \qquad
 $$
 $$
-(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq)) \quad (\pp w)
-\sigma = \pp (w \sigma) \quad (\qq w) \sigma = \qq (w \sigma)
+(\Sigma~A~B)\sigma = \Sigma~(A\sigma)~(B(\sigma\pp,\qq)) \quad (w.1)
+\sigma = (w \sigma).1 \quad (w.2) \sigma = (w \sigma).2
 $$
 $$
-(u, v) \sigma = (u \sigma, v \sigma) \qquad\pp (u,v) = u \qquad \qq
-(u,v) = v
+(u, v) \sigma = (u \sigma, v \sigma) \qquad (u,v).1 = u \qquad (u,v).2
+= v \qquad (w.1,w.2) = w
 $$
 \end{figure}
 
@@ -831,16 +830,16 @@ N^\interval(J)$ means defining maps (index $K$ omitted) $p :\yoneda J
 (K) \to (\interval(K) \to N(K))$ for all $K$, such that $(p_f u) g =
 p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
 
-We explore the points of $N^\interval$ and define $p\in
-N^\interval(\emptyset)$ by, first, $p_{()}:\interval(\emptyset)\to
-N(\emptyset): 0,1 \mapsto\star$.  Then, $p_{\iota_x}:\interval(x)\to N(x):
-0,1 \mapsto\star(x)=0$ is forced by naturality, but for $p_{\iota_x} x$
-there is a choice. If we choose $0$, we must make the same choice for
-all names $x$ in the name space.  The choice $1$ for all names $x$ in
-the name space would give the only other point. In higher dimensions
-all arguments are degenerated, determining the function values, and
-naturality is compatible with each of the two choices above. We now
-fix $p$ with $p_{\iota_x} x = 0$.
+We explore the points of $N^\interval$ and define $p\in N^\interval()$
+by, first, $p_{()}:\interval()\to N(): 0,1 \mapsto\star$.  Then,
+$p_{\iota_x}:\interval(x)\to N(x): 0,1 \mapsto\star(x)=0$ is forced by
+naturality, but for $p_{\iota_x} x$ there is a choice. If we choose
+$0$, we must make the same choice for all names $x$ in the name space.
+The choice $1$ for all names $x$ in the name space would give the only
+other point. In higher dimensions all arguments are degenerated,
+determining the function values, and naturality is compatible with
+each of the two choices above. We now fix $p$ with $p_{\iota_x} x =
+0$.
 
 Next we explore lines from $p$ to $p$ in $N^\interval$, say in
 direction $i$, and define $\ell:p\to p$ in $N^\interval(i)$ by
@@ -1318,7 +1317,7 @@ t:T$ and $\Gamma.T\vdash u:\Id_{T\pp}~t\pp~\qq$.  We define $t =
 $(v,\bind{x}{\alpha})$ be some element of $T\rho$. So $v$ is an
 element of $A\rho$ and $\alpha$ is a line connecting $a\rho$ and $v$
 in some direction $x$ not in $I$. We introduce a direction $y$ not in
-$I,x$ and define, stipulating degeneracies:
+$I,x$ and define:
 $$
 u(\rho,(v,\bind{x}{\alpha})) = \bind{y}{(A\rho^+ _{x,y}
   (a\rho,a\rho,\alpha),\bind{x}{\rupxy{A\rho}
@@ -1345,12 +1344,12 @@ operations commute with substitutions, e.g.\ $(\Id_A~a~b) \sigma =
     {\Gamma\vdash \Transp(u,v):P[b]}
     \\
     \frac {\Gamma \vdash a : A \quad \Gamma.A \vdash P \quad \Gamma
-      \vdash v : P [a]} {\Gamma \vdash \HH (v):\Id_{P[a]}~v~\Transp(\Ref
-      a,v)}
+      \vdash v : P [a]} {\Gamma \vdash \HH
+      (v):\Id_{P[a]}~v~\Transp(\Ref a,v)}
     \\
-    \frac {\Gamma \vdash a : A} {\Gamma \vdash \mathsf{contr}\, a :
-      \Pi\, T (\Id_{T \pp} (a, \Ref a)~\qq) } \quad \text {where } T =
-    \Sigma\,A\,(\Id_{A \pp} a \pp~ \qq)
+    \frac {\Gamma \vdash a : A} {\Gamma \vdash \mathsf{center}\, (a,
+      \Ref a) : \Pi\, T (\Id_{T \pp} (a, \Ref a)~\qq) } \quad \text
+    {where } T = \Sigma\,A\,(\Id_{A \pp} a \pp~ \qq)
   \end{gather*}
 \end{figure}
 
@@ -1438,8 +1437,8 @@ This interpretation of identity satisfies function extensionality
 
 We now describe the interpretation of $U$ as a universe of Kan cubical
 sets.  We give $U$ only as a cubical set (following
-\cite{HofmannStreicher}) and only indicate how an operation similar to
-the Kan fillings can be given.
+\cite{HofmannStreicher,Street}) and only indicate how an operation
+similar to the Kan fillings can be given.
 
 Recall that the Yoneda embedding is denoted by $\yoneda$.  An
 element $A$ of $U(I)$ is a type $\yoneda I \vdash A$ with Kan
@@ -1488,9 +1487,9 @@ Kan condition we show how to compose an $A$ and $B$ in $U(I)$ with $x
 to the composition of relations.)
 
 We define the sets $C_f$, $f \colon I \to J$ by case distinction on $f
-x$; in case $f x = 0$, we can write $f = (x=0) f'$ and we have to set
-$C_f = A_f$ as we have to satisfy $C_f = (C(x=0))_{f'} = (A
-(x=0))_{f'} = A_f$; similarly, if $f x = 1$, we set $C_f = B_f$.  In
+(x)$; in case $f (x) = 0$, we can write $f = (x=0) f'$ and we have to
+set $C_f = A_f$ as we have to satisfy $C_f = (C(x=0))_{f'} = (A
+(x=0))_{f'} = A_f$; similarly, if $f (x) = 1$, we set $C_f = B_f$.  In
 case, $f$ is defined on $x$, an element of $C_f$ is any pair $(a,b)$
 such that $a \in A_f$ and $b \in B_f$ with $a (x=1) = b (x=0)$ in
 $A_{f (x=1)} = {A(x=1)}_{(f - x)} = {B(x=0)}_{(f - x)} = B_{f (x=0)}$.
@@ -1498,9 +1497,9 @@ $A_{f (x=1)} = {A(x=1)}_{(f - x)} = {B(x=0)}_{(f - x)} = B_{f (x=0)}$.
 We still have to define the restrictions $C_f \to C_{fg}$ for $g
 \colon J \to K$; in the first two cases from above, the restrictions
 are induced by $A_f$ and $B_f$ respectively.  In case $f$ is defined
-on $x$, we look at $g(f x)$: if $g (f x)= 0$, we set $(a,b) g = ag$; if
-$g (f x) = 1$, we set $(a,b)g = bg$; and if $g$ is defined at $f x$, we
-define $(a,b)g = (ag,bg)$.
+on $x$, we look at $g(f (x))$: if $g (f (x))= 0$, we set $(a,b) g =
+ag$; if $g (f (x)) = 1$, we set $(a,b)g = bg$; and if $g$ is defined
+at $f (x)$, we define $(a,b)g = (ag,bg)$.
 
 It remains to define the Kan fillings for $C$; it suffices to give
 them for $C_1$ as $C_f$ is either determined by $A_f$, $B_f$, or
@@ -1822,6 +1821,11 @@ J.P. Serre.
 A. Stoughton.
 \newblock{Substitution revisited.}
 \newblock{Theoretical Computer Science, Vol. 59, p. 317-325, 1988.}
+
+\bibitem{Street}
+R. Street.
+\newblock{Cosmoi of Internal Categories.}
+\newblock{Trans. Amer. Math. Soc., Vol. 258, p. 271-318, 1980.}
 
 \bibitem{Takeuti}
 G. Takeuti.
