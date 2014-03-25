@@ -752,6 +752,9 @@ box $\vec u$ all the components have to be equal, say $u$, and this
 $u$ is also the (unique) filler $u = \rup {\discr A} {\vec u}$ making
 the discrete cubical set trivially into a Kan cubical set.
 
+\subsection{Unit interval}
+\label{sec:unit-interval}
+
 Recall the canonical extension of a map $f:J\to K$ in $\CC$ to a set
 map $J \cup \set{0,1} \to K\cup \set{0,1}$ that is the identity on
 $\set{0,1}$.  Together with mapping objects $J$ of $\CC$ to $J \cup
@@ -760,15 +763,13 @@ $\set{0,1}$.  Together with mapping objects $J$ of $\CC$ to $J \cup
 denoted by $\interval$.  We explore: $\interval()=\set{0,1}$
 ($\interval$ has two points); $\interval(x)=\set{0,1,x}$ ($\interval$
 has three lines, only $x$ is non-degenerated); $\interval(x,y) =
-\set{0,1,x,y}$ ($\interval$ has four degenerated squares, the first
-four squares in the display below); and so on.  The square $x$ varies
-in direction $x$, but is constant in direction $y$, and hence
-degenerated.  Similarly for objects of higher dimension in
-$\interval$.  This completes the description of the unit interval as a
-cubical set.  Note that $\interval \cong \yoneda \set{x}$ for a name
-$x$ (where $\yoneda$ denotes the Yoneda embedding) is another way to
-describe the interval.
-\[
+\set{0,1,x,y}$ ($\interval$ has four degenerated squares, see the
+display below); and so on.  The square $x$ varies in direction $x$,
+but is constant in direction $y$, and hence degenerated.  Similarly
+for objects of higher dimension in $\interval$.  This completes the
+description of the unit interval as a cubical set.  Note that
+$\interval \cong \yoneda \set{x}$ for a name $x$ (where $\yoneda$
+denotes the Yoneda embedding) is another way to describe the interval.
 \def\olll{{1 \atop 0} ~ {1 \atop 1}}
 \def\oool{{0 \atop 0} ~ {1 \atop 0}}
 \def\oooo{{0 \atop 0} ~ {0 \atop 0}}
@@ -779,9 +780,12 @@ describe the interval.
 \def\Txy{{1 \atop 1} ~ {1 \atop 1}}
 \def\Iy{{1 \atop 0} ~ {1 \atop 0}}
 \def\Ix{{0 \atop 0} ~ {1 \atop 1}}
+\[
 \interval(x,y):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
-N(0\leq1)(x,y):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll
 \]
+
+\subsection{Cubical nerve}
+\label{sec:cubical-nerve}
 
 Recall that a morphism $f:J\to K$ in $\CC$ is a function $f:J\to
 K\cup\set{0,1}$ such that for every $y\in K$ there exists at most one
@@ -799,12 +803,15 @@ every morphism $f:J\to K$, its function $\ND(J)\to\ND(K)$ is defined
 by precomposition with the functor $f$.  Note that the unit interval
 is not the cubical nerve of the poset $0\leq1$: they have similar sets
 of points and lines, but $N(0\leq1)$ has two more squares, both
-non-degenerated in two directions, see the last six squares in the
-display above.  An element of $\ND(J)$ can be viewed as a (hyper)cube
-with the edges labelled by morphisms of $\DD$ and vertices labelled by
-objects of $\DD$, such that all paths commute (or equivalently, all
-triangles commute).  This completes the description of the cubical
-nerve of a category.
+non-degenerated in two directions:
+\[
+N(0\leq1)(x,y):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll
+\]
+An element of $\ND(J)$ can be viewed as a (hyper)cube with the edges
+labelled by morphisms of $\DD$ and vertices labelled by objects of
+$\DD$, such that all paths commute (or equivalently, all triangles
+commute).  This completes the description of the cubical nerve of a
+category.
 
 Consider the group of two elements as a category (groupoid) with one
 object $\star$ and two morphisms $0,1:\star\to\star$.  Let $N$ be the
@@ -1619,8 +1626,9 @@ and structures of a groupoid to one which is categorically equivalent.
 \medskip
 
 We have only described here a weak corollary of the Axiom of
-Univalence, but we expect the complete Axiom to be validated in this
-model as well.
+Univalence, but the complete Axiom can be validated in this model as
+well.\footnote{See the implementation at {\tt
+    github.com/simhu/cubical}.}
 
 
 \subsection{Propositional reflection}
@@ -1853,14 +1861,14 @@ R. Williamson.
 %In Kan's original definition \cite{Kan} of cubical set the objects of the
 %base category are finite linear orders of directions,
 %whereas the objects of our base category $\CC$ are finite sets.
-Our cubical sets do not have \emph{connections}, like those in \cite{Williamson}.
-In \cite[III.4.2.10]{Williamson}, Williamson raises the question of a straightforward
-geometric argument replacing his footnote~19 to exhibit the group structure of
-$\pi_n(X,x)$ for Kan cubical sets \emph{without} connections.
-Adapting his geometric argument,
-we can answer his question positively for our Kan cubical sets.
-The argument below seems to work also
-in the original setting of linearly ordered directions.
+Our cubical sets do not have \emph{connections}, like those in
+\cite{Williamson}.  In \cite[III.4.2.10]{Williamson}, Williamson
+raises the question of a straightforward geometric argument replacing
+his footnote~19 to exhibit the group structure of $\pi_n(X,x)$ for Kan
+cubical sets \emph{without} connections.  Adapting his geometric
+argument, we can answer his question positively for our Kan cubical
+sets.  The argument below also works for cubical sets as presented
+in~\cite{Kan}.
 
  We first explore some consequences of the Kan filling property for a cubical set $A$.
  (We shall not need the uniformity condition.) Using the Kan filling property,
