@@ -3,7 +3,9 @@ the paper has new sections 3 and 5. Also, a new appendix has been added. Most of
 
 (1) Section 4 to be expanded to give a rigorous construction of a categorical model of type theory -- thus, first, a presentation of the type theory or a reference to such a presentation; then a description of the notion of model to be employed---for example, a category with families equipped with Sigma and Pi types---together with a reference; finally, a careful proof that the constructions given here yield such a model. The main missing parts seem to be a proof that Kan fibrations pull back, and a proof that the Sigma and Pi operations defined here are stable under pullback.
 
-BCH There is a whole new section 3 on the presheaf semantics. This semantics is not abstract categorical, the pullback issues above do not arise.
+BCH There is a whole new section 3 on the presheaf semantics. This approach is similar
+to the one suggested by Voevoedsky in his CMU lecture 2010 (with generalized algebraic
+theory instead of quasi-equational)
 
 (2) Some further explanation in Section 5 that the notion of identity type given here is rather non-standard, and a sketch of the proof that it is more-or-less equivalent to the usual one (except for the fact that the computation rule holds only propositionally rather than on the nose). Also, an indication in the introduction that the material in Section 5 only constructs a non-standard notion of identity type, and that the construction of the universe is not yet complete.
 
@@ -29,7 +31,7 @@ so if you are going to reference previous work, it would seem to be sensible to 
 
 I would have thought that there were some older references, but I don't know any.
 
-BCH We added the reference to Kan and say that our cubical sets are a symmetric variant of the standard definition (in introduction).
+BCH We added the reference to Kan and explained in the introduction the intuition underlying our presentation of cubical sets
 
 -- The part at the end of S2 describing a semantics for type theory in presheaf categories doesn't give any background on what it is trying to do. In particular, there's no discussion of what is meant by a model of type theory, or even what type theory is supposed to be in this context. I would suggest some kind of reordering so that there is a discussion of the type theory you wish to model and what your notion of model is before you describe how a presheaf category is an instance of this notion. Also, it would seem logical to introduce the extensional Sigma types at the same time as you introduce the extensional Pi types, and also to explain how substitution of terms into types works (since you need it in Sec 5.1). You also need to make clear that this is not the model that, in the end, you will be interested in, since it does not have the right notion of identity type.
 
