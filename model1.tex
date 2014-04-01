@@ -1399,25 +1399,25 @@ v~\Jel (a,v,a,\Ref a)$.
 Even though $\Jel$ doesn't satisfy the judgmental equality, the model
 validates a new operation $\mapOnPaths$ which behaves well w.r.t.\
 judgmental equality.  Its rule given $\Gamma \vdash A$, $\Gamma \vdash
-B$, $\Gamma \vdash a_0 : A$ and $\Gamma \vdash a_1 : A$ is
+B$, $\Gamma \vdash u : A$ and $\Gamma \vdash v : A$ is
 \[
-\frac {\quad \Gamma \vdash f : A \to B \quad \Gamma \vdash p :
-  \Id_A~a_0~a_1} {\Gamma \vdash \mapOnPaths (f, p) : \Id_B~(\app
-  (f,a_0))~(\app (f,a_1))}
+\frac {\quad \Gamma \vdash \varphi : A \to B \quad \Gamma \vdash p :
+  \Id_A~u~v} {\Gamma \vdash \mapOnPaths (\varphi, p) : \Id_B~(\app
+  (\varphi,u))~(\app (\varphi,v))}
 \]
 where $A \to B$ is the non-dependent function space $\Pi A (B \pp)$.
-Given $\rho$ in $\Gamma (I)$ we define $\mapOnPaths (f, p) \rho =
-\bind{x} \app ((f \rho) 1, \omega)$ for $p \rho = \bind x \omega$.
-This satisfies the equations
+Given $\rho$ in $\Gamma (I)$ we define $\mapOnPaths (\varphi, p) \rho
+= \bind{x} \app ((\varphi \rho)_1, \omega)$ for $p \rho = \bind x
+\omega$.  This satisfies the equations
 \begin{align*}
   \mapOnPaths (\mathrm{id}, p) & = p \\
-  \mapOnPaths (f \circ g, p) &= \mapOnPaths \bigl( f, \mapOnPaths
-  (g, p) \bigr)\\
-  \mapOnPaths (f, \Ref a) &= \Ref (\app (f, a))\\
+  \mapOnPaths (\varphi \circ \psi, p) &= \mapOnPaths \bigl( \varphi,
+  \mapOnPaths (\psi, p) \bigr)\\
+  \mapOnPaths (\varphi, \Ref a) &= \Ref (\app (\varphi, a))\\
   \mapOnPaths (\lambda (b \pp), p) &= \Ref b
 \end{align*}
-where now $f \circ g$ denotes ordinary function composition and
-$\lambda (b \pp)$ is constant.
+where now $\varphi \circ \psi$ denotes ordinary function composition
+and $\lambda (b \pp)$ is constant.
 
  Notice that some of these equations do {\em not} hold if the
 identity type is defined as an inductive family, as in \cite{MLTT}.
