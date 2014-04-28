@@ -635,8 +635,8 @@ $$u_{yb}(z = c) = u_{zc}(y = b)$$
 for all $(y,b),(z,c)\in O(J,x)$ with $y\neq z$.  The latter condition
 may be phrased as: \emph{the faces of an open box are
   adjacent-compatible}.  If $f:I\to K$ is defined on $J,x$, we write
-$\vec u f$ for the family indexed by $O (f (J), f(x))$ with components
-$(\vec u f)_{(f y)b} = u_{yb} (f-y)$ in $X (K - f(y))$.
+$\vec u f$ for the open box indexed by $O (f (J), f(x))$ with
+components $(\vec u f)_{(f y)b} = u_{yb} (f-y)$ in $X (K - f(y))$.
 
 For $X$ to be a \emph{(constructive) Kan cubical set}, we require to
 be given operations $\rup{X}$ and $\rdo{X}$ for every $J,x\subseteq I$
@@ -1383,11 +1383,11 @@ Let $A$ be a type, $a : A$, and $C (b,p)$ a type given $b : A$, $p :
 \Id_A a~b$, such that $v : C (a, \Ref a)$; for $b : A$ and $p :
 \Id_{A} a~b$ we define $\Jel (a,v,b,p) : C (b,u)$.  We can consider
 $C$ as a dependent type over $T = (\Sigma x : A) \Id_A a~x$ via $C
-(\pp w, \qq w)$ for $w : T$.  As we showed in the last paragraph, $T$
-is contractible with center $(a, \Ref a)$, and thus we get a witness
+(w.1, w.2)$ for $w : T$.  As we showed in the last paragraph, $T$ is
+contractible with center $(a, \Ref a)$, and thus we get a witness
 $\app (h, (b,p)) : \Id_T (a,\Ref a)~(b,p)$ for $h = \lambda u$, $u$ as
-in the above paragraph; now with $\Transp$ (w.r.t.\ the type $C (\pp
-w, \qq w)$ for $w : T$) we can define
+in the above paragraph; now with $\Transp$ (w.r.t.\ the type $C (w.1,
+w.2)$ for $w : T$) we can define
 \[
 \Jel (a,v,b,p) = \Transp (\app (h, (a,\Ref a))^{-1} \circ \app
 (h,(b,p)), v).
@@ -1408,8 +1408,8 @@ B$, $\Gamma \vdash u : A$ and $\Gamma \vdash v : A$ is
 \]
 where $A \to B$ is the non-dependent function space $\Pi A (B \pp)$.
 Given $\rho$ in $\Gamma (I)$ we define $\mapOnPaths (\varphi, p) \rho
-= \bind{x} \app ((\varphi \rho)_1, \omega)$ for $p \rho = \bind x
-\omega$.  This satisfies the equations
+= \bind{x} \, (\varphi \rho)_1 \omega$ for $p \rho = \bind x \omega$.
+This satisfies the equations
 \begin{align*}
   \mapOnPaths (\mathrm{id}, p) & = p \\
   \mapOnPaths (\varphi \circ \psi, p) &= \mapOnPaths \bigl( \varphi,
