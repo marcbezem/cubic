@@ -676,6 +676,7 @@ define new operations (see figure below)
 $$
 X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec
 u)(x=0)$$
+representing \emph{transport} in the open box in the direction in which it is open. 
 %\begin{figure}
 %\def\emp{{()}}
 \def\noe{\cdot}
@@ -836,7 +837,7 @@ $N^\interval(J)\cong ((\yoneda J \times \interval) \to N)$, the latter
 denoting a set of natural transformations.  Defining $p\in
 N^\interval(J)$ means defining maps (index $K$ omitted) $p :\yoneda J
 (K) \to (\interval(K) \to N(K))$ for all $K$, such that $(p_f u) g =
-p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
+p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in \interval(K)$.
 
 We explore the points of $N^\interval$ and define $p\in N^\interval()$
 by, first, $p_{()}:\interval()\to N(): 0,1 \mapsto\star$.  Then,
@@ -907,7 +908,8 @@ are adjacent-compatible with the open box, and show that all squares
 commute. This will define $u$ in a unique way.
 Thereafter we shall verify the uniformity condition.
 
-If $J=\emptyset~(k=0)$,  the open `box' is a degenerate line $u_{x0}$.
+If $J=\emptyset~(k=0)$,  the open `box' is a degenerate line $u_{x0}$
+in direction $z$.
 We close by taking $u_{x1}=u_{z0}=u_{z1}=u_{x0}$, and $u$ is the
 doubly degenerate square. If $J\neq\emptyset~(k>0)$,
 we observe that all the points of $u$ are already given by the open
@@ -1369,7 +1371,8 @@ paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
 Paulin-Mohring from the above operations---with the difference that
-the usual definitional equality is only propositional.  To not make
+its computation rule only holds propositionally, and not as usual definitionally.
+In order not to make
 the notation too heavy we'll use informal reasoning in type theory;
 note that the definition can be given internally in type theory and we
 don't refer to the model; this definition follows N.A.\ Danielsson's
@@ -1465,7 +1468,7 @@ defines $U$ as a cubical set.
 % \backslash I$ to the category of small sets.  Moreover, we require
 % operations similar to the uniform Kan conditions: For any $f \colon
 % I \to K$ and $J, x \subseteq K$ with $x \notin J$, and $\vec a$ an
-% open box in $A_f$, i.e. $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
+% open box in $A_f$, i.e.\ $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
 % \in \OO^+ (J,x)$ such that
 % \[
 % a_{yb} (z=c) = a_{zc} (y=b) \quad \text{for }(y,b),(z,c) \in \OO^+
