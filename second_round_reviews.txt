@@ -1,0 +1,88 @@
+----------------------1------------------
+
+I looked through the revised version today, and I think it looks really
+good now -- a huge improvement! I don't have any further revisions to
+suggest so I am very happy to recommend the article for acceptance as
+is.
+
+----------------------2------------------
+
+I have now compared the new version with the reports and find that it is
+now ready for publication. In particular, the addition of the examples
+has considerably improved the paper. I still think that some more
+intuition would be helpful, especially since the preprint by Williamson
+which has been used as a standard reference, e.g. in the replies by the
+authors is not really readable for an outsider. It's more a reminder for
+those who have attended the lectures rather than a text that is
+intellegible on its own. I think it is important in this area to make
+sure that one does not lose those who are not present at meetings and
+lectures but are trying to approach the field by self study. Anyway,
+that's just my two cents; there are no formal objections anymore at this
+point.
+
+------------------------3-------------------
+
+My opinion is that the paper is publishable as-is.  Looking at the
+first version of the paper and the current one, I think the authors
+did a reasonable job of improving the paper along the lines I imagine
+they were asked.
+
+Although the work is hard to follow in places and although not all
+details are given (for example in section 7.3 we do not get a full
+proof that the universe satisfies the uniform Kan condition; and in
+section 7.4, the crucial section, we only get a proof of a consequence
+of univalence rather than the full univalence axiom), nevertheless
+more detailed accounts are not really necessary.  First, the full
+details are implicitly available in the Haskell implementation that
+the authors have made available at Github. Second, I believe the time
+is ripe for this work to appear and stimulate other work, with maybe
+more accessible and detailed (and maybe slightly different) version of
+the model coming in follow up works.
+
+I'm sure smoother and more detailed accounts of the "cubical sets
+model" will appear later. But this paper is a classic, if rough,
+diamond and I feel it would be great to have it in the TYPES
+proceedings.  To ask for further revisions will not really enhance its
+value (which is already very good) that much, I think.
+
+-------------------------4-----------------------
+
+I have no hesitation in recommending acceptance; the work presented is of great interest, and the paper is generally correct and complete as stands.  However, there are several revisions that I would urge the authors to consider, which I think would highly increase the readability of the paper.
+
+Several of these suggestions come down to a common point: it would be helpful if definitions and constructions were given more clear, concise, and self-contained statements, and if possible, numbered.  In most ways, I like the fact that the authors have opted to err on the side of readability rather than terseness, introducing constructions discursively with plenty of explanatory remarks.  However, the downside currently is that some important definitions/theorems end up scattered through multiple paragraphs, without a single self-contained statement that readers (or authors citing this paper in future) can easily refer back to.  The points which I feel would most benefit from improvement in this way are:
+
+- the definition of the "cubical category" \C.  (Incidentally, \mathcal{C} seems a slightly non-ideal name for this category, since it's so commonly used as the variable for an arbitrary category, whereas this is a notable individual category that subsequent work may often want to refer back to?)
+
+- the Paulin-Mohring elimination operator in Sec.7.2, which is currently not stated or cited at all!
+
+- the statement proved in Sec.7.4, of transforming an equivalence into an equality of elements of the universe
+
+Besides this, the one other point I was not quite happy with is the assertion, on p.16 at the end of Sec. 7.4, that the full Univalence Axiom can be validated in the model.  This is an important and highly non-trivial fact, and asserting it without proof, reference, or a promise of future proof seems unfortunate.  It prevents other authors from working on it, and leaves its status in the literature quite nebulous.  If the authors plan to publish the proof in the near future (or if someone else does), then they can say so, or otherwise this assertion should be qualified.  The footnote given suggests a reference, but it is not at all clear to this reviewer how the linked program can be seen as a proof of the assertion (though it is certainly interesting and closely related), if that is what was intended.
+
+Similarly, since the Kan structure on the universe is only given the very beginnings of a sketch (it does not seem to me routine to complete the sketch), it would be good to indicate whether a full proof is forthcoming, or if not, to be more clear about this incompleteness in the abstract/introduction.
+
+Minor points:
+
+throughout: "degenerated", when used as an adjective, should be "degenerate", e.g. "a degenerate line", not "a degenerated line"
+
+p.1, abstract "how to transform an equivalence... in an equality": "in" should be "into"
+
+p.2, para 2, "sketch on one special case": "on" should be "one".
+
+p.2, marker for footnote 2, "if f(i) is an element of J": the footnote marker should be after the period, not after J, so that it doesn't look like f(i) is an element of $^2$.
+
+p.4, definition of types in the full presheaf model: for some readers it will be perhaps helpful to point out that a type is precisely (i.e. up to isomorphism of categories) a presheaf on the category of elements of the context, and hence is equivalent (up to categorical equivalence) to the slice (cubical sets)/Gamma.
+
+p.5, O^+(J,x): leaving the parameter I implicit in this notation is problematic later on, since it can't be inferred from the other arguments.
+ 
+p.6, para 3: for readers familiar with HoTT terminology, perhaps drop in the word "transport" here to help see what the operations X^+, X^- are doing.
+
+p.7, para beginning "We now show that N^\mathbb{I} is not Kan": the last I(K) in this para should be \mathbb{I}(K).
+
+p.8, Sec 5.3, para 3: "the open 'box' is a degenerated line": why must it be degenerate?  I think it can be any line; but this does not cause any problems in the proof, it simply means that the square given as a filler will be singly not doubly degenerate.
+
+p.11, Sec 7.1: "we can interpret inductive types as discrete Kan cubical sets": slightly misleading - only the constant inductive types (Nat, Bool, etc.) will be discrete; other inductives, such as W-types, may not be.
+
+p.13, para 1, "...the usual definitional equality...": perhaps clarify that this means the def. eq. in the computation rule of the P-M eliminator.
+
+

@@ -200,7 +200,7 @@ simplexes \`a l'\'etude des produits directs, et, a fortiori, des espaces fibr\'
 \begin{abstract}\noindent
   We present a model of type theory with dependent product, sum, and
   identity, in cubical sets.  We describe a universe and explain how
-  to transform an equivalence between two types in an equality.  We
+  to transform an equivalence between two types into an equality.  We
   also explain how to model propositional truncation and the circle.
   While not expressed internally in type theory, the model is
   expressed in a constructive metalogic.  Thus it is a step towards a
@@ -287,12 +287,12 @@ reformulation of the notion of cubical sets that we present in the
 first section, and the connection mentioned above with nominal sets.
 
 %Perhaps we don't discuss alternatives such as semi simple sets and
-%(One other possible attempt to solve this problem is by marking the degenerated elements, 
+%(One other possible attempt to solve this problem is by marking the degenerate elements, 
 %but it is not clear yet in this approach how to treat exponentials in a satisfactory way.) 
 
 In this paper we present the semantics of dependent products, sums, 
 identity types. We also show how to interpret the universe, but only
-sketch on one special case how one could define the Kan structure on
+sketch one special case how one could define the Kan structure on
 the universe. We also only describe how to transform an equivalence
 between two small types into a path between these types.
 Based on the model described in the first version of this paper (a nominal version of it)
@@ -326,11 +326,11 @@ and we denote them by $I,J,K,\dots$.
 A morphism $f:I\to J$ is a map $I \to J\cup \set{0,1}$ such that $f(i) = f(j)$ if{f} $i=j$ whenever
 $f(i)$ and $f(j)$ are in $J$. Notice that $\set{0,1}$ is disjoint from $J$ since $J$ is a set of
 names. We say that $i$ is in the \emph{domain} of $f$, or that $f(i)$ is \emph{defined},
-if $f(i)$ is an element of $J$\footnote%
+if $f(i)$ is an element of $J$.\footnote%
 {In a previous attempt, we have been considering the category of finite sets
 with maps $I \to J+2$ (i.e.\ the Kleisli category for the monad $I+2$).
 This category appears on pages 47--48 in Pursuing Stacks
-\cite{Grothendieck} as ``in a sense, the smallest test category''.}.
+\cite{Grothendieck} as ``in a sense, the smallest test category''.}
 So the condition for $f$ being a morphism can be reformulated by saying that $f$ is injective on its domain.
 
 Clearly, $1_I : I\to I$ defined by $1_I(i) = i$ for all $i\in I$ is a morphism.
@@ -415,7 +415,7 @@ u(0,0)\ar[rr]_{u(x,0)}\ar[uu]^{u(0,y)}&      & u(1,0)\ar[uu]_{u(1,y)}   &&&
 u(0,0)\ar[rr]_{u(x,0)}\ar[uu]^{u(0,0)}&      & u(1,0)\ar[uu]_{u(1,0)}       \\
 }
 \]
-%\caption{A square $u(x,y)$ and a degenerated square $u(x,0)$\label{squares}}
+%\caption{A square $u(x,y)$ and a degenerate square $u(x,0)$\label{squares}}
 %\end{figure}
 
 If $v$ is an $I-x$ cube of $X$ then we can consider $v\iota_x$ which is an
@@ -423,7 +423,7 @@ $I$-cube of $X$ (we recall that $\iota_x:I-x\to I$ is the canonical
 inclusion). The map $v\longmapsto v\iota_x$ is injective (we have
 $v\iota_x(x=0) = v$) and it is natural to identify $v$ and
 $v\iota_x$, thus considering $X(I-x)$ to be a subset of $X(I)$. An example
-is the degenerated right square above.
+is the degenerate right square above.
 
  If $u$ is in $X(I)$ and $x$ is in $I$, there may exist a $v$ in $X(I-x)$ such that
 $u = v\iota_x = v$.  Intuitively, this means that $x$ ``does not occur'' in $u$, or that $u$ is
@@ -676,6 +676,7 @@ define new operations (see figure below)
 $$
 X^+\vec u = (\rup{X} \vec u)(x=1)~~~~~~~~X^-\vec u = (\rdo{X} \vec
 u)(x=0)$$
+representing \emph{transport} in the open box in the direction in which it is open. 
 %\begin{figure}
 %\def\emp{{()}}
 \def\noe{\cdot}
@@ -730,7 +731,7 @@ $A\rho_i\iota_I$ by taking $\iota_I$ to be the unique morphism $\es\to
 I$; restrictions are induced by $\Gamma \vdash A$.  Then, the map $A
 \rho_0 \to A \rho_1$ is defined by $a \mapsto A \alpha^+ a$.  The
 equivalence $a \mapsto A \alpha^+ a$ works uniformly and does not
-distinguish cases in which $a$ is degenerated or not.  One can show
+distinguish cases in which $a$ is degenerate or not.  One can show
 that this map is an equivalence (see Section~\ref{sec:identity-type}
 and \ref{sec:equivalence}).  This is in contrast to Kan simplicial
 sets where classical logic is essential to define such an
@@ -763,10 +764,10 @@ $\set{0,1}$.  Together with mapping objects $J$ of $\CC$ to $J \cup
   Set}$.  This covariant functor is called the \emph{unit interval},
 denoted by $\interval$.  We explore: $\interval()=\set{0,1}$
 ($\interval$ has two points); $\interval(x)=\set{0,1,x}$ ($\interval$
-has three lines, only $x$ is non-degenerated); $\interval(x,y) =
-\set{0,1,x,y}$ ($\interval$ has four degenerated squares, see the
+has three lines, only $x$ is non-degenerate); $\interval(x,y) =
+\set{0,1,x,y}$ ($\interval$ has four degenerate squares, see the
 display below); and so on.  The square $x$ varies in direction $x$,
-but is constant in direction $y$, and hence degenerated.  Similarly
+but is constant in direction $y$, and hence degenerate.  Similarly
 for objects of higher dimension in $\interval$.  This completes the
 description of the unit interval as a cubical set.  Note that
 $\interval \cong \yoneda \set{x}$ for a name $x$ (where $\yoneda$
@@ -804,7 +805,7 @@ every morphism $f:J\to K$, its function $\ND(J)\to\ND(K)$ is defined
 by precomposition with the functor $f$.  Note that the unit interval
 is not the cubical nerve of the poset $0\leq1$: they have similar sets
 of points and lines, but $N(0\leq1)$ has two more squares, both
-non-degenerated in two directions:
+non-degenerate in two directions:
 \[
 N(0\leq1)(x,y):\oooo\quad\ooll\quad\olol\quad\llll\quad\oool\quad\olll
 \]
@@ -836,7 +837,7 @@ $N^\interval(J)\cong ((\yoneda J \times \interval) \to N)$, the latter
 denoting a set of natural transformations.  Defining $p\in
 N^\interval(J)$ means defining maps (index $K$ omitted) $p :\yoneda J
 (K) \to (\interval(K) \to N(K))$ for all $K$, such that $(p_f u) g =
-p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in I(K)$.
+p_{fg}(ug)$ for every $f:J\to K$, $g:K\to L$, and $u\in \interval(K)$.
 
 We explore the points of $N^\interval$ and define $p\in N^\interval()$
 by, first, $p_{()}:\interval()\to N(): 0,1 \mapsto\star$.  Then,
@@ -844,7 +845,7 @@ $p_{\iota_x}:\interval(x)\to N(x): 0,1 \mapsto\star(x)=0$ is forced by
 naturality, but for $p_{\iota_x} x$ there is a choice. If we choose
 $0$, we must make the same choice for all names $x$ in the name space.
 The choice $1$ for all names $x$ in the name space would give the only
-other point. In higher dimensions all arguments are degenerated,
+other point. In higher dimensions all arguments are degenerate,
 determining the function values, and naturality is compatible with
 each of the two choices above. We now fix $p$ with $p_{\iota_x} x =
 0$.
@@ -867,11 +868,11 @@ results in the four squares displayed above (NB: $\ell_x=\ell_y$).
 Since the squares have to commute we get $\ell_0 = \ell_1$.  In higher
 dimensions all values are determined by naturality, and naturality is
 compatible with each of the four possible choices (recall that objects
-in $\interval$ can be non-degenerated in at most one direction).  This
+in $\interval$ can be non-degenerate in at most one direction).  This
 yields in total four lines from $p$ to $p$ in $N^\interval$.
 
 In order to show that $N^\interval$ is not Kan, consider lines
-$p,\ell: p\to p$, where $p$ is degenerated ($p_0=p_x=p_1=0$) and
+$p,\ell: p\to p$, where $p$ is degenerate ($p_0=p_x=p_1=0$) and
 $\ell$ is defined by $\ell_0=\ell_1=0,~\ell_x=1$.  Consider an open
 box as in the picture below, left:
 \[
@@ -907,9 +908,10 @@ are adjacent-compatible with the open box, and show that all squares
 commute. This will define $u$ in a unique way.
 Thereafter we shall verify the uniformity condition.
 
-If $J=\emptyset~(k=0)$,  the open `box' is a degenerated line $u_{x0}$.
+If $J=\emptyset~(k=0)$,  the open `box' is a degenerate line $u_{x0}$
+in direction $z$.
 We close by taking $u_{x1}=u_{z0}=u_{z1}=u_{x0}$, and $u$ is the
-doubly degenerated square. If $J\neq\emptyset~(k>0)$,
+doubly degenerate square. If $J\neq\emptyset~(k>0)$,
 we observe that all the points of $u$ are already given by the open
 box, so that we can limit attention to the edges.
 Moreover, if $J$ consists of more than one variable, all edges are also
@@ -1369,7 +1371,8 @@ paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
 Paulin-Mohring from the above operations---with the difference that
-the usual definitional equality is only propositional.  To not make
+its computation rule only holds propositionally, and not as usual definitionally.
+In order not to make
 the notation too heavy we'll use informal reasoning in type theory;
 note that the definition can be given internally in type theory and we
 don't refer to the model; this definition follows N.A.\ Danielsson's
@@ -1465,7 +1468,7 @@ defines $U$ as a cubical set.
 % \backslash I$ to the category of small sets.  Moreover, we require
 % operations similar to the uniform Kan conditions: For any $f \colon
 % I \to K$ and $J, x \subseteq K$ with $x \notin J$, and $\vec a$ an
-% open box in $A_f$, i.e. $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
+% open box in $A_f$, i.e.\ $a_{yb} \in A_{f (y=b)}$ for each $(y,b)
 % \in \OO^+ (J,x)$ such that
 % \[
 % a_{yb} (z=c) = a_{zc} (y=b) \quad \text{for }(y,b),(z,c) \in \OO^+
@@ -1777,6 +1780,11 @@ M. Hofmann and T. Streicher.
 \newblock{Lifting Grothendieck Universes.}
 \newblock{Unpublished note.}
 
+\bibitem{HuberLicTh}
+S. Huber.
+\newblock{Title.}
+\newblock{Licentiate Thesis, Chalmers/University of Gothenburg, 2014.}
+
 \bibitem{hurewicz}
 W. Hurewicz.
 \newblock{On the concept of fiber space.}
@@ -1857,121 +1865,5 @@ R. Williamson.
 \end{thebibliography}
 
 
-\section*{Appendix 1: Combinatorial definition of $\pi_n(X,x)$}
-
-%In Kan's original definition \cite{Kan} of cubical set the objects of the
-%base category are finite linear orders of directions,
-%whereas the objects of our base category $\CC$ are finite sets.
-Our cubical sets do not have \emph{connections}, like those in
-\cite{Williamson}.  In \cite[III.4.2.10]{Williamson}, Williamson
-raises the question of a straightforward geometric argument replacing
-his footnote~19 to exhibit the group structure of $\pi_n(X,x)$ for Kan
-cubical sets \emph{without} connections.  Adapting his geometric
-argument, we can answer his question positively for our Kan cubical
-sets.  The argument below also works for cubical sets as presented
-in~\cite{Kan}.
-
- We first explore some consequences of the Kan filling property for a cubical set $A$.
- (We shall not need the uniformity condition.) Using the Kan filling property,
-we can complete any equality proof $\omega:a\rightarrow u$ to a square
-
-\begin{diagram}
-a & \rTo^{\omega} & u \\
-\dTo^{\omega'} & & \dTo         \\
-u & \rTo & u
-\end{diagram}
-
- There is no reason for $\omega'$ to be the same as $\omega$.
- We show how to use the Kan property to find such a square where $\omega'$ coincides
-with $\omega$, the `inner' or ground square in the following diagram.
-
-\begin{diagram}[tight,width=2em,height=2em]
-u    &                 &  \rTo         &               &      &           & u \\
-     & \luTo^{\omega'} &               &               &      & \ruTo     &   \\
-     &                 &    a          & \rTo^{\omega} & u    &           &   \\
-\dTo &                 & \dTo^{\omega} &               & \dTo &           & \dTo  \\
-     &                 &     u         & \rTo          & u    &           &   \\
-     &  \ldTo          &               &               &      &  \rdTo    &   \\
-u    &                 &   \rTo        &               &      &           & u
-\end{diagram}
-
-Similarly we show that any equality proof $\omega:a\rightarrow u$ can be completed to a square
-
-\begin{diagram}
-a & \rTo & a \\
-\dTo & & \dTo_{\omega}         \\
-a & \rTo^{\omega} & u
-\end{diagram}
-
- As an application, we can go back and forth between the two squares
-
-\begin{diagram}
-a    & \rTo^{\alpha}     & b             & & &    a    & \rTo^{\alpha}  & b \\
-\dTo^{\gamma} &          & \dTo_{\beta}  & & &    \dTo &                & \dTo_{\beta}  \\
-c & \rTo^{}              & c             & & &    a    &  \rTo^{\gamma} & c
-\end{diagram}
-
-using the cube
-
-\begin{diagram}[tight,width=2em,height=2em]
-a    &                 &               &  \rTo^{\alpha}&      &           & b \\
-     & \luTo           &               &               &      & \ruTo     &   \\
-     &                 &    a          & \rTo^{\alpha} & b    &           &   \\
-\dTo^{\gamma} &        & \dTo           &              & \dTo_{\beta}&    & \dTo_{\beta}  \\
-     &                 &     a         & \rTo^{\gamma} & c    &           &   \\
-     & \ldTo^{\gamma}  &               &               &      &  \rdTo    &   \\
-c    &                 &   \rTo        &               &      &           & c
-\end{diagram}
-
- Using these remarks, we can define $\pi_1(X,a)$ as follows. The elements are homotopy equivalence classes
-of paths $a\rightarrow a$ and two paths $\omega,\omega':a\rightarrow b$ are equivalent if{f} we can find a square
-
-\begin{diagram}
-a & \rTo^{\omega} & b \\
-\dTo & & \dTo         \\
-a & \rTo^{\omega'} & b
-\end{diagram}
-
- Using the Kan condition, one can show that this is an equivalence relation \cite{Williamson}.
-
- We define then the composition $\alpha\beta$ of two paths $\alpha:a\rightarrow b,\beta:b\rightarrow c$
-as being the path obtained by the Kan filling property
-
-\begin{diagram}
-a    & \rTo^{\alpha}     & b             &\\
-\dTo &          & \dTo_{\beta}  &\\
-a & \rTo_{\alpha\beta}   & c             &
-\end{diagram}
-
-The following diagram shows that composition preserves homotopy equivalence
-
-\begin{diagram}[tight,width=2em,height=2em]
-a     &                 & &  \rTo^{\alpha'}         &               &         &  b \\
-     & \luTo  &               &               &      & \ruTo     &   \\
-     &                 &    a          & \rTo^{\alpha} & b    &           &   \\
-\dTo &                 & \dTo &               & \dTo_{\beta} &           & \dTo_{\beta'}  \\
-     &                 &     a         & \rTo_{\alpha\beta}           & c    &           &   \\
-     &  \ldTo          &               &               &      &  \rdTo    &   \\
-a    &                 &  & \rTo_{\alpha'\beta'}         &                 &           & c
-\end{diagram}
-
-The following diagram shows that composition satisfies associativity
-
-\begin{diagram}[tight,width=2em,height=2em]
-a     &                 & &  \rTo^{\alpha}         &               &         &  b \\
-     & \luTo  &               &               &      & \ruTo     &   \\
-     &                 &    a          & \rTo^{\alpha} & b    &           &   \\
-\dTo &                 & \dTo &               & \dTo_{\beta} &           & \dTo_{\eta}  \\
-     &                 &     a         & \rTo_{\gamma}           & c    &           &   \\
-     &  \ldTo          &               &               &      &  \rdTo^{\delta}    &   \\
-a    &                 &  & \rTo_{\epsilon}         &                 &           & d
-\end{diagram}
-
-
- It is then possible to show in a purely combinatorial way \cite{Williamson} that this defines a group.
-The unit  is the homotopy equivalence class of $a\to a$.
-
- Since it is clear how to define combinatorial the loop space $\Omega(X,a)$ we get in this way a simple
-combinatorial definition of $\pi_2(X,a) = \pi_1(\Omega(X,a),1_a),\dots$
-
 \end{document}
+
