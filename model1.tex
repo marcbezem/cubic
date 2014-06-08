@@ -786,6 +786,56 @@ denotes the Yoneda embedding) is another way to describe the interval.
 \interval(x,y):\Fxy\quad\Txy\quad\Ix\quad\Iy\quad\quad
 \]
 
+\subsection{Polynomial rings}
+\label{sec:polyrings}
+
+A particularly natural example of a cubical set, suggested by Aczel,
+is based on polynomials over a commutative ring $R$.
+We let $R[I]$ as usual denote denote the ring of polynomials
+with coefficients in $R$ and variables in (at most) $I$. For $x\notin I$ and
+$p\in R[I]$, we define $\iota_x p = p \in R[I,x]$. For $x\in I$ and
+$p\in R[I]$, we define $p(x=0) \in R[I-x]$ as $p$ with $0\in R$
+substituted for $x$. Likewise, $p(x=1) \in R[I-x]$ is $p$ with $1\in R$
+substituted for $x$. It is easily verified that this defines a cubical set,
+which we denote by $R[\_]$. In the following paragraph we show that
+$R[\_]$ has Kan structure.
+
+For simplicity, we first take $I=x,J$ and $J=y,z$. After that,
+the general case can be done by an easy induction on $|J|$.
+Let $\vec u$ be an open box  indexed by $O^+(J,x)$.
+The construction of filling an open box can be described
+as \emph{iterated orthogonal linear interpolation},
+in which we stepwise approximate the filler $p$,
+one direction per step, ending with the direction
+in which the box is open. Define $p_z = (1-z) u_{z0} + z u_{z1}$.
+Then $p_z (z=0) = u_{z0}$, $p_z(z=1) =  u_{z1}$,
+so $p_z$ has the right faces in direction $z$.
+Now define:
+\[p_{yz} = p_z + (1-y) (u_{y0} - p_z(y=0)) + y (u_{y1} - p_z(y=1))\]
+This step is typical for the induction case.
+Per construction, $p_{yz}$ has the right faces in the direction $y$.
+We verify that $p_{yz}$ still has the right faces in the direction $z$.
+For $b=0,1$ we have
+\[
+\begin{array}{lcl}
+p_{yz} (z=b)&=&(p_z + (1-y) (u_{y0} - p_z(y=0)) + y (u_{y1} - p_z(y=1)))(z=b)\\
+&=& p_z(z=b) + (1-y) (u_{y0}(z=b) - p_z(z=b)(y=0)) + y (u_{y1}(z=b) - p_z(z=b)(y=1))\\
+&=& u_{zb},~\text{since $p_z$ has the right faces in direction $z$, and $\vec u$ is an open box.}
+\end{array}
+\]
+In the last step above we have used that an open box has adjacent-compatible
+faces, such that $u_{yc}(z=b) = u_{zb}(y=c)$. It remains to define
+the filler $p=p_{xyz}$ by
+\[p_{xyz} = p_{yz} + (1-x) (u_{x0} - p_{yz}(x=0))\]
+and to verify the $p$ has all the same faces as $\vec u$.
+The latter is similar to the verification of $p_{yz}$ and is left to the reader.
+We note that the construction of the filler $p$ is completely uniform,
+and hence $R[\_]$ has Kan structure.
+
+We can also fill closed boxes by adding a term $x(u_{x1} - p_{yz}(x=1))$
+to $p_{xyz}$ above. Another consequence of linear interpolation is that
+the cubical set $R[\_]$ is contractible.
+
 \subsection{Cubical nerve}
 \label{sec:cubical-nerve}
 
