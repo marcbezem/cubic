@@ -7,13 +7,35 @@ Several of these suggestions come down to a common point: it would be helpful if
 
 - the definition of the "cubical category" \C.  (Incidentally, \mathcal{C} seems a slightly non-ideal name for this category, since it's so commonly used as the variable for an arbitrary category, whereas this is a notable individual category that subsequent work may often want to refer back to?)
 
+MB As an experiment I added two definitions. They look OK to me, if we want to comply with the reviewer. It is not strictly necessary, people can refer to "cubical sets as in [BCH]", "the category in [BCH, Section 1]". Coming up with an alternative to \CC is harder: \Box has been used various places, Cub ditto. Calligraphic C is fine with me.
+
 - the Paulin-Mohring elimination operator in Sec.7.2, which is currently not stated or cited at all!
 
+MB This one is used in the HoTT book (I must admit that I forgot the precise content, will look it up tomorrow.)
+
+@inproceedings{Moh93,
+Author = {Christine Paulin-Mohring},
+Booktitle = {Proceedings of the conference {T}yped {L}ambda {C}alculi and {A}pplications},
+Editor = {Marc Bezem and Jan Friso Groote},
+Number = 664,
+Series = {Lecture Notes in Computer Science},
+Title = {{Inductive Definitions in the System {Coq} - Rules and Properties}},
+Year = 1993}
+
+I added a reference \cite{Moh93}, but not a bibitem, since we have to come up with a .bib file anyway.
+BTW references.bib of the HoTT book contain a whole lot of our bibitems.
+
 - the statement proved in Sec.7.4, of transforming an equivalence into an equality of elements of the universe
+
+MB This seems not so useful, even less that the (new) Definition 1 and 2. The explanation is more interesting than the (proof-irrelevant) statement.
 
 Besides this, the one other point I was not quite happy with is the assertion, on p.16 at the end of Sec. 7.4, that the full Univalence Axiom can be validated in the model.  This is an important and highly non-trivial fact, and asserting it without proof, reference, or a promise of future proof seems unfortunate.  It prevents other authors from working on it, and leaves its status in the literature quite nebulous.  If the authors plan to publish the proof in the near future (or if someone else does), then they can say so, or otherwise this assertion should be qualified.  The footnote given suggests a reference, but it is not at all clear to this reviewer how the linked program can be seen as a proof of the assertion (though it is certainly interesting and closely related), if that is what was intended.
 
 Similarly, since the Kan structure on the universe is only given the very beginnings of a sketch (it does not seem to me routine to complete the sketch), it would be good to indicate whether a full proof is forthcoming, or if not, to be more clear about this incompleteness in the abstract/introduction.
+
+MB I added a provisory \bibitem{HuberLicTh} (Title missing) in the references.
+Simon is welcome to add one or more references to his forthcoming thesis at strategic places in the paper!
+
 
 Minor points:
 
