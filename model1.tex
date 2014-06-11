@@ -248,10 +248,15 @@ computational interpretation of the axiom of description
 
 We start by fixing a countable discrete set of names or symbols,
 hereafter called the \emph{name space}, such that $0$ and $1$ are not
-names.  The objects of $\CC$ are finite decidable subsets of the name
-space, and we denote them by $I,J,K,\dots$.  A morphism $f:I\to J$ is
+names.  
+\begin{definition}\label{catC}
+The category $\CC$ of names and substitutions has as
+objects all finite decidable subsets of the name space, 
+denoted by $I,J,K,\dots$.  A morphism $f:I\to J$ is
 a map $I \to J\cup \set{0,1}$ such that $f(i) = f(j)$ if{f} $i=j$
-whenever $f(i)$ and $f(j)$ are in $J$. Notice that $\set{0,1}$ is
+whenever $f(i)$ and $f(j)$ are in $J$. 
+\end{definition}
+Notice that $\set{0,1}$ is
 disjoint from $J$ since $J$ is a set of names. We say that $i$ is in
 the \emph{domain} of $f$, or that $f(i)$ is \emph{defined}, if $f(i)$
 is an element of $J$.\footnote%
@@ -304,13 +309,13 @@ If $f:I\to J$ and $x$ is not in $I$ and $y$ is not in $J$, we can
 extend $f$ to a map $(f,x=y):I,x\to J,y$ by sending $x$ to $y$.
 
 \section{Cubical sets}
-
-A \emph{cubical set} is a functor $\CC\to{\sf Set}$.  Let $X$ be a
+\begin{definition}\label{cubicalset}
+A \emph{cubical set} is a covariant functor $\CC\to{\sf Set}$.
+\end{definition}
+Let $X$ be a
 cubical set. Then we have sets $X(I)$ and set maps (called
 \emph{restrictions}) $X(I)\to X(J),~u\longmapsto uf$ for any morphism
 $f:I\to J$, such that $u1 = u$ and $u(fg) = (uf)g$.
-
-\medskip
 
 A cubical set $X$ is a presheaf on the category ${\cal C}^{op}$. Any
 finite set of directions $I$ represents by the Yoneda embedding
@@ -1385,7 +1390,7 @@ this Agda development\footnote{Available at:
 paper~\cite{CoquandDanielsson}.
 
 Let us define the more common elimination operator of C.\
-Paulin-Mohring from the above operations---with the difference that
+Paulin-Mohring~\cite{Moh93} from the above operations---with the difference that
 its computation rule only holds propositionally, and not as usual
 definitionally.  In order not to make the notation too heavy we'll use
 informal reasoning in type theory; note that the definition can be
